@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ChainScout — Simple AI Tools for Crypto Beginners</title>
+  <meta name="description" content="Free and simple AI tools that help beginners in Africa, India and Southeast Asia understand crypto faster. No complicated jargon.">
+  <link rel="canonical" href="https://www.chainscout.app/">
+  <meta property="og:title" content="ChainScout — Simple AI Tools for Crypto Beginners">
+  <meta property="og:description" content="Free and simple AI tools that help beginners understand crypto faster. No complicated jargon.">
+  <meta property="og:url" content="https://www.chainscout.app/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ChainScout">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="ChainScout — Simple AI Tools for Crypto Beginners">
+  <meta name="twitter:description" content="Free and simple AI tools that help beginners understand crypto faster.">
+  <meta name="robots" content="index, follow">
+  <style>
+    :root {
+      --bg: #0f1115;
+      --card: #1a1d24;
+      --text: #e8eaed;
+      --muted: #9aa0a6;
+      --accent: #00d4aa;
+      --border: #2a2e37;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 0 16px 60px;
+    }
+    .container { max-width: 900px; margin: 0 auto; }
+    header {
+      padding: 48px 0 32px;
+      text-align: center;
+    }
+    h1 {
+      font-size: 2.2rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      letter-spacing: -0.02em;
+    }
+    .tagline {
+      color: var(--muted);
+      font-size: 1.15rem;
+      max-width: 520px;
+      margin: 0 auto 28px;
+    }
+    .badge {
+      display: inline-block;
+      background: rgba(0,212,170,0.12);
+      color: var(--accent);
+      font-size: 0.85rem;
+      padding: 6px 14px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+    }
+    .sections {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+      margin: 32px 0 48px;
+    }
+    .section-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 18px 16px;
+      text-align: center;
+      text-decoration: none;
+      color: inherit;
+      transition: border-color 0.2s;
+      display: block;
+    }
+    .section-card:hover { border-color: var(--accent); }
+    .section-card strong { display: block; margin-bottom: 4px; color: var(--text); }
+    .section-card span { font-size: 0.85rem; color: var(--muted); }
+    .section-title {
+      font-size: 1.35rem;
+      margin: 48px 0 20px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+      scroll-margin-top: 24px;
+    }
+    .tool {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 16px;
+    }
+    .tool h3 {
+      font-size: 1.15rem;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .tool .free {
+      font-size: 0.75rem;
+      background: rgba(0,212,170,0.15);
+      color: var(--accent);
+      padding: 2px 8px;
+      border-radius: 6px;
+    }
+    .tool.featured {
+      border-color: var(--accent);
+      background: linear-gradient(135deg, rgba(0,212,170,0.08) 0%, var(--card) 40%);
+      position: relative;
+    }
+    .tool.featured::before {
+      content: "Featured";
+      position: absolute;
+      top: 12px;
+      right: 14px;
+      font-size: 0.7rem;
+      background: var(--accent);
+      color: #000;
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-weight: 600;
+    }
+    .sponsor-slot {
+      border: 1px dashed var(--border);
+      background: transparent;
+      text-align: center;
+      padding: 28px 20px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+    .sponsor-slot strong {
+      display: block;
+      color: var(--text);
+      margin-bottom: 6px;
+      font-size: 1.05rem;
+    }
+    .tool p { color: var(--muted); font-size: 0.95rem; margin-bottom: 10px; }
+    .prompt {
+      background: #12141a;
+      border-left: 3px solid var(--accent);
+      padding: 12px 14px;
+      font-size: 0.9rem;
+      border-radius: 0 8px 8px 0;
+      margin: 12px 0;
+      color: #c5c8ce;
+    }
+    .meta {
+      font-size: 0.85rem;
+      color: var(--muted);
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .meta a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .meta a:hover { text-decoration: underline; }
+    .email-box {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 28px;
+      text-align: center;
+      margin-top: 48px;
+    }
+    .email-box h3 { margin-bottom: 8px; }
+    .email-box p { color: var(--muted); margin-bottom: 16px; }
+    input[type="email"] {
+      width: 100%;
+      max-width: 320px;
+      padding: 12px 16px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: var(--bg);
+      color: var(--text);
+      font-size: 1rem;
+      margin-bottom: 12px;
+    }
+    button {
+      background: var(--accent);
+      color: #000;
+      border: none;
+      padding: 12px 28px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    button:hover { opacity: 0.9; }
+    footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.85rem;
+      margin-top: 60px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="badge">Built for beginners</div>
+      <h1>ChainScout</h1>
+      <p class="tagline">
+        Simple AI tools that help you understand crypto faster.<br>
+        No complicated words. Just clear answers.
+      </p>
+    </header>
+
+    <div class="sections">
+      <a href="#understand" class="section-card">
+        <strong>Understand a coin</strong>
+        <span>In 5 minutes</span>
+      </a>
+      <a href="#risks" class="section-card">
+        <strong>Check the risks</strong>
+        <span>Before you buy</span>
+      </a>
+      <a href="#trend" class="section-card">
+        <strong>See the trend</strong>
+        <span>Charts & data</span>
+      </a>
+      <a href="#happening" class="section-card">
+        <strong>What’s happening</strong>
+        <span>News & social</span>
+      </a>
+    </div>
+
+    <!-- 1. Understand a coin -->
+    <h2 id="understand" class="section-title">1. Understand a coin</h2>
+
+    <!-- Sponsor / Featured slot -->
+    <div class="tool sponsor-slot">
+      <strong>Your tool can be here</strong>
+      Featured placement for AI & crypto products that help beginners.<br>
+      <span style="font-size:0.85rem; opacity:0.8;">Contact: hello@chainscout.app</span>
+    </div>
+
+    <div class="tool">
+      <h3>ChatGPT <span class="free">Free</span></h3>
+      <p>Best starting point. Explains any coin in simple words and makes risk checklists.</p>
+      <div class="prompt">
+        Prompt: “Explain [coin name] like I’m a complete beginner. What is it, why does it matter, and what are the main risks? Max 8 sentences.”
+      </div>
+      <div class="meta">
+        <span>Price: Free / Plus</span>
+        <a href="https://chatgpt.com" target="_blank" rel="noopener">Open ChatGPT →</a>
+      </div>
+    </div>
+
+    <div class="tool">
+      <h3>Claude <span class="free">Free</span></h3>
+      <p>Great for reading long documents and making clear risk lists.</p>
+      <div class="prompt">
+        Prompt: “Make a simple risk checklist for [coin]. Include: who controls it, liquidity, token unlocks, and team.”
+      </div>
+      <div class="meta">
+        <span>Price: Free / Pro</span>
+        <a href="https://claude.ai" target="_blank" rel="noopener">Open Claude →</a>
+      </div>
+    </div>
+
+    <div class="tool">
+      <h3>CoinGecko <span class="free">Free</span></h3>
+      <p>Price, market cap, volume and basic info for any coin. Clean and reliable.</p>
+      <div class="meta">
+        <span>Price: Completely free</span>
+        <a href="https://www.coingecko.com" target="_blank" rel="noopener">Open CoinGecko →</a>
+      </div>
+    </div>
+
+    <div class="tool">
+      <h3>ChainGPT <span class="free">Free credits</span></h3>
+      <p>AI trained specifically on crypto and blockchain. Good for tokenomics and project questions.</p>
+      <div class="meta">
+        <span>Price: Free credits available</span>
+        <a href="https://www.chaingpt.org" target="_blank" rel="noopener">Open ChainGPT →</a>
+      </div>
+    </div>
+
+    <!-- 2. Check the risks -->
+    <h2 id="risks" class="section-title">2. Check the risks</h2>
+
+    <div class="tool">
+      <h3>Claude <span class="free">Free</span></h3>
+      <p>Best for making a clear risk checklist before you buy anything.</p>
+      <div class="prompt">
+        Prompt: “Make a simple risk checklist for [coin]. Include: who controls it, liquidity, token unlocks, and team.”
+      </div>
+      <div class="meta">
+        <span>Price: Free / Pro</span>
+        <a href="https://claude.ai" target="_blank" rel="noopener">Open Claude →</a>
+      </div>
+    </div>
+
+    <div class="tool">
+      <h3>Arkham <span class="free">Free tier</span></h3>
+      <p>See where big wallets (whales) are moving money. Helps spot unusual activity.</p>
+      <div class="meta">
+        <span>Price: Free tier available</span>
+        <a href="https://www.arkhamintelligence.com" target="_blank" rel="noopener">Open Arkham →</a>
+      </div>
+    </div>
+
+    <div class="tool">
+      <h3>DeFiLlama <span class="free">Free</span></h3>
+      <p>Shows how much real money is locked in the project (TVL). Low or falling TVL is often a warning sign.</p>
+      <div class="meta">
+        <span>Price: Free</span>
+        <a href="https://defillama.com" target="_blank" rel="noopener">Open DeFiLlama →</a>
+      </div>
+    </div>
+
+    <!-- 3. See the trend -->
+    <h2 id="trend" class="section-title">3. See the trend</h2>
+
+    <div class="tool">
+      <h3>TradingView <span class="free">Free plan</span></h3>
+      <p>Charts. Add simple indicators like RSI to see if a coin looks overbought or oversold.</p>
+      <div class="meta">
+        <span>Price: Free plan is enough to start</span>
+        <a href="https://www.tradingview.com" target="_blank" rel="noopener">Open TradingView →</a>
+      </div>
+    </div>
+
+    <div class="tool">
+      <h3>Token Metrics <span class="free">Free access</span></h3>
+      <p>AI ratings and simple Bullish / Bearish signals for many coins.</p>
+      <div class="meta">
+        <span>Price: Free tier available</span>
+        <a href="https://tokenmetrics.com" target="_blank" rel="noopener">Open Token Metrics →</a>
+      </div>
+    </div>
+
+    <div class="tool">
+      <h3>CoinGecko <span class="free">Free</span></h3>
+      <p>Quick look at price change, volume and market cap trend.</p>
+      <div class="meta">
+        <span>Price: Completely free</span>
+        <a href="https://www.coingecko.com" target="_blank" rel="noopener">Open CoinGecko →</a>
+      </div>
+    </div>
+
+    <!-- 4. What’s happening -->
+    <h2 id="happening" class="section-title">4. What’s happening</h2>
+
+    <div class="tool">
+      <h3>Grok <span class="free">Free</span></h3>
+      <p>Fast answers + real-time info from X (Twitter). Good for “what’s happening right now”.</p>
+      <div class="prompt">
+        Prompt: “What are people saying about [coin] in crypto right now? Keep it short and simple for a beginner.”
+      </div>
+      <div class="meta">
+        <span>Price: Free / Premium</span>
+        <a href="https://x.com/i/grok" target="_blank" rel="noopener">Open Grok →</a>
+      </div>
+    </div>
+
+    <div class="tool">
+      <h3>LunarCrush <span class="free">Free tier</span></h3>
+      <p>How much people are talking about a coin on social media.</p>
+      <div class="meta">
+        <span>Price: Free tier available</span>
+        <a href="https://lunarcrush.com" target="_blank" rel="noopener">Open LunarCrush →</a>
+      </div>
+    </div>
+
+    <div class="email-box">
+      <h3>Get 1 useful tip every week</h3>
+      <p>Simple advice for beginners. No spam. No complicated terms.</p>
+      <form onsubmit="event.preventDefault(); alert('Thanks! Real email collection will be connected soon. For now just save the site.');">
+        <input type="email" placeholder="Your email" required>
+        <br>
+        <button type="submit">Join the list</button>
+      </form>
+    </div>
+
+    <footer>
+      ChainScout · Helping beginners understand crypto faster<br>
+      Built for people in Africa, India & Southeast Asia
+    </footer>
+  </div>
+</body>
+</html>
