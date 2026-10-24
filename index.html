@@ -191,6 +191,28 @@
       cursor: pointer;
     }
     button:hover { opacity: 0.9; }
+
+    .lang-bar {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+    .lang-btn {
+      background: var(--card);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .lang-btn:hover, .lang-btn.active {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
     footer {
       text-align: center;
       color: var(--muted);
@@ -202,11 +224,19 @@
 <body>
   <div class="container">
     <header>
-      <div class="badge">Built for beginners</div>
+      <div class="badge" data-i18n="badge">Built for beginners</div>
+      <div class="lang-bar" id="langBar">
+        <button class="lang-btn active" data-lang="en" type="button">EN</button>
+        <button class="lang-btn" data-lang="hi" type="button">हिन्दी</button>
+        <button class="lang-btn" data-lang="id" type="button">ID</button>
+        <button class="lang-btn" data-lang="sw" type="button">SW</button>
+        <button class="lang-btn" data-lang="fr" type="button">FR</button>
+      </div>
+
       <h1>ChainScout</h1>
       <p class="tagline">
-        Simple AI tools that help you understand crypto faster.<br>
-        No complicated words. Just clear answers.
+        <span data-i18n="tagline_1">Simple AI tools that help you understand crypto faster.</span><br>
+        <span data-i18n="tagline_2">No complicated words. Just clear answers.</span>
       </p>
     </header>
 
@@ -381,5 +411,74 @@
       Built for people in Africa, India & Southeast Asia
     </footer>
   </div>
+
+<script>
+const i18n = {
+  en: {"badge":"Built for beginners","tagline_1":"Simple AI tools that help you understand crypto faster.","tagline_2":"No complicated words. Just clear answers.","nav_understand":"Understand a coin","nav_understand_sub":"In 5 minutes","nav_risks":"Check the risks","nav_risks_sub":"Before you buy","nav_trend":"See the trend","nav_trend_sub":"Charts & data","nav_happening":"What’s happening","nav_happening_sub":"News & social","section_1":"1. Understand a coin","section_2":"2. Check the risks","section_3":"3. See the trend","section_4":"4. What’s happening","sponsor_title":"Your tool can be here","sponsor_text":"Featured placement for AI & crypto products that help beginners.","sponsor_contact":"Contact: team@chainscout.app","email_title":"Get 1 useful tip every week","email_text":"Simple advice for beginners. No spam. No complicated terms.","email_button":"Join the list","footer_1":"ChainScout · Helping beginners understand crypto faster","footer_2":"Built for people in Africa, India & Southeast Asia"},
+  hi: {"badge":"शुरुआती लोगों के लिए","tagline_1":"सरल AI टूल जो क्रिप्टो को जल्दी समझने में मदद करते हैं।","tagline_2":"जटिल शब्द नहीं। सिर्फ साफ जवाब।","nav_understand":"कॉइन को समझें","nav_understand_sub":"5 मिनट में","nav_risks":"जोखिम जांचें","nav_risks_sub":"खरीदने से पहले","nav_trend":"ट्रेंड देखें","nav_trend_sub":"चार्ट और डेटा","nav_happening":"क्या हो रहा है","nav_happening_sub":"न्यूज़ और सोशल","section_1":"1. कॉइन को समझें","section_2":"2. जोखिम जांचें","section_3":"3. ट्रेंड देखें","section_4":"4. क्या हो रहा है","sponsor_title":"आपका टूल यहाँ हो सकता है","sponsor_text":"शुरुआती लोगों की मदद करने वाले AI और क्रिप्टो प्रोडक्ट्स के लिए फीचर्ड प्लेसमेंट।","sponsor_contact":"संपर्क: team@chainscout.app","email_title":"हर हफ्ते 1 उपयोगी टिप पाएं","email_text":"शुरुआती लोगों के लिए सरल सलाह। कोई स्पैम नहीं।","email_button":"लिस्ट में शामिल हों","footer_1":"ChainScout · शुरुआती लोगों को क्रिप्टो समझने में मदद","footer_2":"अफ्रीका, भारत और दक्षिण-पूर्व एशिया के लोगों के लिए"},
+  id: {"badge":"Untuk pemula","tagline_1":"Alat AI sederhana yang membantu memahami crypto lebih cepat.","tagline_2":"Tanpa istilah rumit. Hanya jawaban yang jelas.","nav_understand":"Pahami koin","nav_understand_sub":"Dalam 5 menit","nav_risks":"Cek risikonya","nav_risks_sub":"Sebelum beli","nav_trend":"Lihat tren","nav_trend_sub":"Chart & data","nav_happening":"Apa yang terjadi","nav_happening_sub":"Berita & sosial","section_1":"1. Pahami koin","section_2":"2. Cek risikonya","section_3":"3. Lihat tren","section_4":"4. Apa yang terjadi","sponsor_title":"Alat Anda bisa di sini","sponsor_text":"Placement unggulan untuk produk AI & crypto yang membantu pemula.","sponsor_contact":"Kontak: team@chainscout.app","email_title":"Dapatkan 1 tips berguna setiap minggu","email_text":"Saran sederhana untuk pemula. Tanpa spam.","email_button":"Gabung daftar","footer_1":"ChainScout · Membantu pemula memahami crypto lebih cepat","footer_2":"Dibuat untuk orang di Afrika, India & Asia Tenggara"},
+  sw: {"badge":"Imejengwa kwa wanaoanza","tagline_1":"Zana rahisi za AI zinazokusaidia kuelewa crypto haraka.","tagline_2":"Hakuna maneno magumu. Majibu wazi tu.","nav_understand":"Elewa sarafu","nav_understand_sub":"Kwa dakika 5","nav_risks":"Angalia hatari","nav_risks_sub":"Kabla ya kununua","nav_trend":"Angalia mwenendo","nav_trend_sub":"Chati na data","nav_happening":"Nini kinaendelea","nav_happening_sub":"Habari na mitandao","section_1":"1. Elewa sarafu","section_2":"2. Angalia hatari","section_3":"3. Angalia mwenendo","section_4":"4. Nini kinaendelea","sponsor_title":"Zana yako inaweza kuwa hapa","sponsor_text":"Nafasi maalum kwa bidhaa za AI na crypto zinazosaidia wanaoanza.","sponsor_contact":"Wasiliana: team@chainscout.app","email_title":"Pata tip 1 muhimu kila wiki","email_text":"Ushauri rahisi kwa wanaoanza. Hakuna spam.","email_button":"Jiunge na orodha","footer_1":"ChainScout · Kusaidia wanaoanza kuelewa crypto haraka","footer_2":"Imejengwa kwa watu Afrika, India na Asia ya Kusini-Mashariki"},
+  fr: {"badge":"Conçu pour les débutants","tagline_1":"Des outils IA simples pour comprendre la crypto plus vite.","tagline_2":"Pas de jargon. Juste des réponses claires.","nav_understand":"Comprendre une coin","nav_understand_sub":"En 5 minutes","nav_risks":"Vérifier les risques","nav_risks_sub":"Avant d’acheter","nav_trend":"Voir la tendance","nav_trend_sub":"Graphiques & données","nav_happening":"Ce qui se passe","nav_happening_sub":"Actu & social","section_1":"1. Comprendre une coin","section_2":"2. Vérifier les risques","section_3":"3. Voir la tendance","section_4":"4. Ce qui se passe","sponsor_title":"Votre outil peut être ici","sponsor_text":"Placement mis en avant pour les produits IA & crypto qui aident les débutants.","sponsor_contact":"Contact : team@chainscout.app","email_title":"Recevez 1 conseil utile chaque semaine","email_text":"Conseils simples pour débutants. Pas de spam.","email_button":"Rejoindre la liste","footer_1":"ChainScout · Aider les débutants à comprendre la crypto plus vite","footer_2":"Conçu pour l’Afrique, l’Inde et l’Asie du Sud-Est"}
+};
+
+function setLang(lang) {
+  const dict = i18n[lang] || i18n.en;
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (dict[key]) el.textContent = dict[key];
+  });
+  // nav cards
+  const navMap = [
+    ['nav_understand','nav_understand_sub'],
+    ['nav_risks','nav_risks_sub'],
+    ['nav_trend','nav_trend_sub'],
+    ['nav_happening','nav_happening_sub']
+  ];
+  document.querySelectorAll('.section-card').forEach((card, i) => {
+    const strong = card.querySelector('strong');
+    const span = card.querySelector('span');
+    if (strong && navMap[i]) strong.textContent = dict[navMap[i][0]] || strong.textContent;
+    if (span && navMap[i]) span.textContent = dict[navMap[i][1]] || span.textContent;
+  });
+  // section titles
+  document.querySelectorAll('.section-title').forEach((h, i) => {
+    const keys = ['section_1','section_2','section_3','section_4'];
+    if (dict[keys[i]]) h.textContent = dict[keys[i]];
+  });
+  // sponsor
+  const sponsor = document.querySelector('.sponsor-slot');
+  if (sponsor) {
+    const st = sponsor.querySelector('strong');
+    if (st && dict.sponsor_title) st.textContent = dict.sponsor_title;
+  }
+  // email box
+  const emailBox = document.querySelector('.email-box');
+  if (emailBox) {
+    const h3 = emailBox.querySelector('h3');
+    const p = emailBox.querySelector('p');
+    const a = emailBox.querySelector('a');
+    if (h3 && dict.email_title) h3.textContent = dict.email_title;
+    if (p && dict.email_text) p.textContent = dict.email_text;
+    if (a && dict.email_button) a.textContent = dict.email_button;
+  }
+  // footer
+  const footer = document.querySelector('footer');
+  if (footer && dict.footer_1) {
+    footer.innerHTML = dict.footer_1 + '<br>' + (dict.footer_2 || '');
+  }
+  document.querySelectorAll('.lang-btn').forEach(b => {
+    b.classList.toggle('active', b.dataset.lang === lang);
+  });
+  localStorage.setItem('chainscout_lang', lang);
+}
+
+document.querySelectorAll('.lang-btn').forEach(btn => {
+  btn.addEventListener('click', () => setLang(btn.dataset.lang));
+});
+
+const saved = localStorage.getItem('chainscout_lang');
+if (saved && i18n[saved]) setLang(saved);
+</script>
+
 </body>
 </html>
