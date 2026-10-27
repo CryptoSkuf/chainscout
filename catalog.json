@@ -1,0 +1,206 @@
+[
+  {
+    "id": "tokenmetrics",
+    "name": "Token Metrics",
+    "category": "research",
+    "level": "beginner",
+    "url": "https://www.tokenmetrics.com",
+    "affiliate_url": "",
+    "sponsor": false,
+    "checked": null,
+    "desc": {
+      "en": "AI-driven token ratings and market research reports.",
+      "fr": "Notations de tokens et rapports d'analyse de marché pilotés par l'IA.",
+      "id": "Peringkat token dan laporan riset pasar berbasis AI.",
+      "vi": "Xếp hạng token và báo cáo nghiên cứu thị trường dựa trên AI.",
+      "sw": "Viwango vya tokeni na ripoti za utafiti wa soko kwa msaada wa AI."
+    }
+  },
+  {
+    "id": "kaito",
+    "name": "Kaito",
+    "category": "sentiment",
+    "level": "intermediate",
+    "url": "https://www.kaito.ai",
+    "affiliate_url": "",
+    "sponsor": false,
+    "checked": null,
+    "desc": {
+      "en": "AI search across crypto news, social posts and research to track narratives.",
+      "fr": "Recherche par IA dans l'actualité, les réseaux sociaux et les études crypto pour suivre les tendances.",
+      "id": "Pencarian AI di berita, media sosial, dan riset kripto untuk melacak narasi.",
+      "vi": "Tìm kiếm bằng AI trong tin tức, mạng xã hội và nghiên cứu crypto để theo dõi xu hướng.",
+      "sw": "Utafutaji wa AI kwenye habari, mitandao ya kijamii na tafiti za crypto kufuatilia mitindo."
+    }
+  },
+  {
+    "id": "messari",
+    "name": "Messari",
+    "category": "research",
+    "level": "intermediate",
+    "url": "https://messari.io",
+    "affiliate_url": "",
+    "sponsor": false,
+    "checked": null,
+    "desc": {
+      "en": "Research reports, protocol data and an AI assistant for digging into projects.",
+      "fr": "Rapports de recherche, données de protocoles et assistant IA pour analyser les projets.",
+      "id": "Laporan riset, data protokol, dan asisten AI untuk menelusuri proyek.",
+      "vi": "Báo cáo nghiên cứu, dữ liệu giao thức và trợ lý AI để tìm hiểu dự án.",
+      "sw": "Ripoti za utafiti, data za itifaki na msaidizi wa AI wa kuchunguza miradi."
+    }
+  },
+  {
+    "id": "santiment",
+    "name": "Santiment",
+    "category": "sentiment",
+    "level": "intermediate",
+    "url": "https://santiment.net",
+    "affiliate_url": "",
+    "sponsor": false,
+    "checked": null,
+    "desc": {
+      "en": "Social sentiment and on-chain metrics to see what the crowd is talking about.",
+      "fr": "Sentiment social et métriques on-chain pour voir de quoi parle la communauté.",
+      "id": "Sentimen sosial dan metrik on-chain untuk melihat apa yang dibicarakan komunitas.",
+      "vi": "Cảm xúc mạng xã hội và chỉ số on-chain để xem cộng đồng đang bàn gì.",
+      "sw": "Hisia za mitandao ya kijamii na vipimo vya on-chain kuona jamii inazungumza nini."
+    }
+  },
+  {
+    "id": "nansen",
+    "name": "Nansen",
+    "category": "onchain",
+    "level": "advanced",
+    "url": "https://www.nansen.ai",
+    "affiliate_url": "",
+    "sponsor": false,
+    "checked": null,
+    "desc": {
+      "en": "On-chain analytics with labelled wallets to follow what large players do.",
+      "fr": "Analyses on-chain avec portefeuilles étiquetés pour suivre les gros acteurs.",
+      "id": "Analitik on-chain dengan dompet berlabel untuk mengikuti pemain besar.",
+      "vi": "Phân tích on-chain với ví được gắn nhãn để theo dõi các cá mập.",
+      "sw": "Uchambuzi wa on-chain wenye pochi zilizotambuliwa kufuatilia wachezaji wakubwa."
+    }
+  },
+  {
+    "id": "arkham",
+    "name": "Arkham Intelligence",
+    "category": "onchain",
+    "level": "intermediate",
+    "url": "https://intel.arkm.com",
+    "affiliate_url": "",
+    "sponsor": false,
+    "checked": null,
+    "desc": {
+      "en": "Wallet and entity tracking across blockchains with visual explorers.",
+      "fr": "Suivi de portefeuilles et d'entités sur plusieurs blockchains avec explorateurs visuels.",
+      "id": "Pelacakan dompet dan entitas lintas blockchain dengan penjelajah visual.",
+      "vi": "Theo dõi ví và thực thể trên nhiều blockchain bằng công cụ trực quan.",
+      "sw": "Kufuatilia pochi na vyombo kwenye blockchain mbalimbali kwa zana za kuona."
+    }
+  },
+  {
+    "id": "glassnode",
+    "name": "Glassnode",
+    "category": "onchain",
+    "level": "advanced",
+    "url": "https://glassnode.com",
+    "affiliate_url": "",
+    "sponsor": false,
+    "checked": null,
+    "desc": {
+      "en": "Deep on-chain metrics and market-cycle indicators, mainly Bitcoin and Ethereum.",
+      "fr": "Métriques on-chain détaillées et indicateurs de cycle de marché, surtout Bitcoin et Ethereum.",
+      "id": "Metrik on-chain mendalam dan indikator siklus pasar, terutama Bitcoin dan Ethereum.",
+      "vi": "Chỉ số on-chain chuyên sâu và chỉ báo chu kỳ thị trường, chủ yếu Bitcoin và Ethereum.",
+      "sw": "Vipimo vya kina vya on-chain na viashiria vya mzunguko wa soko, hasa Bitcoin na Ethereum."
+    }
+  },
+  {
+    "id": "dune",
+    "name": "Dune",
+    "category": "onchain",
+    "level": "advanced",
+    "url": "https://dune.com",
+    "affiliate_url": "",
+    "sponsor": false,
+    "checked": null,
+    "desc": {
+      "en": "Community dashboards and SQL queries on public blockchain data.",
+      "fr": "Tableaux de bord communautaires et requêtes SQL sur les données publiques des blockchains.",
+      "id": "Dasbor komunitas dan kueri SQL pada data blockchain publik.",
+      "vi": "Bảng điều khiển cộng đồng và truy vấn SQL trên dữ liệu blockchain công khai.",
+      "sw": "Dashibodi za jamii na maswali ya SQL kwenye data ya umma ya blockchain."
+    }
+  },
+  {
+    "id": "defillama",
+    "name": "DefiLlama",
+    "category": "market",
+    "level": "beginner",
+    "url": "https://defillama.com",
+    "affiliate_url": "",
+    "sponsor": false,
+    "checked": null,
+    "desc": {
+      "en": "DeFi protocol rankings, TVL and chain data in one place.",
+      "fr": "Classements de protocoles DeFi, TVL et données par blockchain au même endroit.",
+      "id": "Peringkat protokol DeFi, TVL, dan data rantai dalam satu tempat.",
+      "vi": "Xếp hạng giao thức DeFi, TVL và dữ liệu chuỗi ở một nơi.",
+      "sw": "Orodha ya itifaki za DeFi, TVL na data za minyororo mahali pamoja."
+    }
+  },
+  {
+    "id": "coingecko",
+    "name": "CoinGecko",
+    "category": "market",
+    "level": "beginner",
+    "url": "https://www.coingecko.com",
+    "affiliate_url": "",
+    "sponsor": false,
+    "checked": null,
+    "desc": {
+      "en": "Prices, market caps and basic data for thousands of coins.",
+      "fr": "Prix, capitalisations et données de base pour des milliers de cryptos.",
+      "id": "Harga, kapitalisasi pasar, dan data dasar ribuan koin.",
+      "vi": "Giá, vốn hóa và dữ liệu cơ bản của hàng nghìn đồng coin.",
+      "sw": "Bei, thamani ya soko na data za msingi za maelfu ya sarafu."
+    }
+  },
+  {
+    "id": "tradingview",
+    "name": "TradingView",
+    "category": "market",
+    "level": "beginner",
+    "url": "https://www.tradingview.com",
+    "affiliate_url": "",
+    "sponsor": false,
+    "checked": null,
+    "desc": {
+      "en": "Interactive price charts, indicators and community ideas.",
+      "fr": "Graphiques de prix interactifs, indicateurs et idées de la communauté.",
+      "id": "Grafik harga interaktif, indikator, dan ide dari komunitas.",
+      "vi": "Biểu đồ giá tương tác, chỉ báo và ý tưởng từ cộng đồng.",
+      "sw": "Chati shirikishi za bei, viashiria na mawazo ya jamii."
+    }
+  },
+  {
+    "id": "goplus",
+    "name": "GoPlus Security",
+    "category": "safety",
+    "level": "beginner",
+    "url": "https://gopluslabs.io",
+    "affiliate_url": "",
+    "sponsor": false,
+    "checked": null,
+    "desc": {
+      "en": "Checks tokens, contracts and links for common scam and honeypot risks.",
+      "fr": "Vérifie tokens, contrats et liens pour les risques d'arnaque et de honeypot.",
+      "id": "Memeriksa token, kontrak, dan tautan untuk risiko penipuan dan honeypot.",
+      "vi": "Kiểm tra token, hợp đồng và liên kết để phát hiện rủi ro lừa đảo, honeypot.",
+      "sw": "Hukagua tokeni, mikataba na viungo kwa hatari za ulaghai na honeypot."
+    }
+  }
+]
