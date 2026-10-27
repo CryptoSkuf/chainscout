@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="sw">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Data za on-chain kwa wanaoanza: unachoweza kuona na usichoweza kuona | ChainScout</title>
+<meta name="description" content="Jifunze data za on-chain ni nini, zinathibitisha nini, wapi zinapopotosha, na zana za kujaribu kwanza, kuanzia vichunguzi vya blockchain hadi vifuatiliaji vya pochi zenye lebo.">
+<link rel="canonical" href="https://chainscout.app/sw/guides/on-chain-data-basics/">
+<link rel="alternate" hreflang="en" href="https://chainscout.app/en/guides/on-chain-data-basics/"><link rel="alternate" hreflang="fr" href="https://chainscout.app/fr/guides/on-chain-data-basics/"><link rel="alternate" hreflang="id" href="https://chainscout.app/id/guides/on-chain-data-basics/"><link rel="alternate" hreflang="vi" href="https://chainscout.app/vi/guides/on-chain-data-basics/"><link rel="alternate" hreflang="sw" href="https://chainscout.app/sw/guides/on-chain-data-basics/"><link rel="alternate" hreflang="x-default" href="https://chainscout.app/en/guides/on-chain-data-basics/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="ChainScout">
+<meta property="og:title" content="Data za on-chain kwa wanaoanza: unachoweza kuona na usichoweza kuona">
+<meta property="og:description" content="Jifunze data za on-chain ni nini, zinathibitisha nini, wapi zinapopotosha, na zana za kujaribu kwanza, kuanzia vichunguzi vya blockchain hadi vifuatiliaji vya pochi zenye lebo.">
+<meta property="og:url" content="https://chainscout.app/sw/guides/on-chain-data-basics/">
+<meta property="og:locale" content="sw_KE">
+<meta name="twitter:card" content="summary">
+<meta name="theme-color" content="#eef1f8">
+<link rel="icon" href="../../../favicon.svg" type="image/svg+xml">
+<style>
+:root{color-scheme:light dark;--paper:#eef1f8;--surface:#fff;--ink:#161c40;--muted:#4b537d;--line:#dde1f0;--hover:#e3e8f6;--btn-bg:#2a3a9e;--btn-fg:#fff;--ring:#2a3a9e;--focus:#2a3a9e;--mark:#f0a500;--mark-bg:#fff2cc;--mark-ink:#5c3f00}
+@media (prefers-color-scheme:dark){:root{--paper:#0e1230;--surface:#161b45;--ink:#eceffc;--muted:#aab2dd;--line:#2b3274;--hover:#1d2358;--btn-bg:#a3b0ff;--btn-fg:#0e1230;--ring:#a3b0ff;--focus:#ffc23d;--mark:#ffc23d;--mark-bg:#3a2d08;--mark-ink:#ffd98a}}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{-webkit-text-size-adjust:100%}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+body{margin:0;background:var(--paper);color:var(--ink);font:17px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans",sans-serif}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--focus);outline-offset:3px;border-radius:6px}
+.wrap{max-width:50rem;margin:0 auto;padding:0 16px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.skip{position:absolute;left:-999px;top:8px;z-index:10;padding:10px 14px;border-radius:8px;background:var(--btn-bg);color:var(--btn-fg)}
+.skip:focus{left:16px}
+.top{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 20px;padding:18px 0 6px}
+.brand{display:inline-flex;align-items:center;gap:10px;font-weight:800;font-size:1.15rem;letter-spacing:-.01em;text-decoration:none}
+.logo{flex:none}
+.langs{display:flex;flex-wrap:wrap;gap:2px}
+.langs a{padding:6px 10px;border-radius:8px;font-size:.95rem;text-decoration:none;color:var(--muted)}
+.langs a:hover{background:var(--hover);color:var(--ink)}
+.langs a[aria-current]{background:var(--ink);color:var(--paper);font-weight:650}
+h1{max-width:16ch;margin:44px 0 18px;font-size:clamp(2.5rem,9.5vw,4.75rem);line-height:1.02;letter-spacing:-.035em;font-weight:800;text-wrap:balance}
+.lede{max-width:60ch;margin:0 0 26px;font-size:1.1rem;color:var(--muted)}
+input[type=search],input[type=email]{width:100%;min-height:52px;padding:0 16px;border:2px solid var(--line);border-radius:12px;background:var(--surface);color:var(--ink);font:inherit}
+input[type=search]:focus-visible,input[type=email]:focus-visible{border-color:var(--focus)}
+.asks{display:grid;gap:10px;margin:22px 0 0;padding:0;list-style:none}
+.ask{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:16px 18px 16px 22px;border-radius:14px;background:var(--surface);box-shadow:inset 5px 0 0 var(--ring);font-size:1.2rem;font-weight:700;line-height:1.3;text-decoration:none}
+.ask.first{box-shadow:inset 5px 0 0 var(--mark)}
+.ask:hover{background:var(--hover)}
+.ask small{flex:none;font-size:.9rem;font-weight:500;color:var(--muted)}
+.start{display:block;width:max-content;margin-top:6px;padding:2px 8px;border-radius:6px;background:var(--mark-bg);color:var(--mark-ink);font-size:.8rem;font-weight:700}
+.empty{margin:28px 0 0;color:var(--muted)}
+section{margin-top:56px;scroll-margin-top:12px}
+h2{max-width:24ch;margin:0 0 16px;font-size:clamp(1.55rem,5vw,2.1rem);line-height:1.15;letter-spacing:-.02em;font-weight:800;text-wrap:balance}
+.panel{margin:0;padding:0;list-style:none;overflow:hidden;border-radius:18px;background:var(--surface)}
+.tool{display:grid;gap:14px;padding:20px;border-top:1px solid var(--line)}
+.tool:first-child{border-top:0}
+.tool h3{margin:0;font-size:1.2rem;line-height:1.3;font-weight:750}
+.tool p{max-width:60ch;margin:4px 0 0}
+.tool .meta{display:flex;flex-wrap:wrap;align-items:center;gap:6px 18px;margin-top:10px;font-size:.9rem;color:var(--muted)}
+.lvl{display:inline-flex;align-items:center;gap:8px}
+.dots{display:inline-flex;gap:4px}
+.dots i{display:block;width:11px;height:11px;border:2px solid var(--ring);border-radius:50%}
+.dots i.on{background:var(--ring)}
+.tag{display:inline-block;margin-left:8px;padding:1px 8px;border-radius:6px;background:var(--mark-bg);color:var(--mark-ink);font-size:.75rem;font-weight:700;vertical-align:middle}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:8px 18px;border:0;border-radius:10px;background:var(--btn-bg);color:var(--btn-fg);font:inherit;font-weight:650;line-height:1.25;text-align:center;text-decoration:none;cursor:pointer}
+.btn:hover{filter:brightness(1.1)}
+@media (min-width:640px){.tool{grid-template-columns:1fr auto;align-items:center;gap:24px}.tool .btn{min-width:13rem}}
+.safe{padding-left:20px;border-left:5px solid var(--mark)}
+.safe h2{font-size:clamp(1.3rem,4vw,1.6rem)}
+.safe ul{max-width:60ch;margin:0;padding-left:1.2em}
+.safe li+li{margin-top:10px}
+.join{padding:24px 20px;border-radius:18px;background:var(--surface)}
+.join h2{margin-bottom:8px}
+.join p{max-width:56ch;margin:0 0 18px;color:var(--muted)}
+.mail{display:grid;gap:10px;max-width:28rem;margin-top:18px}
+.mail label{font-weight:650}
+.fine{margin-top:56px;padding:24px 0 40px;border-top:1px solid var(--line);color:var(--muted);font-size:.9rem}
+.fine h2{margin:0 0 8px;font-size:1rem;color:var(--ink)}
+.fine p{max-width:68ch;margin:0 0 14px}
+.tool h3 a{text-decoration-thickness:2px;text-underline-offset:3px}
+.safe .more{max-width:60ch;margin:16px 0 0}
+.g h1{max-width:22ch;margin:22px 0 18px;font-size:clamp(2rem,7.5vw,3.3rem);line-height:1.08}
+.back{display:inline-block;margin-top:14px;padding:6px 0;color:var(--muted)}
+.prose{max-width:60ch}
+.prose .lead{margin:0 0 8px;font-size:1.15rem;color:var(--muted)}
+.prose h2{max-width:none;margin:40px 0 12px;font-size:1.45rem}
+.prose p{margin:0 0 16px}
+.prose ul,.prose ol{margin:0;padding-left:1.35em}
+.prose li+li{margin-top:12px}
+.prose li::marker{color:var(--ring);font-weight:700}
+.g .tools-box{max-width:none}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Data za on-chain kwa wanaoanza: unachoweza kuona na usichoweza kuona", "description": "Jifunze data za on-chain ni nini, zinathibitisha nini, wapi zinapopotosha, na zana za kujaribu kwanza, kuanzia vichunguzi vya blockchain hadi vifuatiliaji vya pochi zenye lebo.", "inLanguage": "sw", "mainEntityOfPage": "https://chainscout.app/sw/guides/on-chain-data-basics/", "author": {"@type": "Organization", "name": "ChainScout"}, "publisher": {"@type": "Organization", "name": "ChainScout"}}</script>
+</head>
+<body>
+<a class="skip" href="#main">Ruka hadi maudhui</a>
+<div class="wrap">
+<header class="top">
+<a class="brand" href="../../"><svg class="logo" width="28" height="28" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="12" fill="none" stroke="currentColor" stroke-width="3"/><circle cx="16" cy="16" r="4.5" fill="#f0a500"/></svg><span>ChainScout</span></a>
+<nav class="langs" aria-label="Lugha"><a href="../../../en/guides/on-chain-data-basics/" lang="en" hreflang="en">English</a><a href="../../../fr/guides/on-chain-data-basics/" lang="fr" hreflang="fr">Français</a><a href="../../../id/guides/on-chain-data-basics/" lang="id" hreflang="id">Bahasa Indonesia</a><a href="../../../vi/guides/on-chain-data-basics/" lang="vi" hreflang="vi">Tiếng Việt</a><a href="../../../sw/guides/on-chain-data-basics/" lang="sw" hreflang="sw" aria-current="page">Kiswahili</a></nav>
+</header>
+<main id="main" class="g">
+<a class="back" href="../../">Rudi kwenye orodha</a>
+<h1>Data za on-chain kwa wanaoanza: unachoweza kuona na usichoweza kuona</h1>
+<article class="prose">
+<p class="lead">Blockchain ni kumbukumbu ya umma. Mtu yeyote anaweza kuangalia uhamisho, salio na shughuli za mkataba mahiri bila kuomba ruhusa. Hilo hufanya data za on-chain kuwa mojawapo ya njia chache za kuthibitisha dai mwenyewe.</p>
+<h2>Unachoweza kuona</h2>
+<ul><li>Kila uhamisho: pochi iliyotuma, pochi iliyopokea, kiasi na wakati.</li><li>Pochi ngapi zinashikilia tokeni, na zile kubwa zaidi zinashikilia kiasi gani.</li><li>Pesa kiasi gani zimefungwa kwenye itifaki ya DeFi, mara nyingi huonyeshwa kama TVL (jumla ya thamani iliyofungwa).</li><li>Mkataba mahiri unaruhusu nini, na umefanya nini hadi sasa.</li></ul>
+<h2>Usichoweza kuona</h2>
+<ul><li>Nani anamiliki pochi. Anwani hazitaji majina, na lebo kama “nyangumi” au “mfuko” ni makadirio ya kampuni za uchambuzi.</li><li>Mfanyabiashara anapanga nini baadaye, au kwa nini alihamisha fedha.</li><li>Biashara ndani ya soko la kubadilishana (exchange). Pochi ya exchange ina pesa za wateja wengi, kwa hiyo salio lake halionyeshi nafasi ya mtu mmoja.</li></ul>
+<h2>Maswali matatu inayojibu vizuri</h2>
+<ul><li><strong>Je, usambazaji umekusanyika kwa wachache?</strong> Fungua orodha ya wanaoshikilia. Pochi chache zenye sehemu kubwa ya usambazaji ni hatari.</li><li><strong>Je, walifanya kweli waliyosema?</strong> Timu hutangaza uchomaji, ufungaji na malipo. Miamala inaonyesha kama ilitokea.</li><li><strong>Je, kuna anayeitumia kweli?</strong> Pochi hai na fedha zilizofungwa kwenye itifaki ni vigumu kughushi kuliko wafuasi wa mitandao ya kijamii, ingawa si jambo lisilowezekana.</li></ul>
+<h2>Inapopotosha</h2>
+<p>Pochi kubwa kuhamisha sarafu hakumaanishi bei inakaribia kubadilika: huenda inahamisha fedha kati ya anwani zake yenyewe. Lebo za pochi zinaweza kuwa na makosa. Namba hutofautiana kati ya zana kwa sababu kila moja inafafanua “mtumiaji hai” kwa njia yake. Tumia data za on-chain kukagua ukweli, si kutabiri bei.</p>
+<h2>Njia rahisi ya kuanza</h2>
+<ol><li><strong>Tumia kichunguzi cha blockchain (block explorer).</strong> Fungua kichunguzi cha mtandao husika, kama Etherscan kwa Ethereum, kisha tafuta pochi au tokeni.</li><li><strong>Linganisha itifaki kwenye DefiLlama.</strong> Angalia ipi ina thamani kubwa zaidi iliyofungwa, na kwenye mtandao gani.</li><li><strong>Fuatilia pochi zenye lebo kwenye Arkham.</strong> Ramani zake za kuona zinaonyesha jinsi fedha zinavyosogea kati ya pochi na exchange.</li><li><strong>Nenda ndani zaidi ukiwa tayari.</strong> Dune ina dashibodi za jamii unazoweza pia kuhariri kwa SQL, na Nansen ina uchambuzi wa pochi zenye lebo. Huduma za bure na za kulipia hutofautiana, kwa hiyo angalia kila tovuti rasmi.</li></ol>
+</article>
+<section class="tools-box" aria-labelledby="h-tools"><h2 id="h-tools">Zana zilizotajwa kwenye mwongozo huu</h2><ul class="panel"><li class="tool" data-tool data-search="defillama orodha ya itifaki za defi, tvl na data za minyororo mahali pamoja. thamani yake sasa ni kiasi gani?"><div><h3>DefiLlama</h3><p>Orodha ya itifaki za DeFi, TVL na data za minyororo mahali pamoja.</p><div class="meta"><span class="lvl"><span class="dots" aria-hidden="true"><i class="on"></i><i></i><i></i></span><span><span class="sr">Kiwango: </span>Anayeanza</span></span></div></div><a class="btn" href="https://defillama.com" target="_blank" rel="noopener">Fungua DefiLlama<span class="sr"> (inafunguka kwenye kichupo kipya)</span></a></li><li class="tool" data-tool data-search="arkham intelligence kufuatilia pochi na vyombo kwenye blockchain mbalimbali kwa zana za kuona. pochi kubwa zinafanya nini?"><div><h3>Arkham Intelligence</h3><p>Kufuatilia pochi na vyombo kwenye blockchain mbalimbali kwa zana za kuona.</p><div class="meta"><span class="lvl"><span class="dots" aria-hidden="true"><i class="on"></i><i class="on"></i><i></i></span><span><span class="sr">Kiwango: </span>Wa kati</span></span></div></div><a class="btn" href="https://intel.arkm.com" target="_blank" rel="noopener">Fungua Arkham Intelligence<span class="sr"> (inafunguka kwenye kichupo kipya)</span></a></li><li class="tool" data-tool data-search="dune dashibodi za jamii na maswali ya sql kwenye data ya umma ya blockchain. pochi kubwa zinafanya nini?"><div><h3>Dune</h3><p>Dashibodi za jamii na maswali ya SQL kwenye data ya umma ya blockchain.</p><div class="meta"><span class="lvl"><span class="dots" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i></span><span><span class="sr">Kiwango: </span>Mtaalamu</span></span></div></div><a class="btn" href="https://dune.com" target="_blank" rel="noopener">Fungua Dune<span class="sr"> (inafunguka kwenye kichupo kipya)</span></a></li><li class="tool" data-tool data-search="nansen uchambuzi wa on-chain wenye pochi zilizotambuliwa kufuatilia wachezaji wakubwa. pochi kubwa zinafanya nini?"><div><h3>Nansen</h3><p>Uchambuzi wa on-chain wenye pochi zilizotambuliwa kufuatilia wachezaji wakubwa.</p><div class="meta"><span class="lvl"><span class="dots" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i></span><span><span class="sr">Kiwango: </span>Mtaalamu</span></span></div></div><a class="btn" href="https://www.nansen.ai" target="_blank" rel="noopener">Fungua Nansen<span class="sr"> (inafunguka kwenye kichupo kipya)</span></a></li></ul></section>
+</main>
+<footer class="fine">
+<h2>Jinsi tovuti hii inavyofanya kazi</h2>
+<p>Mwongozo huu ni taarifa za jumla, si ushauri wa kisheria. Hii ni orodha huru. Baadhi ya viungo ni vya washirika, na tunaweza kupata kamisheni ukijisajili, bila gharama ya ziada kwako. Orodha za washirika na zilizodhaminiwa zimewekwa alama. Bei na mipango ya bure hubadilika, kwa hiyo angalia kila tovuti rasmi. Hakuna kilicho hapa ni ushauri wa kifedha, na crypto ina hatari kubwa.</p>
+<p>&copy; 2026 ChainScout</p>
+</footer>
+</div>
+</body>
+</html>

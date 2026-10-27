@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ChainScout : outils d&#x27;IA et de données pour la recherche crypto</title>
+<meta name="description" content="Un annuaire accessible aux débutants d&#x27;outils d&#x27;IA et de données pour la recherche crypto : anti-arnaque, prix, données on-chain, sentiment. Information uniquement, aucun signal de trading.">
+<link rel="canonical" href="https://chainscout.app/fr/">
+<link rel="alternate" hreflang="en" href="https://chainscout.app/en/"><link rel="alternate" hreflang="fr" href="https://chainscout.app/fr/"><link rel="alternate" hreflang="id" href="https://chainscout.app/id/"><link rel="alternate" hreflang="vi" href="https://chainscout.app/vi/"><link rel="alternate" hreflang="sw" href="https://chainscout.app/sw/"><link rel="alternate" hreflang="x-default" href="https://chainscout.app/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ChainScout">
+<meta property="og:title" content="ChainScout : outils d&#x27;IA et de données pour la recherche crypto">
+<meta property="og:description" content="Un annuaire accessible aux débutants d&#x27;outils d&#x27;IA et de données pour la recherche crypto : anti-arnaque, prix, données on-chain, sentiment. Information uniquement, aucun signal de trading.">
+<meta property="og:url" content="https://chainscout.app/fr/">
+<meta property="og:locale" content="fr_FR">
+<meta name="twitter:card" content="summary">
+<meta name="theme-color" content="#eef1f8">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<style>
+:root{color-scheme:light dark;--paper:#eef1f8;--surface:#fff;--ink:#161c40;--muted:#4b537d;--line:#dde1f0;--hover:#e3e8f6;--btn-bg:#2a3a9e;--btn-fg:#fff;--ring:#2a3a9e;--focus:#2a3a9e;--mark:#f0a500;--mark-bg:#fff2cc;--mark-ink:#5c3f00}
+@media (prefers-color-scheme:dark){:root{--paper:#0e1230;--surface:#161b45;--ink:#eceffc;--muted:#aab2dd;--line:#2b3274;--hover:#1d2358;--btn-bg:#a3b0ff;--btn-fg:#0e1230;--ring:#a3b0ff;--focus:#ffc23d;--mark:#ffc23d;--mark-bg:#3a2d08;--mark-ink:#ffd98a}}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{-webkit-text-size-adjust:100%}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+body{margin:0;background:var(--paper);color:var(--ink);font:17px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans",sans-serif}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--focus);outline-offset:3px;border-radius:6px}
+.wrap{max-width:50rem;margin:0 auto;padding:0 16px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.skip{position:absolute;left:-999px;top:8px;z-index:10;padding:10px 14px;border-radius:8px;background:var(--btn-bg);color:var(--btn-fg)}
+.skip:focus{left:16px}
+.top{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 20px;padding:18px 0 6px}
+.brand{display:inline-flex;align-items:center;gap:10px;font-weight:800;font-size:1.15rem;letter-spacing:-.01em;text-decoration:none}
+.logo{flex:none}
+.langs{display:flex;flex-wrap:wrap;gap:2px}
+.langs a{padding:6px 10px;border-radius:8px;font-size:.95rem;text-decoration:none;color:var(--muted)}
+.langs a:hover{background:var(--hover);color:var(--ink)}
+.langs a[aria-current]{background:var(--ink);color:var(--paper);font-weight:650}
+h1{max-width:16ch;margin:44px 0 18px;font-size:clamp(2.5rem,9.5vw,4.75rem);line-height:1.02;letter-spacing:-.035em;font-weight:800;text-wrap:balance}
+.lede{max-width:60ch;margin:0 0 26px;font-size:1.1rem;color:var(--muted)}
+input[type=search],input[type=email]{width:100%;min-height:52px;padding:0 16px;border:2px solid var(--line);border-radius:12px;background:var(--surface);color:var(--ink);font:inherit}
+input[type=search]:focus-visible,input[type=email]:focus-visible{border-color:var(--focus)}
+.asks{display:grid;gap:10px;margin:22px 0 0;padding:0;list-style:none}
+.ask{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:16px 18px 16px 22px;border-radius:14px;background:var(--surface);box-shadow:inset 5px 0 0 var(--ring);font-size:1.2rem;font-weight:700;line-height:1.3;text-decoration:none}
+.ask.first{box-shadow:inset 5px 0 0 var(--mark)}
+.ask:hover{background:var(--hover)}
+.ask small{flex:none;font-size:.9rem;font-weight:500;color:var(--muted)}
+.start{display:block;width:max-content;margin-top:6px;padding:2px 8px;border-radius:6px;background:var(--mark-bg);color:var(--mark-ink);font-size:.8rem;font-weight:700}
+.empty{margin:28px 0 0;color:var(--muted)}
+section{margin-top:56px;scroll-margin-top:12px}
+h2{max-width:24ch;margin:0 0 16px;font-size:clamp(1.55rem,5vw,2.1rem);line-height:1.15;letter-spacing:-.02em;font-weight:800;text-wrap:balance}
+.panel{margin:0;padding:0;list-style:none;overflow:hidden;border-radius:18px;background:var(--surface)}
+.tool{display:grid;gap:14px;padding:20px;border-top:1px solid var(--line)}
+.tool:first-child{border-top:0}
+.tool h3{margin:0;font-size:1.2rem;line-height:1.3;font-weight:750}
+.tool p{max-width:60ch;margin:4px 0 0}
+.tool .meta{display:flex;flex-wrap:wrap;align-items:center;gap:6px 18px;margin-top:10px;font-size:.9rem;color:var(--muted)}
+.lvl{display:inline-flex;align-items:center;gap:8px}
+.dots{display:inline-flex;gap:4px}
+.dots i{display:block;width:11px;height:11px;border:2px solid var(--ring);border-radius:50%}
+.dots i.on{background:var(--ring)}
+.tag{display:inline-block;margin-left:8px;padding:1px 8px;border-radius:6px;background:var(--mark-bg);color:var(--mark-ink);font-size:.75rem;font-weight:700;vertical-align:middle}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:8px 18px;border:0;border-radius:10px;background:var(--btn-bg);color:var(--btn-fg);font:inherit;font-weight:650;line-height:1.25;text-align:center;text-decoration:none;cursor:pointer}
+.btn:hover{filter:brightness(1.1)}
+@media (min-width:640px){.tool{grid-template-columns:1fr auto;align-items:center;gap:24px}.tool .btn{min-width:13rem}}
+.safe{padding-left:20px;border-left:5px solid var(--mark)}
+.safe h2{font-size:clamp(1.3rem,4vw,1.6rem)}
+.safe ul{max-width:60ch;margin:0;padding-left:1.2em}
+.safe li+li{margin-top:10px}
+.join{padding:24px 20px;border-radius:18px;background:var(--surface)}
+.join h2{margin-bottom:8px}
+.join p{max-width:56ch;margin:0 0 18px;color:var(--muted)}
+.mail{display:grid;gap:10px;max-width:28rem;margin-top:18px}
+.mail label{font-weight:650}
+.fine{margin-top:56px;padding:24px 0 40px;border-top:1px solid var(--line);color:var(--muted);font-size:.9rem}
+.fine h2{margin:0 0 8px;font-size:1rem;color:var(--ink)}
+.fine p{max-width:68ch;margin:0 0 14px}
+.tool h3 a{text-decoration-thickness:2px;text-underline-offset:3px}
+.safe .more{max-width:60ch;margin:16px 0 0}
+.g h1{max-width:22ch;margin:22px 0 18px;font-size:clamp(2rem,7.5vw,3.3rem);line-height:1.08}
+.back{display:inline-block;margin-top:14px;padding:6px 0;color:var(--muted)}
+.prose{max-width:60ch}
+.prose .lead{margin:0 0 8px;font-size:1.15rem;color:var(--muted)}
+.prose h2{max-width:none;margin:40px 0 12px;font-size:1.45rem}
+.prose p{margin:0 0 16px}
+.prose ul,.prose ol{margin:0;padding-left:1.35em}
+.prose li+li{margin-top:12px}
+.prose li::marker{color:var(--ring);font-weight:700}
+.g .tools-box{max-width:none}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "ItemList", "name": "ChainScout : outils d'IA et de données pour la recherche crypto", "inLanguage": "fr", "itemListElement": [{"@type": "ListItem", "position": 1, "item": {"@type": "SoftwareApplication", "name": "Token Metrics", "description": "Notations de tokens et rapports d'analyse de marché pilotés par l'IA.", "url": "https://www.tokenmetrics.com", "applicationCategory": "FinanceApplication"}}, {"@type": "ListItem", "position": 2, "item": {"@type": "SoftwareApplication", "name": "Kaito", "description": "Recherche par IA dans l'actualité, les réseaux sociaux et les études crypto pour suivre les tendances.", "url": "https://www.kaito.ai", "applicationCategory": "FinanceApplication"}}, {"@type": "ListItem", "position": 3, "item": {"@type": "SoftwareApplication", "name": "Messari", "description": "Rapports de recherche, données de protocoles et assistant IA pour analyser les projets.", "url": "https://messari.io", "applicationCategory": "FinanceApplication"}}, {"@type": "ListItem", "position": 4, "item": {"@type": "SoftwareApplication", "name": "Santiment", "description": "Sentiment social et métriques on-chain pour voir de quoi parle la communauté.", "url": "https://santiment.net", "applicationCategory": "FinanceApplication"}}, {"@type": "ListItem", "position": 5, "item": {"@type": "SoftwareApplication", "name": "Nansen", "description": "Analyses on-chain avec portefeuilles étiquetés pour suivre les gros acteurs.", "url": "https://www.nansen.ai", "applicationCategory": "FinanceApplication"}}, {"@type": "ListItem", "position": 6, "item": {"@type": "SoftwareApplication", "name": "Arkham Intelligence", "description": "Suivi de portefeuilles et d'entités sur plusieurs blockchains avec explorateurs visuels.", "url": "https://intel.arkm.com", "applicationCategory": "FinanceApplication"}}, {"@type": "ListItem", "position": 7, "item": {"@type": "SoftwareApplication", "name": "Glassnode", "description": "Métriques on-chain détaillées et indicateurs de cycle de marché, surtout Bitcoin et Ethereum.", "url": "https://glassnode.com", "applicationCategory": "FinanceApplication"}}, {"@type": "ListItem", "position": 8, "item": {"@type": "SoftwareApplication", "name": "Dune", "description": "Tableaux de bord communautaires et requêtes SQL sur les données publiques des blockchains.", "url": "https://dune.com", "applicationCategory": "FinanceApplication"}}, {"@type": "ListItem", "position": 9, "item": {"@type": "SoftwareApplication", "name": "DefiLlama", "description": "Classements de protocoles DeFi, TVL et données par blockchain au même endroit.", "url": "https://defillama.com", "applicationCategory": "FinanceApplication"}}, {"@type": "ListItem", "position": 10, "item": {"@type": "SoftwareApplication", "name": "CoinGecko", "description": "Prix, capitalisations et données de base pour des milliers de cryptos.", "url": "https://www.coingecko.com", "applicationCategory": "FinanceApplication"}}, {"@type": "ListItem", "position": 11, "item": {"@type": "SoftwareApplication", "name": "TradingView", "description": "Graphiques de prix interactifs, indicateurs et idées de la communauté.", "url": "https://www.tradingview.com", "applicationCategory": "FinanceApplication"}}, {"@type": "ListItem", "position": 12, "item": {"@type": "SoftwareApplication", "name": "GoPlus Security", "description": "Vérifie tokens, contrats et liens pour les risques d'arnaque et de honeypot.", "url": "https://gopluslabs.io", "applicationCategory": "FinanceApplication"}}]}</script>
+</head>
+<body>
+<a class="skip" href="#main">Aller au contenu</a>
+<div class="wrap">
+<header class="top">
+<a class="brand" href="./"><svg class="logo" width="28" height="28" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="12" fill="none" stroke="currentColor" stroke-width="3"/><circle cx="16" cy="16" r="4.5" fill="#f0a500"/></svg><span>ChainScout</span></a>
+<nav class="langs" aria-label="Langue"><a href="../en/" lang="en" hreflang="en">English</a><a href="../fr/" lang="fr" hreflang="fr" aria-current="page">Français</a><a href="../id/" lang="id" hreflang="id">Bahasa Indonesia</a><a href="../vi/" lang="vi" hreflang="vi">Tiếng Việt</a><a href="../sw/" lang="sw" hreflang="sw">Kiswahili</a></nav>
+</header>
+<main id="main">
+<h1>Que voulez-vous vérifier ?</h1>
+<p class="lede">Choisissez une question et découvrez les outils qui y répondent. Ce site donne uniquement des informations, jamais de signaux d&#x27;achat ou de vente.</p>
+<div><label class="sr" for="q">Rechercher un outil</label>
+<input id="q" type="search" placeholder="Nom ou sujet" autocomplete="off"></div>
+<ul class="asks" id="asks"><li><a class="ask first" href="#q-safety"><span>Ce token ou ce lien est-il sûr ?<span class="start">Commencez ici</span></span><small>1 outil</small></a></li><li><a class="ask" href="#q-market"><span>Combien ça vaut en ce moment ?</span><small>3 outils</small></a></li><li><a class="ask" href="#q-research"><span>De quoi parle vraiment ce projet ?</span><small>2 outils</small></a></li><li><a class="ask" href="#q-sentiment"><span>Que dit tout le monde ?</span><small>2 outils</small></a></li><li><a class="ask" href="#q-onchain"><span>Que font les gros portefeuilles ?</span><small>4 outils</small></a></li></ul>
+<p class="empty" id="empty" role="status" hidden>Aucun outil ne correspond. Essayez un mot plus court.</p>
+<section id="q-safety" data-group aria-labelledby="h-safety"><h2 id="h-safety">Ce token ou ce lien est-il sûr ?</h2><ul class="panel"><li class="tool" data-tool data-search="goplus security verifie tokens, contrats et liens pour les risques d&#x27;arnaque et de honeypot. ce token ou ce lien est-il sur ?"><div><h3>GoPlus Security</h3><p>Vérifie tokens, contrats et liens pour les risques d&#x27;arnaque et de honeypot.</p><div class="meta"><span class="lvl"><span class="dots" aria-hidden="true"><i class="on"></i><i></i><i></i></span><span><span class="sr">Niveau: </span>Débutant</span></span></div></div><a class="btn" href="https://gopluslabs.io" target="_blank" rel="noopener">Ouvrir GoPlus Security<span class="sr"> (s&#x27;ouvre dans un nouvel onglet)</span></a></li></ul></section><section id="q-market" data-group aria-labelledby="h-market"><h2 id="h-market">Combien ça vaut en ce moment ?</h2><ul class="panel"><li class="tool" data-tool data-search="defillama classements de protocoles defi, tvl et donnees par blockchain au meme endroit. combien ca vaut en ce moment ?"><div><h3>DefiLlama</h3><p>Classements de protocoles DeFi, TVL et données par blockchain au même endroit.</p><div class="meta"><span class="lvl"><span class="dots" aria-hidden="true"><i class="on"></i><i></i><i></i></span><span><span class="sr">Niveau: </span>Débutant</span></span></div></div><a class="btn" href="https://defillama.com" target="_blank" rel="noopener">Ouvrir DefiLlama<span class="sr"> (s&#x27;ouvre dans un nouvel onglet)</span></a></li><li class="tool" data-tool data-search="coingecko prix, capitalisations et donnees de base pour des milliers de cryptos. combien ca vaut en ce moment ?"><div><h3>CoinGecko</h3><p>Prix, capitalisations et données de base pour des milliers de cryptos.</p><div class="meta"><span class="lvl"><span class="dots" aria-hidden="true"><i class="on"></i><i></i><i></i></span><span><span class="sr">Niveau: </span>Débutant</span></span></div></div><a class="btn" href="https://www.coingecko.com" target="_blank" rel="noopener">Ouvrir CoinGecko<span class="sr"> (s&#x27;ouvre dans un nouvel onglet)</span></a></li><li class="tool" data-tool data-search="tradingview graphiques de prix interactifs, indicateurs et idees de la communaute. combien ca vaut en ce moment ?"><div><h3>TradingView</h3><p>Graphiques de prix interactifs, indicateurs et idées de la communauté.</p><div class="meta"><span class="lvl"><span class="dots" aria-hidden="true"><i class="on"></i><i></i><i></i></span><span><span class="sr">Niveau: </span>Débutant</span></span></div></div><a class="btn" href="https://www.tradingview.com" target="_blank" rel="noopener">Ouvrir TradingView<span class="sr"> (s&#x27;ouvre dans un nouvel onglet)</span></a></li></ul></section><section id="q-research" data-group aria-labelledby="h-research"><h2 id="h-research">De quoi parle vraiment ce projet ?</h2><ul class="panel"><li class="tool" data-tool data-search="token metrics notations de tokens et rapports d&#x27;analyse de marche pilotes par l&#x27;ia. de quoi parle vraiment ce projet ?"><div><h3>Token Metrics</h3><p>Notations de tokens et rapports d&#x27;analyse de marché pilotés par l&#x27;IA.</p><div class="meta"><span class="lvl"><span class="dots" aria-hidden="true"><i class="on"></i><i></i><i></i></span><span><span class="sr">Niveau: </span>Débutant</span></span></div></div><a class="btn" href="https://www.tokenmetrics.com" target="_blank" rel="noopener">Ouvrir Token Metrics<span class="sr"> (s&#x27;ouvre dans un nouvel onglet)</span></a></li><li class="tool" data-tool data-search="messari rapports de recherche, donnees de protocoles et assistant ia pour analyser les projets. de quoi parle vraiment ce projet ?"><div><h3>Messari</h3><p>Rapports de recherche, données de protocoles et assistant IA pour analyser les projets.</p><div class="meta"><span class="lvl"><span class="dots" aria-hidden="true"><i class="on"></i><i class="on"></i><i></i></span><span><span class="sr">Niveau: </span>Intermédiaire</span></span></div></div><a class="btn" href="https://messari.io" target="_blank" rel="noopener">Ouvrir Messari<span class="sr"> (s&#x27;ouvre dans un nouvel onglet)</span></a></li></ul></section><section id="q-sentiment" data-group aria-labelledby="h-sentiment"><h2 id="h-sentiment">Que dit tout le monde ?</h2><ul class="panel"><li class="tool" data-tool data-search="kaito recherche par ia dans l&#x27;actualite, les reseaux sociaux et les etudes crypto pour suivre les tendances. que dit tout le monde ?"><div><h3>Kaito</h3><p>Recherche par IA dans l&#x27;actualité, les réseaux sociaux et les études crypto pour suivre les tendances.</p><div class="meta"><span class="lvl"><span class="dots" aria-hidden="true"><i class="on"></i><i class="on"></i><i></i></span><span><span class="sr">Niveau: </span>Intermédiaire</span></span></div></div><a class="btn" href="https://www.kaito.ai" target="_blank" rel="noopener">Ouvrir Kaito<span class="sr"> (s&#x27;ouvre dans un nouvel onglet)</span></a></li><li class="tool" data-tool data-search="santiment sentiment social et metriques on-chain pour voir de quoi parle la communaute. que dit tout le monde ?"><div><h3>Santiment</h3><p>Sentiment social et métriques on-chain pour voir de quoi parle la communauté.</p><div class="meta"><span class="lvl"><span class="dots" aria-hidden="true"><i class="on"></i><i class="on"></i><i></i></span><span><span class="sr">Niveau: </span>Intermédiaire</span></span></div></div><a class="btn" href="https://santiment.net" target="_blank" rel="noopener">Ouvrir Santiment<span class="sr"> (s&#x27;ouvre dans un nouvel onglet)</span></a></li></ul></section><section id="q-onchain" data-group aria-labelledby="h-onchain"><h2 id="h-onchain">Que font les gros portefeuilles ?</h2><ul class="panel"><li class="tool" data-tool data-search="nansen analyses on-chain avec portefeuilles etiquetes pour suivre les gros acteurs. que font les gros portefeuilles ?"><div><h3>Nansen</h3><p>Analyses on-chain avec portefeuilles étiquetés pour suivre les gros acteurs.</p><div class="meta"><span class="lvl"><span class="dots" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i></span><span><span class="sr">Niveau: </span>Avancé</span></span></div></div><a class="btn" href="https://www.nansen.ai" target="_blank" rel="noopener">Ouvrir Nansen<span class="sr"> (s&#x27;ouvre dans un nouvel onglet)</span></a></li><li class="tool" data-tool data-search="arkham intelligence suivi de portefeuilles et d&#x27;entites sur plusieurs blockchains avec explorateurs visuels. que font les gros portefeuilles ?"><div><h3>Arkham Intelligence</h3><p>Suivi de portefeuilles et d&#x27;entités sur plusieurs blockchains avec explorateurs visuels.</p><div class="meta"><span class="lvl"><span class="dots" aria-hidden="true"><i class="on"></i><i class="on"></i><i></i></span><span><span class="sr">Niveau: </span>Intermédiaire</span></span></div></div><a class="btn" href="https://intel.arkm.com" target="_blank" rel="noopener">Ouvrir Arkham Intelligence<span class="sr"> (s&#x27;ouvre dans un nouvel onglet)</span></a></li><li class="tool" data-tool data-search="glassnode metriques on-chain detaillees et indicateurs de cycle de marche, surtout bitcoin et ethereum. que font les gros portefeuilles ?"><div><h3>Glassnode</h3><p>Métriques on-chain détaillées et indicateurs de cycle de marché, surtout Bitcoin et Ethereum.</p><div class="meta"><span class="lvl"><span class="dots" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i></span><span><span class="sr">Niveau: </span>Avancé</span></span></div></div><a class="btn" href="https://glassnode.com" target="_blank" rel="noopener">Ouvrir Glassnode<span class="sr"> (s&#x27;ouvre dans un nouvel onglet)</span></a></li><li class="tool" data-tool data-search="dune tableaux de bord communautaires et requetes sql sur les donnees publiques des blockchains. que font les gros portefeuilles ?"><div><h3>Dune</h3><p>Tableaux de bord communautaires et requêtes SQL sur les données publiques des blockchains.</p><div class="meta"><span class="lvl"><span class="dots" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i></span><span><span class="sr">Niveau: </span>Avancé</span></span></div></div><a class="btn" href="https://dune.com" target="_blank" rel="noopener">Ouvrir Dune<span class="sr"> (s&#x27;ouvre dans un nouvel onglet)</span></a></li></ul></section>
+<section id="guides" aria-labelledby="h-guides"><h2 id="h-guides">Guides</h2><ul class="panel"><li class="tool"><div><h3><a href="guides/check-token-scams/">Comment vérifier un token ou un lien avant d&#x27;y toucher</a></h3><p>Cinq vérifications contre les arnaques crypto : signaux d&#x27;alerte, adresse officielle, analyse du contrat, autorisations du portefeuille et que faire si vous êtes déjà piégé.</p></div></li><li class="tool"><div><h3><a href="guides/on-chain-data-basics/">Données on-chain pour débutants : ce que l&#x27;on voit et ce que l&#x27;on ne voit pas</a></h3><p>Comprendre les données on-chain : ce qu&#x27;elles permettent de vérifier, leurs limites et les outils à essayer d&#x27;abord, des explorateurs de blocs aux suiveurs de portefeuilles étiquetés.</p></div></li><li class="tool"><div><h3><a href="guides/ai-tools-crypto-research/">Utiliser les outils d&#x27;IA pour la recherche crypto sans se laisser induire en erreur</a></h3><p>Les outils d&#x27;IA résument vite l&#x27;actualité et les rapports, mais peuvent se tromper ou être dépassés. Ce qu&#x27;ils font bien, où ils échouent et comment vérifier leurs réponses.</p></div></li></ul></section>
+<section class="safe" id="safe"><h2>Avant d&#x27;utiliser un outil crypto</h2><ul><li>Ne communiquez jamais votre phrase secrète ni vos clés privées. Aucun vrai outil, support ou administrateur ne les demandera.</li><li>Personne ne peut promettre un gain. Méfiez-vous de quiconque le fait, même dans une conversation amicale.</li><li>Ouvrez les outils en tapant l&#x27;adresse vous-même ou depuis cette liste. Les faux sites imitent les vrais.</li><li>Essayez d&#x27;abord une offre gratuite et vérifiez le prix sur le site officiel avant de payer.</li></ul><p class="more">Guide complet : <a href="guides/check-token-scams/">Comment vérifier un token ou un lien avant d&#x27;y toucher</a></p></section>
+
+</main>
+<footer class="fine">
+<h2>Comment fonctionne ce site</h2>
+<p>Ceci est un annuaire indépendant. Certains liens sont des liens partenaires, et nous pouvons recevoir une commission si vous vous inscrivez, sans frais supplémentaires pour vous. Les fiches partenaires et sponsorisées sont signalées. Les tarifs et offres gratuites changent : vérifiez chaque site officiel. Rien ici n&#x27;est un conseil financier, et les cryptos sont très risquées.</p>
+<p>&copy; 2026 ChainScout</p>
+</footer>
+</div>
+<script>
+(function(){
+  var q=document.getElementById('q');if(!q)return;
+  var rows=[].slice.call(document.querySelectorAll('[data-tool]'));
+  var groups=[].slice.call(document.querySelectorAll('[data-group]'));
+  var asks=document.getElementById('asks'),empty=document.getElementById('empty'),gd=document.getElementById('guides');
+  function norm(s){return s.toLowerCase().replace(/\u0111/g,'d').normalize('NFD').replace(/[\u0300-\u036f]/g,'');}
+  q.addEventListener('input',function(){
+    var v=norm(q.value.trim()),shown=0;
+    rows.forEach(function(r){var m=!v||r.getAttribute('data-search').indexOf(v)>-1;r.hidden=!m;if(m)shown++;});
+    groups.forEach(function(g){g.hidden=!g.querySelector('[data-tool]:not([hidden])');});
+    if(asks)asks.hidden=!!v;
+    if(gd)gd.hidden=!!v;
+    empty.hidden=shown>0;
+  });
+})();
+</script>
+</body>
+</html>

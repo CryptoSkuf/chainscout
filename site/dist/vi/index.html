@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ChainScout: công cụ AI và dữ liệu để nghiên cứu tiền mã hóa</title>
+<meta name="description" content="Danh mục thân thiện với người mới về công cụ AI và dữ liệu để nghiên cứu tiền mã hóa: kiểm tra lừa đảo, giá, dữ liệu on-chain, tâm lý tin tức. Chỉ là thông tin, không có tín hiệu giao dịch.">
+<link rel="canonical" href="https://chainscout.app/vi/">
+<link rel="alternate" hreflang="en" href="https://chainscout.app/en/"><link rel="alternate" hreflang="fr" href="https://chainscout.app/fr/"><link rel="alternate" hreflang="id" href="https://chainscout.app/id/"><link rel="alternate" hreflang="vi" href="https://chainscout.app/vi/"><link rel="alternate" hreflang="sw" href="https://chainscout.app/sw/"><link rel="alternate" hreflang="x-default" href="https://chainscout.app/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ChainScout">
+<meta property="og:title" content="ChainScout: công cụ AI và dữ liệu để nghiên cứu tiền mã hóa">
+<meta property="og:description" content="Danh mục thân thiện với người mới về công cụ AI và dữ liệu để nghiên cứu tiền mã hóa: kiểm tra lừa đảo, giá, dữ liệu on-chain, tâm lý tin tức. Chỉ là thông tin, không có tín hiệu giao dịch.">
+<meta property="og:url" content="https://chainscout.app/vi/">
+<meta property="og:locale" content="vi_VN">
+<meta name="twitter:card" content="summary">
+<meta name="theme-color" content="#eef1f8">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<style>
+:root{color-scheme:light dark;--paper:#eef1f8;--surface:#fff;--ink:#161c40;--muted:#4b537d;--line:#dde1f0;--hover:#e3e8f6;--btn-bg:#2a3a9e;--btn-fg:#fff;--ring:#2a3a9e;--focus:#2a3a9e;--mark:#f0a500;--mark-bg:#fff2cc;--mark-ink:#5c3f00}
+@media (prefers-color-scheme:dark){:root{--paper:#0e1230;--surface:#161b45;--ink:#eceffc;--muted:#aab2dd;--line:#2b3274;--hover:#1d2358;--btn-bg:#a3b0ff;--btn-fg:#0e1230;--ring:#a3b0ff;--focus:#ffc23d;--mark:#ffc23d;--mark-bg:#3a2d08;--mark-ink:#ffd98a}}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{-webkit-text-size-adjust:100%}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+body{margin:0;background:var(--paper);color:var(--ink);font:17px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans",sans-serif}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--focus);outline-offset:3px;border-radius:6px}
+.wrap{max-width:50rem;margin:0 auto;padding:0 16px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.skip{position:absolute;left:-999px;top:8px;z-index:10;padding:10px 14px;border-radius:8px;background:var(--btn-bg);color:var(--btn-fg)}
+.skip:focus{left:16px}
+.top{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 20px;padding:18px 0 6px}
+.brand{display:inline-flex;align-items:center;gap:10px;font-weight:800;font-size:1.15rem;letter-spacing:-.01em;text-decoration:none}
+.logo{flex:none}
+.langs{display:flex;flex-wrap:wrap;gap:2px}
+.langs a{padding:6px 10px;border-radius:8px;font-size:.95rem;text-decoration:none;color:var(--muted)}
+.langs a:hover{background:var(--hover);color:var(--ink)}
+.langs a[aria-current]{background:var(--ink);color:var(--paper);font-weight:650}
+h1{max-width:16ch;margin:44px 0 18px;font-size:clamp(2.5rem,9.5vw,4.75rem);line-height:1.02;letter-spacing:-.035em;font-weight:800;text-wrap:balance}
+.lede{max-width:60ch;margin:0 0 26px;font-size:1.1rem;color:var(--muted)}
+input[type=search],input[type=email]{width:100%;min-height:52px;padding:0 16px;border:2px solid var(--line);border-radius:12px;background:var(--surface);color:var(--ink);font:inherit}
+input[type=search]:focus-visible,input[type=email]:focus-visible{border-color:var(--focus)}
+.asks{display:grid;gap:10px;margin:22px 0 0;padding:0;list-style:none}
+.ask{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:16px 18px 16px 22px;border-radius:14px;background:var(--surface);box-shadow:inset 5px 0 0 var(--ring);font-size:1.2rem;font-weight:700;line-height:1.3;text-decoration:none}
+.ask.first{box-shadow:inset 5px 0 0 var(--mark)}
+.ask:hover{background:var(--hover)}
+.ask small{flex:none;font-size:.9rem;font-weight:500;color:var(--muted)}
+.start{display:block;width:max-content;margin-top:6px;padding:2px 8px;border-radius:6px;background:var(--mark-bg);color:var(--mark-ink);font-size:.8rem;font-weight:700}
+.empty{margin:28px 0 0;color:var(--muted)}
+section{margin-top:56px;scroll-margin-top:12px}
+h2{max-width:24ch;margin:0 0 16px;font-size:clamp(1.55rem,5vw,2.1rem);line-height:1.15;letter-spacing:-.02em;font-weight:800;text-wrap:balance}
+.panel{margin:0;padding:0;list-style:none;overflow:hidden;border-radius:18px;background:var(--surface)}
+.tool{display:grid;gap:14px;padding:20px;border-top:1px solid var(--line)}
+.tool:first-child{border-top:0}
+.tool h3{margin:0;font-size:1.2rem;line-height:1.3;font-weight:750}
+.tool p{max-width:60ch;margin:4px 0 0}
+.tool .meta{display:flex;flex-wrap:wrap;align-items:center;gap:6px 18px;margin-top:10px;font-size:.9rem;color:var(--muted)}
+.lvl{display:inline-flex;align-items:center;gap:8px}
+.dots{display:inline-flex;gap:4px}
+.dots i{display:block;width:11px;height:11px;border:2px solid var(--ring);border-radius:50%}
+.dots i.on{background:var(--ring)}
+.tag{display:inline-block;margin-left:8px;padding:1px 8px;border-radius:6px;background:var(--mark-bg);color:var(--mark-ink);font-size:.75rem;font-weight:700;vertical-align:middle}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:8px 18px;border:0;border-radius:10px;background:var(--btn-bg);color:var(--btn-fg);font:inherit;font-weight:650;line-height:1.25;text-align:center;text-decoration:none;cursor:pointer}
+.btn:hover{filter:brightness(1.1)}
+@media (min-width:640px){.tool{grid-template-columns:1fr auto;align-items:center;gap:24px}.tool .btn{min-width:13rem}}
+.safe{padding-left:20px;border-left:5px solid var(--mark)}
+.safe h2{font-size:clamp(1.3rem,4vw,1.6rem)}
+.safe ul{max-width:60ch;margin:0;padding-left:1.2em}
+.safe li+li{margin-top:10px}
+.join{padding:24px 20px;border-radius:18px;background:var(--surface)}
+.join h2{margin-bottom:8px}
+.join p{max-width:56ch;margin:0 0 18px;color:var(--muted)}
+.mail{display:grid;gap:10px;max-width:28rem;margin-top:18px}
+.mail label{font-weight:650}
+.fine{margin-top:56px;padding:24px 0 40px;border-top:1px solid var(--line);color:var(--muted);font-size:.9rem}
+.fine h2{margin:0 0 8px;font-size:1rem;color:var(--ink)}
+.fine p{max-width:68ch;margin:0 0 14px}
+.tool h3 a{text-decoration-thickness:2px;text-underline-offset:3px}
+.safe .more{max-width:60ch;margin:16px 0 0}
+.g h1{max-width:22ch;margin:22px 0 18px;font-size:clamp(2rem,7.5vw,3.3rem);line-height:1.08}
+.back{display:inline-block;margin-top:14px;padding:6px 0;color:var(--muted)}
+.prose{max-width:60ch}
+.prose .lead{margin:0 0 8px;font-size:1.15rem;color:var(--muted)}
+.prose h2{max-width:none;margin:40px 0 12px;font-size:1.45rem}
+.prose p{margin:0 0 16px}
+.prose ul,.prose ol{margin:0;padding-left:1.35em}
+.prose li+li{margin-top:12px}
+.prose li::marker{color:var(--ring);font-weight:700}
+.g .tools-box{max-width:none}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "ItemList", "name": "ChainScout: công cụ AI và dữ liệu để nghiên cứu tiền mã hóa", "inLanguage": "vi", "itemListElement": [{"@type": "ListItem", "position": 1, "item": {"@type": "SoftwareApplication", "name": "Token Metrics", "description": "Xếp hạng token và báo cáo nghiên cứu thị trường dựa trên AI.", "url": "https://www.tokenmetrics.com", "applicationCategory": "FinanceApplication"}}, {"@type": "ListItem", "position": 2, "item": {"@type": "SoftwareApplication", "name": "Kaito", "description": "Tìm kiếm bằng AI trong tin tức, mạng xã hội và nghiên cứu crypto để theo dõi xu hướng.", "url": "https://www.kaito.ai", "applicationCategory": "FinanceApplication"}}, {"@type": "ListItem", "position": 3, "item": {"@type": "SoftwareApplication", "name": "Messari", "description": "Báo cáo nghiên cứu, dữ liệu giao thức và trợ lý AI để tìm hiểu dự án.", "url": "https://messari.io", "applicationCategory": "FinanceApplication"}}, {"@type": "ListItem", "position": 4, "item": {"@type": "SoftwareApplication", "name": "Santiment", "description": "Cảm xúc mạng xã hội và chỉ số on-chain để xem cộng đồng đang bàn gì.", "url": "https://santiment.net", "applicationCategory": "FinanceApplication"}}, {"@type": "ListItem", "position": 5, "item": {"@type": "SoftwareApplication", "name": "Nansen", "description": "Phân tích on-chain với ví được gắn nhãn để theo dõi các cá mập.", "url": "https://www.nansen.ai", "applicationCategory": "FinanceApplication"}}, {"@type": "ListItem", "position": 6, "item": {"@type": "SoftwareApplication", "name": "Arkham Intelligence", "description": "Theo dõi ví và thực thể trên nhiều blockchain bằng công cụ trực quan.", "url": "https://intel.arkm.com", "applicationCategory": "FinanceApplication"}}, {"@type": "ListItem", "position": 7, "item": {"@type": "SoftwareApplication", "name": "Glassnode", "description": "Chỉ số on-chain chuyên sâu và chỉ báo chu kỳ thị trường, chủ yếu Bitcoin và Ethereum.", "url": "https://glassnode.com", "applicationCategory": "FinanceApplication"}}, {"@type": "ListItem", "position": 8, "item": {"@type": "SoftwareApplication", "name": "Dune", "description": "Bảng điều khiển cộng đồng và truy vấn SQL trên dữ liệu blockchain công khai.", "url": "https://dune.com", "applicationCategory": "FinanceApplication"}}, {"@type": "ListItem", "position": 9, "item": {"@type": "SoftwareApplication", "name": "DefiLlama", "description": "Xếp hạng giao thức DeFi, TVL và dữ liệu chuỗi ở một nơi.", "url": "https://defillama.com", "applicationCategory": "FinanceApplication"}}, {"@type": "ListItem", "position": 10, "item": {"@type": "SoftwareApplication", "name": "CoinGecko", "description": "Giá, vốn hóa và dữ liệu cơ bản của hàng nghìn đồng coin.", "url": "https://www.coingecko.com", "applicationCategory": "FinanceApplication"}}, {"@type": "ListItem", "position": 11, "item": {"@type": "SoftwareApplication", "name": "TradingView", "description": "Biểu đồ giá tương tác, chỉ báo và ý tưởng từ cộng đồng.", "url": "https://www.tradingview.com", "applicationCategory": "FinanceApplication"}}, {"@type": "ListItem", "position": 12, "item": {"@type": "SoftwareApplication", "name": "GoPlus Security", "description": "Kiểm tra token, hợp đồng và liên kết để phát hiện rủi ro lừa đảo, honeypot.", "url": "https://gopluslabs.io", "applicationCategory": "FinanceApplication"}}]}</script>
+</head>
+<body>
+<a class="skip" href="#main">Bỏ qua đến nội dung</a>
+<div class="wrap">
+<header class="top">
+<a class="brand" href="./"><svg class="logo" width="28" height="28" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="12" fill="none" stroke="currentColor" stroke-width="3"/><circle cx="16" cy="16" r="4.5" fill="#f0a500"/></svg><span>ChainScout</span></a>
+<nav class="langs" aria-label="Ngôn ngữ"><a href="../en/" lang="en" hreflang="en">English</a><a href="../fr/" lang="fr" hreflang="fr">Français</a><a href="../id/" lang="id" hreflang="id">Bahasa Indonesia</a><a href="../vi/" lang="vi" hreflang="vi" aria-current="page">Tiếng Việt</a><a href="../sw/" lang="sw" hreflang="sw">Kiswahili</a></nav>
+</header>
+<main id="main">
+<h1>Bạn muốn kiểm tra điều gì?</h1>
+<p class="lede">Chọn một câu hỏi và xem các công cụ trả lời nó. Trang này chỉ cung cấp thông tin, không bao giờ đưa tín hiệu mua hoặc bán.</p>
+<div><label class="sr" for="q">Tìm công cụ</label>
+<input id="q" type="search" placeholder="Tên hoặc chủ đề" autocomplete="off"></div>
+<ul class="asks" id="asks"><li><a class="ask first" href="#q-safety"><span>Token hoặc liên kết này có an toàn không?<span class="start">Bắt đầu từ đây</span></span><small>1 công cụ</small></a></li><li><a class="ask" href="#q-market"><span>Bây giờ nó có giá bao nhiêu?</span><small>3 công cụ</small></a></li><li><a class="ask" href="#q-research"><span>Dự án này thật sự là gì?</span><small>2 công cụ</small></a></li><li><a class="ask" href="#q-sentiment"><span>Mọi người đang nói gì?</span><small>2 công cụ</small></a></li><li><a class="ask" href="#q-onchain"><span>Ví lớn đang làm gì?</span><small>4 công cụ</small></a></li></ul>
+<p class="empty" id="empty" role="status" hidden>Không có công cụ phù hợp. Hãy thử từ ngắn hơn.</p>
+<section id="q-safety" data-group aria-labelledby="h-safety"><h2 id="h-safety">Token hoặc liên kết này có an toàn không?</h2><ul class="panel"><li class="tool" data-tool data-search="goplus security kiem tra token, hop dong va lien ket de phat hien rui ro lua dao, honeypot. token hoac lien ket nay co an toan khong?"><div><h3>GoPlus Security</h3><p>Kiểm tra token, hợp đồng và liên kết để phát hiện rủi ro lừa đảo, honeypot.</p><div class="meta"><span class="lvl"><span class="dots" aria-hidden="true"><i class="on"></i><i></i><i></i></span><span><span class="sr">Mức độ: </span>Người mới</span></span></div></div><a class="btn" href="https://gopluslabs.io" target="_blank" rel="noopener">Mở GoPlus Security<span class="sr"> (mở trong tab mới)</span></a></li></ul></section><section id="q-market" data-group aria-labelledby="h-market"><h2 id="h-market">Bây giờ nó có giá bao nhiêu?</h2><ul class="panel"><li class="tool" data-tool data-search="defillama xep hang giao thuc defi, tvl va du lieu chuoi o mot noi. bay gio no co gia bao nhieu?"><div><h3>DefiLlama</h3><p>Xếp hạng giao thức DeFi, TVL và dữ liệu chuỗi ở một nơi.</p><div class="meta"><span class="lvl"><span class="dots" aria-hidden="true"><i class="on"></i><i></i><i></i></span><span><span class="sr">Mức độ: </span>Người mới</span></span></div></div><a class="btn" href="https://defillama.com" target="_blank" rel="noopener">Mở DefiLlama<span class="sr"> (mở trong tab mới)</span></a></li><li class="tool" data-tool data-search="coingecko gia, von hoa va du lieu co ban cua hang nghin dong coin. bay gio no co gia bao nhieu?"><div><h3>CoinGecko</h3><p>Giá, vốn hóa và dữ liệu cơ bản của hàng nghìn đồng coin.</p><div class="meta"><span class="lvl"><span class="dots" aria-hidden="true"><i class="on"></i><i></i><i></i></span><span><span class="sr">Mức độ: </span>Người mới</span></span></div></div><a class="btn" href="https://www.coingecko.com" target="_blank" rel="noopener">Mở CoinGecko<span class="sr"> (mở trong tab mới)</span></a></li><li class="tool" data-tool data-search="tradingview bieu do gia tuong tac, chi bao va y tuong tu cong dong. bay gio no co gia bao nhieu?"><div><h3>TradingView</h3><p>Biểu đồ giá tương tác, chỉ báo và ý tưởng từ cộng đồng.</p><div class="meta"><span class="lvl"><span class="dots" aria-hidden="true"><i class="on"></i><i></i><i></i></span><span><span class="sr">Mức độ: </span>Người mới</span></span></div></div><a class="btn" href="https://www.tradingview.com" target="_blank" rel="noopener">Mở TradingView<span class="sr"> (mở trong tab mới)</span></a></li></ul></section><section id="q-research" data-group aria-labelledby="h-research"><h2 id="h-research">Dự án này thật sự là gì?</h2><ul class="panel"><li class="tool" data-tool data-search="token metrics xep hang token va bao cao nghien cuu thi truong dua tren ai. du an nay that su la gi?"><div><h3>Token Metrics</h3><p>Xếp hạng token và báo cáo nghiên cứu thị trường dựa trên AI.</p><div class="meta"><span class="lvl"><span class="dots" aria-hidden="true"><i class="on"></i><i></i><i></i></span><span><span class="sr">Mức độ: </span>Người mới</span></span></div></div><a class="btn" href="https://www.tokenmetrics.com" target="_blank" rel="noopener">Mở Token Metrics<span class="sr"> (mở trong tab mới)</span></a></li><li class="tool" data-tool data-search="messari bao cao nghien cuu, du lieu giao thuc va tro ly ai de tim hieu du an. du an nay that su la gi?"><div><h3>Messari</h3><p>Báo cáo nghiên cứu, dữ liệu giao thức và trợ lý AI để tìm hiểu dự án.</p><div class="meta"><span class="lvl"><span class="dots" aria-hidden="true"><i class="on"></i><i class="on"></i><i></i></span><span><span class="sr">Mức độ: </span>Trung cấp</span></span></div></div><a class="btn" href="https://messari.io" target="_blank" rel="noopener">Mở Messari<span class="sr"> (mở trong tab mới)</span></a></li></ul></section><section id="q-sentiment" data-group aria-labelledby="h-sentiment"><h2 id="h-sentiment">Mọi người đang nói gì?</h2><ul class="panel"><li class="tool" data-tool data-search="kaito tim kiem bang ai trong tin tuc, mang xa hoi va nghien cuu crypto de theo doi xu huong. moi nguoi dang noi gi?"><div><h3>Kaito</h3><p>Tìm kiếm bằng AI trong tin tức, mạng xã hội và nghiên cứu crypto để theo dõi xu hướng.</p><div class="meta"><span class="lvl"><span class="dots" aria-hidden="true"><i class="on"></i><i class="on"></i><i></i></span><span><span class="sr">Mức độ: </span>Trung cấp</span></span></div></div><a class="btn" href="https://www.kaito.ai" target="_blank" rel="noopener">Mở Kaito<span class="sr"> (mở trong tab mới)</span></a></li><li class="tool" data-tool data-search="santiment cam xuc mang xa hoi va chi so on-chain de xem cong dong dang ban gi. moi nguoi dang noi gi?"><div><h3>Santiment</h3><p>Cảm xúc mạng xã hội và chỉ số on-chain để xem cộng đồng đang bàn gì.</p><div class="meta"><span class="lvl"><span class="dots" aria-hidden="true"><i class="on"></i><i class="on"></i><i></i></span><span><span class="sr">Mức độ: </span>Trung cấp</span></span></div></div><a class="btn" href="https://santiment.net" target="_blank" rel="noopener">Mở Santiment<span class="sr"> (mở trong tab mới)</span></a></li></ul></section><section id="q-onchain" data-group aria-labelledby="h-onchain"><h2 id="h-onchain">Ví lớn đang làm gì?</h2><ul class="panel"><li class="tool" data-tool data-search="nansen phan tich on-chain voi vi duoc gan nhan de theo doi cac ca map. vi lon dang lam gi?"><div><h3>Nansen</h3><p>Phân tích on-chain với ví được gắn nhãn để theo dõi các cá mập.</p><div class="meta"><span class="lvl"><span class="dots" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i></span><span><span class="sr">Mức độ: </span>Nâng cao</span></span></div></div><a class="btn" href="https://www.nansen.ai" target="_blank" rel="noopener">Mở Nansen<span class="sr"> (mở trong tab mới)</span></a></li><li class="tool" data-tool data-search="arkham intelligence theo doi vi va thuc the tren nhieu blockchain bang cong cu truc quan. vi lon dang lam gi?"><div><h3>Arkham Intelligence</h3><p>Theo dõi ví và thực thể trên nhiều blockchain bằng công cụ trực quan.</p><div class="meta"><span class="lvl"><span class="dots" aria-hidden="true"><i class="on"></i><i class="on"></i><i></i></span><span><span class="sr">Mức độ: </span>Trung cấp</span></span></div></div><a class="btn" href="https://intel.arkm.com" target="_blank" rel="noopener">Mở Arkham Intelligence<span class="sr"> (mở trong tab mới)</span></a></li><li class="tool" data-tool data-search="glassnode chi so on-chain chuyen sau va chi bao chu ky thi truong, chu yeu bitcoin va ethereum. vi lon dang lam gi?"><div><h3>Glassnode</h3><p>Chỉ số on-chain chuyên sâu và chỉ báo chu kỳ thị trường, chủ yếu Bitcoin và Ethereum.</p><div class="meta"><span class="lvl"><span class="dots" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i></span><span><span class="sr">Mức độ: </span>Nâng cao</span></span></div></div><a class="btn" href="https://glassnode.com" target="_blank" rel="noopener">Mở Glassnode<span class="sr"> (mở trong tab mới)</span></a></li><li class="tool" data-tool data-search="dune bang dieu khien cong dong va truy van sql tren du lieu blockchain cong khai. vi lon dang lam gi?"><div><h3>Dune</h3><p>Bảng điều khiển cộng đồng và truy vấn SQL trên dữ liệu blockchain công khai.</p><div class="meta"><span class="lvl"><span class="dots" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i></span><span><span class="sr">Mức độ: </span>Nâng cao</span></span></div></div><a class="btn" href="https://dune.com" target="_blank" rel="noopener">Mở Dune<span class="sr"> (mở trong tab mới)</span></a></li></ul></section>
+<section id="guides" aria-labelledby="h-guides"><h2 id="h-guides">Hướng dẫn</h2><ul class="panel"><li class="tool"><div><h3><a href="guides/check-token-scams/">Cách kiểm tra token hoặc liên kết trước khi chạm vào</a></h3><p>Năm bước kiểm tra chống lừa đảo crypto: dấu hiệu cảnh báo, địa chỉ chính thức, quét hợp đồng, quyền truy cập của ví và việc cần làm nếu bạn đã bị lừa.</p></div></li><li class="tool"><div><h3><a href="guides/on-chain-data-basics/">Dữ liệu on-chain cho người mới: nhìn thấy gì và không thấy gì</a></h3><p>Tìm hiểu dữ liệu on-chain là gì, kiểm chứng được gì, khi nào gây hiểu lầm và nên thử công cụ nào trước, từ trình khám phá khối đến công cụ theo dõi ví có gắn nhãn.</p></div></li><li class="tool"><div><h3><a href="guides/ai-tools-crypto-research/">Cách dùng công cụ AI để nghiên cứu crypto mà không bị dẫn dắt sai</a></h3><p>Công cụ AI tóm tắt tin tức và báo cáo rất nhanh, nhưng có thể sai hoặc lỗi thời. Tìm hiểu điểm mạnh, chỗ hay sai và cách kiểm tra câu trả lời của chúng.</p></div></li></ul></section>
+<section class="safe" id="safe"><h2>Trước khi dùng bất kỳ công cụ crypto nào</h2><ul><li>Không bao giờ chia sẻ cụm từ khôi phục (seed phrase) hoặc khóa riêng. Công cụ, bộ phận hỗ trợ hay quản trị viên thật sẽ không hỏi.</li><li>Không ai có thể hứa chắc có lợi nhuận. Hãy cẩn thận với người nào hứa vậy, kể cả trong cuộc trò chuyện thân thiện.</li><li>Hãy tự gõ địa chỉ hoặc mở từ danh sách này. Trang giả thường sao chép trang thật.</li><li>Dùng thử gói miễn phí trước và kiểm tra giá trên trang chính thức trước khi trả tiền.</li></ul><p class="more">Hướng dẫn đầy đủ: <a href="guides/check-token-scams/">Cách kiểm tra token hoặc liên kết trước khi chạm vào</a></p></section>
+
+</main>
+<footer class="fine">
+<h2>Cách trang này hoạt động</h2>
+<p>Đây là danh mục độc lập. Một số liên kết là liên kết đối tác, và chúng mình có thể nhận hoa hồng nếu bạn đăng ký, bạn không phải trả thêm. Mục đối tác và tài trợ đều được đánh dấu. Giá và gói miễn phí có thể thay đổi, hãy kiểm tra từng trang chính thức. Không nội dung nào ở đây là lời khuyên tài chính, và tiền mã hóa có rủi ro cao.</p>
+<p>&copy; 2026 ChainScout</p>
+</footer>
+</div>
+<script>
+(function(){
+  var q=document.getElementById('q');if(!q)return;
+  var rows=[].slice.call(document.querySelectorAll('[data-tool]'));
+  var groups=[].slice.call(document.querySelectorAll('[data-group]'));
+  var asks=document.getElementById('asks'),empty=document.getElementById('empty'),gd=document.getElementById('guides');
+  function norm(s){return s.toLowerCase().replace(/\u0111/g,'d').normalize('NFD').replace(/[\u0300-\u036f]/g,'');}
+  q.addEventListener('input',function(){
+    var v=norm(q.value.trim()),shown=0;
+    rows.forEach(function(r){var m=!v||r.getAttribute('data-search').indexOf(v)>-1;r.hidden=!m;if(m)shown++;});
+    groups.forEach(function(g){g.hidden=!g.querySelector('[data-tool]:not([hidden])');});
+    if(asks)asks.hidden=!!v;
+    if(gd)gd.hidden=!!v;
+    empty.hidden=shown>0;
+  });
+})();
+</script>
+</body>
+</html>
