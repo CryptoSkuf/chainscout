@@ -1,4 +1,4 @@
-"""Гиды для сайта ChainScout: 3 статьи на 5 языках (en, fr, id, vi, sw).
+"""Гиды для сайта ChainScout: 3 статьи (ещё 4 в guides_more_a.py и guides_more_b.py) на 5 языках (en, fr, id, vi, sw).
 
 Формат блока: ("h", "заголовок") | ("p", "абзац") | ("ul", [пункты]) | ("ol", [шаги]).
 В тексте можно выделять начало пункта так: **жирный**.
@@ -569,3 +569,11 @@ GUIDES = {
         },
     },
 }
+
+
+# Дополнительные гиды живут в отдельных файлах, чтобы этот не разрастался.
+from guides_more_a import GUIDES_A  # noqa: E402
+from guides_more_b import GUIDES_B  # noqa: E402
+
+GUIDES.update(GUIDES_A)
+GUIDES.update(GUIDES_B)

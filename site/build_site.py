@@ -24,6 +24,8 @@ HERE = Path(__file__).resolve().parent
 sys.path[:0] = [str(HERE), str(HERE.parent)]
 from guides import GUIDE_UI, GUIDES  # noqa: E402
 from locales import LANGS, STRINGS  # noqa: E402
+from howto import HOWTO, HOWTO_UI  # noqa: E402
+from exchanges import EXCHANGES, TAGS as EX_TAGS, UI as EX_UI  # noqa: E402
 
 DEFAULT_BASE = "https://example.com"
 # Порядок разделов: сначала безопасность, потом всё остальное от простого к сложному.
@@ -242,13 +244,21 @@ SITE = {
 
 # --------------------------------------------------------------------------- оформление
 CSS = """
-:root{color-scheme:light dark;--paper:#eef1f8;--surface:#fff;--ink:#161c40;--muted:#4b537d;--line:#dde1f0;--hover:#e3e8f6;--btn-bg:#2a3a9e;--btn-fg:#fff;--ring:#2a3a9e;--focus:#2a3a9e;--mark:#f0a500;--mark-bg:#fff2cc;--mark-ink:#5c3f00}
-@media (prefers-color-scheme:dark){:root{--paper:#0e1230;--surface:#161b45;--ink:#eceffc;--muted:#aab2dd;--line:#2b3274;--hover:#1d2358;--btn-bg:#a3b0ff;--btn-fg:#0e1230;--ring:#a3b0ff;--focus:#ffc23d;--mark:#ffc23d;--mark-bg:#3a2d08;--mark-ink:#ffd98a}}
+:root{color-scheme:dark;--paper:#070b1a;--surface:#0e1530;--ink:#e9eefc;--muted:#9fabd6;--line:#232f5e;--hover:#16214a;--btn-bg:#35e0c0;--btn-fg:#04121a;--ring:#35e0c0;--focus:#ffc23d;--mark:#ffc23d;--mark-bg:#3a2d08;--mark-ink:#ffd98a;--glow:rgba(53,224,192,.14);--glow2:rgba(124,92,255,.16)}
+.coins{position:absolute;top:5.5rem;right:0;z-index:-1;width:15rem;height:15rem;pointer-events:none;opacity:.6}@media (max-width:760px){.coins{opacity:.22}}
+.coins svg{position:absolute}
+@media (prefers-reduced-motion:no-preference){.coins svg{animation:bob 7s ease-in-out infinite}.coins svg:nth-child(2){animation-delay:-2s}.coins svg:nth-child(3){animation-delay:-4s}.coins svg:nth-child(4){animation-delay:-5.5s}}
+@keyframes bob{50%{transform:translateY(-10px)}}
+.ticker{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 22px;padding:0;list-style:none}
+.ticker li{display:inline-flex;align-items:center;gap:6px;padding:4px 12px;border:1px solid var(--line);border-radius:999px;background:var(--surface);font-size:.85rem;color:var(--muted)}
+.ticker b{font-size:1rem;color:var(--ring)}
 *{box-sizing:border-box}
 [hidden]{display:none!important}
 html{-webkit-text-size-adjust:100%}
 @media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
-body{margin:0;background:var(--paper);color:var(--ink);font:17px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans",sans-serif}
+body{margin:0;position:relative;overflow-x:hidden;background:radial-gradient(60rem 30rem at 85% -5%,var(--glow2),transparent 60%),radial-gradient(50rem 28rem at -10% 10%,var(--glow),transparent 60%),linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px) 0 0/44px 44px,linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px) 0 0/44px 44px,var(--paper);color:var(--ink);font:17px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans",sans-serif}
+.wrap{position:relative}
+.panel,.ask,.join{border:1px solid var(--line)}
 a{color:inherit}
 :focus-visible{outline:3px solid var(--focus);outline-offset:3px;border-radius:6px}
 .wrap{max-width:50rem;margin:0 auto;padding:0 16px}
@@ -315,6 +325,23 @@ h2{max-width:24ch;margin:0 0 16px;font-size:clamp(1.55rem,5vw,2.1rem);line-heigh
 .g .tools-box{max-width:none}
 """
 
+CSS += """
+.how{margin-top:12px;max-width:60ch}
+.how summary{cursor:pointer;font-weight:700;color:var(--ring);min-height:32px}
+.how ol{margin:10px 0 0;padding-left:1.35em}
+.how li+li{margin-top:8px}
+.hnote{margin:10px 0 0;color:var(--muted);font-size:.92rem}
+.coins{width:15rem;height:15rem}
+.fx{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 16px}
+.fx button{min-height:44px;padding:6px 16px;border:2px solid var(--line);border-radius:999px;background:var(--surface);color:var(--ink);font:inherit;font-weight:650;cursor:pointer}
+.fx button[aria-pressed=true]{background:var(--btn-bg);color:var(--btn-fg);border-color:var(--btn-bg)}
+.cc{display:inline-flex;flex-wrap:wrap;gap:6px;margin:10px 0 0;padding:0;list-style:none}
+.cc li{padding:1px 8px;border:1px solid var(--line);border-radius:6px;font-size:.78rem;font-weight:700;color:var(--muted)}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 0;padding:0;list-style:none}
+.chips li{padding:2px 9px;border-radius:999px;background:var(--hover);font-size:.8rem;color:var(--ink)}
+.exfine{max-width:60ch;margin:0 0 16px;color:var(--muted)}
+"""
+
 SEARCH_JS = """
 (function(){
   var q=document.getElementById('q');if(!q)return;
@@ -333,6 +360,18 @@ SEARCH_JS = """
 })();
 """
 
+
+EX_JS = """
+(function(){
+  var b=[].slice.call(document.querySelectorAll('.fx button')),r=[].slice.call(document.querySelectorAll('[data-ex]'));
+  b.forEach(function(x){x.addEventListener('click',function(){
+    var f=x.getAttribute('data-f');
+    b.forEach(function(y){y.setAttribute('aria-pressed',y===x?'true':'false');});
+    r.forEach(function(e){e.hidden=f!=='all'&&e.getAttribute('data-regions').split(' ').indexOf(f)<0;});
+  });});
+})();
+"""
+
 ROOT_JS = """
 (function(){
   var map={en:'en',fr:'fr',id:'id','in':'id',vi:'vi',sw:'sw'};
@@ -343,14 +382,74 @@ ROOT_JS = """
 
 LOGO = (
     '<svg class="logo" width="28" height="28" viewBox="0 0 32 32" aria-hidden="true">'
-    '<circle cx="16" cy="16" r="12" fill="none" stroke="currentColor" stroke-width="3"/>'
-    '<circle cx="16" cy="16" r="4.5" fill="#f0a500"/></svg>'
+    '<circle cx="16" cy="16" r="12" fill="none" stroke="#35e0c0" stroke-width="3"/>'
+    '<circle cx="16" cy="16" r="4.5" fill="#ffc23d"/></svg>'
 )
 FAVICON = (
     '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">'
-    '<rect width="32" height="32" rx="8" fill="#2a3a9e"/>'
-    '<circle cx="16" cy="16" r="9" fill="none" stroke="#fff" stroke-width="3"/>'
-    '<circle cx="16" cy="16" r="3.5" fill="#f0a500"/></svg>\n'
+    '<rect width="32" height="32" rx="8" fill="#070b1a"/>'
+    '<circle cx="16" cy="16" r="9" fill="none" stroke="#35e0c0" stroke-width="3"/>'
+    '<circle cx="16" cy="16" r="3.5" fill="#ffc23d"/></svg>\n'
+)
+
+
+def _coin(x: int, y: int, size: int, color: str, glyph: str) -> str:
+    """Декоративная монета: круг с общим символом (не логотип бренда)."""
+    return (
+        f'<svg style="left:{x}px;top:{y}px" width="{size}" height="{size}" viewBox="0 0 80 80">'
+        f'<circle cx="40" cy="40" r="36" fill="{color}" fill-opacity=".12" stroke="{color}" stroke-width="3"/>'
+        f'<circle cx="40" cy="40" r="28" fill="none" stroke="{color}" stroke-opacity=".35" stroke-width="1.5"/>'
+        f'<text x="40" y="53" text-anchor="middle" font-size="38" font-weight="800" fill="{color}" '
+        f'font-family="system-ui,Segoe UI,Arial,sans-serif">{glyph}</text></svg>'
+    )
+
+
+ROBOT = (
+    '<svg style="left:46px;top:34px" width="128" height="160" viewBox="0 0 160 200">'
+    '<line x1="80" y1="26" x2="80" y2="10" stroke="#8c9bff" stroke-width="3"/>'
+    '<circle cx="80" cy="8" r="6" fill="#35e0c0"/>'
+    '<rect x="28" y="52" width="12" height="26" rx="5" fill="#8c9bff" fill-opacity=".35" stroke="#8c9bff" stroke-width="2"/>'
+    '<rect x="120" y="52" width="12" height="26" rx="5" fill="#8c9bff" fill-opacity=".35" stroke="#8c9bff" stroke-width="2"/>'
+    '<rect x="40" y="26" width="80" height="76" rx="28" fill="#aab8ff" fill-opacity=".14" stroke="#aab8ff" stroke-width="3"/>'
+    '<rect x="52" y="46" width="56" height="30" rx="15" fill="#070b1a" stroke="#35e0c0" stroke-width="2.5"/>'
+    '<circle cx="68" cy="61" r="5.5" fill="#35e0c0"/><circle cx="92" cy="61" r="5.5" fill="#35e0c0"/>'
+    '<path d="M68 90h24" stroke="#aab8ff" stroke-width="3" stroke-linecap="round"/>'
+    '<rect x="70" y="102" width="20" height="12" fill="#aab8ff" fill-opacity=".3"/>'
+    '<rect x="38" y="114" width="84" height="68" rx="22" fill="#aab8ff" fill-opacity=".12" stroke="#aab8ff" stroke-width="3"/>'
+    '<circle cx="80" cy="148" r="16" fill="none" stroke="#35e0c0" stroke-width="2.5"/>'
+    '<text x="80" y="154" text-anchor="middle" font-size="16" font-weight="800" fill="#35e0c0" '
+    'font-family="system-ui,Segoe UI,Arial,sans-serif">AI</text>'
+    '<path d="M38 134H18v26M122 134h20v26" fill="none" stroke="#aab8ff" stroke-width="3" stroke-linecap="round"/>'
+    '<circle cx="18" cy="164" r="5" fill="#ffb02e"/><circle cx="142" cy="164" r="5" fill="#ffb02e"/></svg>'
+)
+AI_CHIP = (
+    '<svg style="left:0;top:8px" width="58" height="58" viewBox="0 0 64 64">'
+    '<path d="M20 6v8M32 6v8M44 6v8M20 50v8M32 50v8M44 50v8M6 20h8M6 32h8M6 44h8M50 20h8M50 32h8M50 44h8" '
+    'stroke="#c58bff" stroke-width="3" stroke-linecap="round"/>'
+    '<rect x="14" y="14" width="36" height="36" rx="8" fill="#c58bff" fill-opacity=".14" stroke="#c58bff" stroke-width="3"/>'
+    '<text x="32" y="39" text-anchor="middle" font-size="19" font-weight="800" fill="#c58bff" '
+    'font-family="system-ui,Segoe UI,Arial,sans-serif">AI</text></svg>'
+)
+SPARK = (
+    '<svg style="left:184px;top:104px" width="30" height="30" viewBox="0 0 30 30">'
+    '<path d="M15 2l3.2 9.8L28 15l-9.8 3.2L15 28l-3.2-9.8L2 15l9.8-3.2z" fill="#35e0c0" fill-opacity=".85"/></svg>'
+)
+
+COINS = (
+    '<div class="coins" aria-hidden="true">'
+    + ROBOT
+    + AI_CHIP
+    + SPARK
+    + _coin(166, 0, 64, "#ffb02e", "&#8383;")
+    + _coin(8, 128, 56, "#8c9bff", "&#926;")
+    + _coin(172, 150, 60, "#35e0c0", "&#8366;")
+    + "</div>"
+)
+TICKER = ("AI", "BTC", "ETH", "USDT", "SOL", "USDC")
+TICKER_HTML = (
+    '<ul class="ticker" aria-hidden="true">'
+    + "".join(f"<li><b>&#9679;</b>{t}</li>" for t in TICKER)
+    + "</ul>"
 )
 
 esc = html.escape
@@ -384,13 +483,52 @@ def tool_row(tool: dict, lang: str, S: dict, L: dict) -> str:
     if tool.get("checked"):
         checked = f'<span>{esc(S["checked_on"].format(date=tool["checked"]))}</span>'
     search = norm(f"{name} {desc} {S['q'][tool['category']]}")
+    how = ""
+    h = HOWTO.get(tool["id"], {}).get("lang", {}).get(lang)
+    if h:
+        steps = "".join(f"<li>{esc(x)}</li>" for x in h["steps"])
+        how = (
+            f'<details class="how"><summary>{esc(HOWTO_UI[lang]["summary"])}</summary>'
+            f'<ol>{steps}</ol><p class="hnote">{esc(h["note"])}</p></details>'
+        )
     return (
         f'<li class="tool" data-tool data-search="{esc(search)}">'
-        f'<div><h3>{esc(name)}{tags}</h3><p>{esc(desc)}</p>'
+        f'<div><h3>{esc(name)}{tags}</h3><p>{esc(desc)}</p>{how}'
         f'<div class="meta"><span class="lvl"><span class="dots" aria-hidden="true">{dots}</span>'
         f'<span><span class="sr">{esc(L["level"])}: </span>{esc(L["lvl_" + tool["level"]])}</span></span>{checked}</div></div>'
         f'<a class="btn" href="{esc(href)}" target="_blank" rel="{rel}">'
         f'{esc(S["open"].format(tool=name))}<span class="sr">{esc(S["new_tab"])}</span></a></li>'
+    )
+
+
+def exchange_row(ex: dict, lang: str) -> str:
+    U, T = EX_UI[lang], EX_TAGS[lang]
+    href = ex.get("affiliate_url") or ex["url"]
+    rel = "sponsored nofollow noopener" if ex.get("affiliate_url") else "noopener"
+    partner = f'<span class="tag">{esc(U["partner"])}</span>' if ex.get("affiliate_url") else ""
+    chips = "".join(f"<li>{esc(T[t])}</li>" for t in ex["tags"])
+    cc = "".join(f"<li>{esc(c)}</li>" for c in ex["countries"])
+    regions = " ".join(ex["regions"])
+    return (
+        f'<li class="tool" data-ex data-regions="{regions}"><div><h3>{esc(ex["name"])}{partner}</h3>'
+        f'<ul class="cc" aria-label="{esc(U["countries"])}">{cc}</ul>'
+        f'<ul class="chips">{chips}</ul></div>'
+        f'<a class="btn" href="{esc(href)}" target="_blank" rel="{rel}">'
+        f'{esc(U["open"].format(name=ex["name"]))}<span class="sr">{esc(SITE[lang]["new_tab"])}</span></a></li>'
+    )
+
+
+def exchanges_section(lang: str) -> str:
+    U = EX_UI[lang]
+    rows = "".join(exchange_row(e, lang) for e in EXCHANGES)
+    btns = "".join(
+        f'<button type="button" data-f="{k}" aria-pressed="{"true" if k == "all" else "false"}">{esc(U[k])}</button>'
+        for k in ("all", "africa", "sea")
+    )
+    return (
+        f'<section id="exchanges" aria-labelledby="h-ex"><h2 id="h-ex">{esc(U["title"])}</h2>'
+        f'<p class="exfine">{esc(U["intro"])}</p><div class="fx">{btns}</div>'
+        f'<ul class="panel" id="exlist">{rows}</ul></section>'
     )
 
 
@@ -504,7 +642,7 @@ def render_page(lang: str, tools: list[dict], cfg: dict, year: int) -> str:
 <meta property="og:url" content="{url}">
 <meta property="og:locale" content="{OG_LOCALE[lang]}">
 <meta name="twitter:card" content="summary">
-<meta name="theme-color" content="#eef1f8">
+<meta name="theme-color" content="#070b1a">
 <link rel="icon" href="../favicon.svg" type="image/svg+xml">
 <style>{CSS}</style>
 <script type="application/ld+json">{ld}</script>
@@ -517,14 +655,17 @@ def render_page(lang: str, tools: list[dict], cfg: dict, year: int) -> str:
 <nav class="langs" aria-label="{esc(S["lang_label"])}">{langs_nav}</nav>
 </header>
 <main id="main">
+{COINS}
 <h1>{esc(S["h1"])}</h1>
 <p class="lede">{esc(S["lede"])}</p>
+{TICKER_HTML}
 <div><label class="sr" for="q">{esc(S["search_label"])}</label>
 <input id="q" type="search" placeholder="{esc(S["search_ph"])}" autocomplete="off"></div>
 <ul class="asks" id="asks">{"".join(asks)}</ul>
 <p class="empty" id="empty" role="status" hidden>{esc(S["no_results"])}</p>
 {"".join(sections)}
 {guides_html}
+{exchanges_section(lang)}
 {safe}
 {join}
 </main>
@@ -535,6 +676,7 @@ def render_page(lang: str, tools: list[dict], cfg: dict, year: int) -> str:
 </footer>
 </div>
 <script>{SEARCH_JS}</script>
+<script>{EX_JS}</script>
 </body>
 </html>
 """
@@ -616,7 +758,7 @@ def render_guide(lang: str, slug: str, by_id: dict, cfg: dict) -> str:
 <meta property="og:url" content="{url}">
 <meta property="og:locale" content="{OG_LOCALE[lang]}">
 <meta name="twitter:card" content="summary">
-<meta name="theme-color" content="#eef1f8">
+<meta name="theme-color" content="#070b1a">
 <link rel="icon" href="../../../favicon.svg" type="image/svg+xml">
 <style>{CSS}</style>
 <script type="application/ld+json">{ld}</script>

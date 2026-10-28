@@ -14,16 +14,24 @@
 <meta property="og:url" content="https://chainscout.app/sw/guides/check-token-scams/">
 <meta property="og:locale" content="sw_KE">
 <meta name="twitter:card" content="summary">
-<meta name="theme-color" content="#eef1f8">
+<meta name="theme-color" content="#070b1a">
 <link rel="icon" href="../../../favicon.svg" type="image/svg+xml">
 <style>
-:root{color-scheme:light dark;--paper:#eef1f8;--surface:#fff;--ink:#161c40;--muted:#4b537d;--line:#dde1f0;--hover:#e3e8f6;--btn-bg:#2a3a9e;--btn-fg:#fff;--ring:#2a3a9e;--focus:#2a3a9e;--mark:#f0a500;--mark-bg:#fff2cc;--mark-ink:#5c3f00}
-@media (prefers-color-scheme:dark){:root{--paper:#0e1230;--surface:#161b45;--ink:#eceffc;--muted:#aab2dd;--line:#2b3274;--hover:#1d2358;--btn-bg:#a3b0ff;--btn-fg:#0e1230;--ring:#a3b0ff;--focus:#ffc23d;--mark:#ffc23d;--mark-bg:#3a2d08;--mark-ink:#ffd98a}}
+:root{color-scheme:dark;--paper:#070b1a;--surface:#0e1530;--ink:#e9eefc;--muted:#9fabd6;--line:#232f5e;--hover:#16214a;--btn-bg:#35e0c0;--btn-fg:#04121a;--ring:#35e0c0;--focus:#ffc23d;--mark:#ffc23d;--mark-bg:#3a2d08;--mark-ink:#ffd98a;--glow:rgba(53,224,192,.14);--glow2:rgba(124,92,255,.16)}
+.coins{position:absolute;top:5.5rem;right:0;z-index:-1;width:15rem;height:15rem;pointer-events:none;opacity:.6}@media (max-width:760px){.coins{opacity:.22}}
+.coins svg{position:absolute}
+@media (prefers-reduced-motion:no-preference){.coins svg{animation:bob 7s ease-in-out infinite}.coins svg:nth-child(2){animation-delay:-2s}.coins svg:nth-child(3){animation-delay:-4s}.coins svg:nth-child(4){animation-delay:-5.5s}}
+@keyframes bob{50%{transform:translateY(-10px)}}
+.ticker{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 22px;padding:0;list-style:none}
+.ticker li{display:inline-flex;align-items:center;gap:6px;padding:4px 12px;border:1px solid var(--line);border-radius:999px;background:var(--surface);font-size:.85rem;color:var(--muted)}
+.ticker b{font-size:1rem;color:var(--ring)}
 *{box-sizing:border-box}
 [hidden]{display:none!important}
 html{-webkit-text-size-adjust:100%}
 @media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
-body{margin:0;background:var(--paper);color:var(--ink);font:17px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans",sans-serif}
+body{margin:0;position:relative;overflow-x:hidden;background:radial-gradient(60rem 30rem at 85% -5%,var(--glow2),transparent 60%),radial-gradient(50rem 28rem at -10% 10%,var(--glow),transparent 60%),linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px) 0 0/44px 44px,linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px) 0 0/44px 44px,var(--paper);color:var(--ink);font:17px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans",sans-serif}
+.wrap{position:relative}
+.panel,.ask,.join{border:1px solid var(--line)}
 a{color:inherit}
 :focus-visible{outline:3px solid var(--focus);outline-offset:3px;border-radius:6px}
 .wrap{max-width:50rem;margin:0 auto;padding:0 16px}
@@ -88,6 +96,21 @@ h2{max-width:24ch;margin:0 0 16px;font-size:clamp(1.55rem,5vw,2.1rem);line-heigh
 .prose li+li{margin-top:12px}
 .prose li::marker{color:var(--ring);font-weight:700}
 .g .tools-box{max-width:none}
+
+.how{margin-top:12px;max-width:60ch}
+.how summary{cursor:pointer;font-weight:700;color:var(--ring);min-height:32px}
+.how ol{margin:10px 0 0;padding-left:1.35em}
+.how li+li{margin-top:8px}
+.hnote{margin:10px 0 0;color:var(--muted);font-size:.92rem}
+.coins{width:15rem;height:15rem}
+.fx{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 16px}
+.fx button{min-height:44px;padding:6px 16px;border:2px solid var(--line);border-radius:999px;background:var(--surface);color:var(--ink);font:inherit;font-weight:650;cursor:pointer}
+.fx button[aria-pressed=true]{background:var(--btn-bg);color:var(--btn-fg);border-color:var(--btn-bg)}
+.cc{display:inline-flex;flex-wrap:wrap;gap:6px;margin:10px 0 0;padding:0;list-style:none}
+.cc li{padding:1px 8px;border:1px solid var(--line);border-radius:6px;font-size:.78rem;font-weight:700;color:var(--muted)}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 0;padding:0;list-style:none}
+.chips li{padding:2px 9px;border-radius:999px;background:var(--hover);font-size:.8rem;color:var(--ink)}
+.exfine{max-width:60ch;margin:0 0 16px;color:var(--muted)}
 </style>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Jinsi ya kukagua tokeni au kiungo kabla ya kukigusa", "description": "Ukaguzi tano dhidi ya ulaghai wa crypto: dalili za hatari, anwani rasmi, kuchanganua mkataba, ruhusa za pochi, na cha kufanya ukiwa tayari umedanganywa.", "inLanguage": "sw", "mainEntityOfPage": "https://chainscout.app/sw/guides/check-token-scams/", "author": {"@type": "Organization", "name": "ChainScout"}, "publisher": {"@type": "Organization", "name": "ChainScout"}}</script>
 </head>
@@ -95,7 +118,7 @@ h2{max-width:24ch;margin:0 0 16px;font-size:clamp(1.55rem,5vw,2.1rem);line-heigh
 <a class="skip" href="#main">Ruka hadi maudhui</a>
 <div class="wrap">
 <header class="top">
-<a class="brand" href="../../"><svg class="logo" width="28" height="28" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="12" fill="none" stroke="currentColor" stroke-width="3"/><circle cx="16" cy="16" r="4.5" fill="#f0a500"/></svg><span>ChainScout</span></a>
+<a class="brand" href="../../"><svg class="logo" width="28" height="28" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="12" fill="none" stroke="#35e0c0" stroke-width="3"/><circle cx="16" cy="16" r="4.5" fill="#ffc23d"/></svg><span>ChainScout</span></a>
 <nav class="langs" aria-label="Lugha"><a href="../../../en/guides/check-token-scams/" lang="en" hreflang="en">English</a><a href="../../../fr/guides/check-token-scams/" lang="fr" hreflang="fr">Français</a><a href="../../../id/guides/check-token-scams/" lang="id" hreflang="id">Bahasa Indonesia</a><a href="../../../vi/guides/check-token-scams/" lang="vi" hreflang="vi">Tiếng Việt</a><a href="../../../sw/guides/check-token-scams/" lang="sw" hreflang="sw" aria-current="page">Kiswahili</a></nav>
 </header>
 <main id="main" class="g">
@@ -112,7 +135,7 @@ h2{max-width:24ch;margin:0 0 16px;font-size:clamp(1.55rem,5vw,2.1rem);line-heigh
 <h2>Ikiwa tayari umebofya au kusaini</h2>
 <ul><li>Acha kutumia tovuti hiyo. Usiweke seed phrase mahali popote ili “kurekebisha” tatizo.</li><li>Ikiwa uliweka seed phrase au funguo za siri mahali popote, chukulia pochi hiyo imevuja: tengeneza pochi mpya kwenye kifaa safi na uhamishe kilichobaki.</li><li>Ondoa ruhusa za tokeni za pochi ya zamani.</li><li>Ripoti ulaghai kwa jukwaa husika na kwa polisi au kitengo cha uhalifu wa mtandaoni nchini kwako. Hifadhi picha za skrini na vitambulisho vya miamala.</li><li>Kuwa mwangalifu na yeyote anayejitolea “kurejesha” pesa zako kwa ada. Huu ni ulaghai wa pili unaojulikana sana.</li></ul>
 </article>
-<section class="tools-box" aria-labelledby="h-tools"><h2 id="h-tools">Zana zilizotajwa kwenye mwongozo huu</h2><ul class="panel"><li class="tool" data-tool data-search="goplus security hukagua tokeni, mikataba na viungo kwa hatari za ulaghai na honeypot. je, tokeni au kiungo hiki ni salama?"><div><h3>GoPlus Security</h3><p>Hukagua tokeni, mikataba na viungo kwa hatari za ulaghai na honeypot.</p><div class="meta"><span class="lvl"><span class="dots" aria-hidden="true"><i class="on"></i><i></i><i></i></span><span><span class="sr">Kiwango: </span>Anayeanza</span></span></div></div><a class="btn" href="https://gopluslabs.io" target="_blank" rel="noopener">Fungua GoPlus Security<span class="sr"> (inafunguka kwenye kichupo kipya)</span></a></li><li class="tool" data-tool data-search="coingecko bei, thamani ya soko na data za msingi za maelfu ya sarafu. thamani yake sasa ni kiasi gani?"><div><h3>CoinGecko</h3><p>Bei, thamani ya soko na data za msingi za maelfu ya sarafu.</p><div class="meta"><span class="lvl"><span class="dots" aria-hidden="true"><i class="on"></i><i></i><i></i></span><span><span class="sr">Kiwango: </span>Anayeanza</span></span></div></div><a class="btn" href="https://www.coingecko.com" target="_blank" rel="noopener">Fungua CoinGecko<span class="sr"> (inafunguka kwenye kichupo kipya)</span></a></li></ul></section>
+<section class="tools-box" aria-labelledby="h-tools"><h2 id="h-tools">Zana zilizotajwa kwenye mwongozo huu</h2><ul class="panel"><li class="tool" data-tool data-search="goplus security hukagua tokeni, mikataba na viungo kwa hatari za ulaghai na honeypot. je, tokeni au kiungo hiki ni salama?"><div><h3>GoPlus Security</h3><p>Hukagua tokeni, mikataba na viungo kwa hatari za ulaghai na honeypot.</p><details class="how"><summary>Jinsi ya kuanza (hatua 5)</summary><ol><li>Fungua tovuti ya GoPlus na utafute kikagua usalama wa tokeni.</li><li>Chagua mtandao wa blockchain ambao tokeni ipo, kama Ethereum, BNB Chain, Solana au TRON.</li><li>Bandika anwani ya mkataba. Inakili kutoka tovuti rasmi ya mradi au CoinGecko, si kutoka ujumbe wa gumzo, kisha endesha ukaguzi.</li><li>Soma maonyo kwanza: honeypot (unaweza kununua lakini huwezi kuuza), kodi kubwa sana ya kununua au kuuza, mmiliki anayeweza kutengeneza tokeni mpya au kubadilisha sheria, na wamiliki waliofichwa.</li><li>Ripoti ikionyesha hatari kadhaa, usinunue wala kuidhinisha kitu chochote. Ikionekana safi, kumbuka hiyo ni kipengele kimoja tu.</li></ol><p class="hnote">Matokeo safi si hakikisho. Ulaghai mpya hutengenezwa kupita ukaguzi, na zana haiwezi kuona mipango ya timu.</p></details><div class="meta"><span class="lvl"><span class="dots" aria-hidden="true"><i class="on"></i><i></i><i></i></span><span><span class="sr">Kiwango: </span>Anayeanza</span></span></div></div><a class="btn" href="https://gopluslabs.io" target="_blank" rel="noopener">Fungua GoPlus Security<span class="sr"> (inafunguka kwenye kichupo kipya)</span></a></li><li class="tool" data-tool data-search="coingecko bei, thamani ya soko na data za msingi za maelfu ya sarafu. thamani yake sasa ni kiasi gani?"><div><h3>CoinGecko</h3><p>Bei, thamani ya soko na data za msingi za maelfu ya sarafu.</p><details class="how"><summary>Jinsi ya kuanza (hatua 5)</summary><ol><li>Fungua tovuti ya CoinGecko na andika jina au alama ya tokeni kwenye kisanduku cha kutafuta.</li><li>Chagua matokeo yenye jina na alama sahihi. Tokeni bandia hunakili majina, kwa hiyo linganisha anwani ya mkataba kwenye ukurasa na ile ambayo mradi huchapisha kwenye tovuti yake rasmi.</li><li>Angalia thamani ya soko, kiasi cha biashara cha saa 24 na idadi ya masoko. Kiasi kidogo sana, au soko moja dogo, humaanisha biashara moja inaweza kusogeza bei.</li><li>Tumia tovuti rasmi na viungo vya mitandao ya kijamii vilivyo kwenye ukurasa wa tokeni, si viungo ulivyotumiwa kwenye gumzo.</li><li>Fungua chati ya bei yenye muda mrefu zaidi kuona historia nzima, na angalia ni mabadilishano gani yanayoorodhesha tokeni hiyo.</li></ol><p class="hnote">CoinGecko huonyesha data. Haikuambii kama tokeni ni salama au itapanda.</p></details><div class="meta"><span class="lvl"><span class="dots" aria-hidden="true"><i class="on"></i><i></i><i></i></span><span><span class="sr">Kiwango: </span>Anayeanza</span></span></div></div><a class="btn" href="https://www.coingecko.com" target="_blank" rel="noopener">Fungua CoinGecko<span class="sr"> (inafunguka kwenye kichupo kipya)</span></a></li></ul></section>
 </main>
 <footer class="fine">
 <h2>Jinsi tovuti hii inavyofanya kazi</h2>

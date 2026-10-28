@@ -54,9 +54,24 @@ def main() -> None:
     longest = max(len(f"tool:{x['id']}:g:{slug}") for x in bot.CATALOG for slug in GUIDES)
     assert longest <= 64
 
+    # инструкции «как начать»
+    from howto import HOWTO, HOWTO_UI
+
+    for _id, _h in HOWTO.items():
+        assert _id in bot.BY_ID, f"howto: нет инструмента {_id}"
+        for _lang in LANGS:
+            assert _lang in HOWTO_UI, _lang
+            _x = _h["lang"][_lang]
+            assert 4 <= len(_x["steps"]) <= 7 and _x["note"], f"howto {_id}/{_lang}"
+            assert len(bot.howto_text(bot.BY_ID[_id], _lang)) < 4096
+    longest = max(len(f"howto:{i}:g:{slug}") for i in HOWTO for slug in GUIDES)
+    assert longest <= 64
+    print(f"OK: «как начать»: {len(HOWTO)} инструментов × {len(LANGS)} языков")
+
     print(bot.build_report())
     print(f"OK: {len(bot.CATALOG)} инструментов, {len(GUIDES)} гидов, {len(LANGS)} языков")
 
 
 if __name__ == "__main__":
     sys.exit(main())
+

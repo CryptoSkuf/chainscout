@@ -38,6 +38,7 @@ from telegram.ext import (
 )
 
 from guides import GUIDE_UI, GUIDES
+from howto import HOWTO, HOWTO_UI
 from locales import LANGS, STRINGS
 
 try:  # необязательная зависимость: читает .env рядом с ботом
@@ -188,13 +189,21 @@ def kb_tools(lang: str, tools: list[dict], origin: str, back_to: str) -> InlineK
     return InlineKeyboardMarkup(rows)
 
 
-def kb_tool(lang: str, tool: dict, back_to: str) -> InlineKeyboardMarkup:
-    return InlineKeyboardMarkup(
-        [
-            [InlineKeyboardButton(t(lang, "btn_open"), url=tool_link(tool))],
-            [btn(t(lang, "btn_back"), back_to)],
-        ]
-    )
+def kb_tool(lang: str, tool: dict, back_to: str, origin: str = "") -> InlineKeyboardMarkup:
+    rows = [[InlineKeyboardButton(t(lang, "btn_open"), url=tool_link(tool))]]
+    if tool["id"] in HOWTO:
+        rows.append([btn(HOWTO_UI[lang]["btn"], f"howto:{tool['id']}:{origin}")])
+    rows.append([btn(t(lang, "btn_back"), back_to)])
+    return InlineKeyboardMarkup(rows)
+
+
+def howto_text(tool: dict, lang: str) -> str:
+    h = HOWTO[tool["id"]]["lang"][lang]
+    esc = html.escape
+    lines = [f"<b>{esc(HOWTO_UI[lang]['title'].format(tool=tool['name']))}</b>", ""]
+    lines += [f"{i}. {esc(step)}" for i, step in enumerate(h["steps"], 1)]
+    lines += ["", f"<i>{esc(h['note'])}</i>"]
+    return "\n".join(lines)
 
 
 def tool_text(tool: dict, lang: str) -> str:
@@ -396,7 +405,16 @@ async def on_button(update: Update, ctx: ContextTypes.DEFAULT_TYPE) -> None:
             back_to = f"gd:{origin[2:]}:last"
         else:
             back_to = f"cat:{tool['category']}"
-        await render(update, tool_text(tool, lang), kb_tool(lang, tool, back_to))
+        await render(update, tool_text(tool, lang), kb_tool(lang, tool, back_to, origin))
+    elif kind == "howto":
+        tool_id, _, origin = rest.partition(":")
+        tool = BY_ID.get(tool_id)
+        if tool is None or tool_id not in HOWTO or tool not in visible_tools():
+            return
+        markup = InlineKeyboardMarkup(
+            [[btn(HOWTO_UI[lang]["back"].format(tool=tool["name"]), f"tool:{tool_id}:{origin}")]]
+        )
+        await render(update, howto_text(tool, lang), markup)
     elif kind == "guides":
         await render(update, t(lang, "pick_guide"), kb_guides(lang))
     elif kind == "gd":
