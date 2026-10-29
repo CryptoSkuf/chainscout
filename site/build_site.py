@@ -332,16 +332,16 @@ CSS += """
 .pre h1,.pre-text{position:relative}
 body.pre{--paper:#fff;--surface:#f6f8fc;--ink:#101733;--muted:#4b5678;--line:#d9e0ef;--hover:#e8eefb;--btn-bg:#0b7a6c;--btn-fg:#fff;--ring:#0b7a6c;--focus:#b45309;--mark:#d97706;--mark-bg:#fff2cc;--mark-ink:#5c3f00;color-scheme:light;background:#fff;position:relative;overflow-x:hidden}
 .pre .coins{display:none}
-.pre .checker{position:absolute;inset:0;z-index:-1;display:grid;grid-template-columns:repeat(2,1fr);grid-auto-rows:max-content;pointer-events:none;overflow:hidden}
-.pre .checker i{display:block;aspect-ratio:4/3;background-size:cover;background-position:center;opacity:.5;visibility:hidden}
-.pre .checker i:nth-child(4n+1),.pre .checker i:nth-child(4n+4){visibility:visible}
-.pre .checker i:nth-child(5n+1),.pre .checker i:nth-child(5n+4){background-image:var(--img-a)}
-.pre .checker i:nth-child(5n+2),.pre .checker i:nth-child(5n){background-image:var(--img-b)}
-.pre .checker i:nth-child(5n+3){background-image:var(--img-c)}
+.pre .checker{position:absolute;inset:0;z-index:-1;display:grid;grid-template-columns:1fr;grid-template-rows:repeat(3,1fr);align-items:center;pointer-events:none;overflow:hidden}
+.pre .checker i{display:block;width:100%;aspect-ratio:4/3;background-size:cover;background-position:center;opacity:.25}
+.pre .checker i:nth-child(1){background-image:var(--img-a)}
+.pre .checker i:nth-child(2){background-image:var(--img-b)}
+.pre .checker i:nth-child(3){background-image:var(--img-c)}
 @media (min-width:760px){
-.pre .checker{grid-template-columns:repeat(3,1fr)}
-.pre .checker i{visibility:hidden}
-.pre .checker i:nth-child(odd){visibility:visible}
+.pre .checker{grid-template-columns:1fr 1fr}
+.pre .checker i:nth-child(1){grid-column:1;grid-row:1}
+.pre .checker i:nth-child(2){grid-column:2;grid-row:2}
+.pre .checker i:nth-child(3){grid-column:1;grid-row:3}
 }
 .pre h1{display:inline-block;padding:12px 18px;border-radius:16px;background:rgba(255,255,255,.9)}
 .pre .pre-text,.pre .safe,.pre .panel,.pre .fine p{background:rgba(255,255,255,.9)}
@@ -866,7 +866,7 @@ def render_prelanding(lang: str, cfg: dict) -> str:
 .pre{{--img-a:url(../../assets/robot-1.webp);--img-b:url(../../assets/robot-2.webp);--img-c:url(../../assets/robot-3.webp)}}</style>
 </head>
 <body class="pre">
-<div class="checker" aria-hidden="true">{"<i></i>" * 40}</div>
+<div class="checker" aria-hidden="true"><i></i><i></i><i></i></div>
 <div class="wrap">
 <header class="top"><span class="brand">{LOGO}<span>{esc(name)}</span></span></header>
 <main>
