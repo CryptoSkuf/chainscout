@@ -24,6 +24,7 @@ HERE = Path(__file__).resolve().parent
 sys.path[:0] = [str(HERE), str(HERE.parent)]
 from guides import GUIDE_UI, GUIDES  # noqa: E402
 from locales import LANGS, STRINGS  # noqa: E402
+from prelanding import PRE  # noqa: E402
 from howto import HOWTO, HOWTO_UI  # noqa: E402
 from exchanges import EXCHANGES, TAGS as EX_TAGS, UI as EX_UI  # noqa: E402
 
@@ -327,6 +328,15 @@ h2{max-width:24ch;margin:0 0 16px;font-size:clamp(1.55rem,5vw,2.1rem);line-heigh
 """
 
 CSS += """
+.pre h1{max-width:20ch;font-size:clamp(2rem,8vw,3.6rem);margin-top:36px}
+.pre h1,.pre-text{position:relative}
+@media (max-width:640px){.pre .coins{display:none}}
+.pre-text{max-width:60ch;font-size:1.1rem}
+.pre-text p{margin:0 0 18px}
+.cta-row{display:flex;flex-wrap:wrap;gap:12px;margin:26px 0}
+.btn.alt{background:transparent;color:var(--ink);border:2px solid var(--ring)}
+.btn.alt:hover{background:var(--hover)}
+.safe p{max-width:60ch;margin:0}
 .how{margin-top:12px;max-width:60ch}
 .how summary{cursor:pointer;font-weight:700;color:var(--ring);min-height:32px}
 .how ol{margin:10px 0 0;padding-left:1.35em}
@@ -803,6 +813,83 @@ def render_guide(lang: str, slug: str, by_id: dict, cfg: dict) -> str:
 """
 
 
+PASS_JS = """
+(function(){
+  var q=location.search;if(!q)return;
+  [].slice.call(document.querySelectorAll('a[data-pass]')).forEach(function(a){
+    var h=a.getAttribute('href');if(h.indexOf('?')<0)a.setAttribute('href',h.replace(/(#.*)?$/,q+'$1'));
+  });
+})();
+"""
+
+
+def render_prelanding(lang: str, cfg: dict) -> str:
+    P, name, base = PRE[lang], cfg["site_name"], cfg["base_url"]
+    paras = "".join(f"<p>{esc(x)}</p>" for x in P["paras"])
+    cards = "".join(f'<li class="tool"><div><h3>{esc(t)}</h3><p>{esc(d)}</p></div></li>' for t, d in P["cards"])
+    ctas = f'<a class="btn" href="../../{lang}/#guides" data-pass>{esc(P["cta_site"])}</a>'
+    if cfg.get("tg_channel"):
+        ctas += f'<a class="btn alt" href="{esc(cfg["tg_channel"])}" target="_blank" rel="noopener">{esc(P["cta_tg"])}</a>'
+    if cfg.get("bot_username"):
+        ctas += f'<a class="btn alt" href="https://t.me/{esc(cfg["bot_username"])}" target="_blank" rel="noopener">{esc(P["cta_bot"])}</a>'
+    return f"""<!doctype html>
+<html lang="{lang}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{esc(P["title"])}</title>
+<meta name="description" content="{esc(P["description"])}">
+<meta name="robots" content="noindex,follow">
+<meta name="theme-color" content="#070b1a">
+<link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+<style>{CSS}</style>
+</head>
+<body class="pre">
+<div class="wrap">
+<header class="top"><span class="brand">{LOGO}<span>{esc(name)}</span></span></header>
+<main>
+<h1>{esc(P["h1"])}</h1>
+{COINS}
+<div class="prose pre-text">{paras}</div>
+<div class="cta-row">{ctas}</div>
+<section class="safe" aria-labelledby="h-honest"><h2 id="h-honest">{esc(P["honest_title"])}</h2><p>{esc(P["honest"])}</p></section>
+<section aria-labelledby="h-cards"><h2 id="h-cards">{esc(P["cards_title"])}</h2><ul class="panel">{cards}</ul></section>
+<div class="cta-row">{ctas}</div>
+</main>
+<footer class="fine"><p>{esc(P["disclaimer"])}</p><p>&copy; {dt.datetime.now(dt.timezone.utc).year} {esc(name)}</p></footer>
+</div>
+<script>{PASS_JS}</script>
+</body>
+</html>
+"""
+
+
+def render_prelanding_root(cfg: dict) -> str:
+    links = "".join(
+        f'<li><a class="ask" href="../{code}/start/" lang="{code}">{esc(label)}</a></li>' for code, label in LANGS.items()
+    )
+    return f"""<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{esc(cfg["site_name"])}</title>
+<meta name="robots" content="noindex,follow">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<style>{CSS}</style>
+</head>
+<body>
+<div class="wrap"><header class="top"><span class="brand">{LOGO}<span>{esc(cfg["site_name"])}</span></span></header>
+<main><h1>{esc(cfg["site_name"])}</h1><ul class="asks">{links}</ul></main></div>
+<script>
+(function(){{var map={{en:'en',fr:'fr',id:'id','in':'id',vi:'vi',sw:'sw'}};var l=navigator.languages||[navigator.language||'en'];
+for(var i=0;i<l.length;i++){{var c=String(l[i]).slice(0,2).toLowerCase();if(map[c]){{location.replace('/'+map[c]+'/start/'+location.search);break;}}}}}})();
+</script>
+</body>
+</html>
+"""
+
+
 def render_root(cfg: dict) -> str:
     name, base = cfg["site_name"], cfg["base_url"]
     alternates = "".join(
@@ -898,6 +985,7 @@ def load_config(args: argparse.Namespace) -> dict:
         "base_url": DEFAULT_BASE,
         "bot_username": "",
         "newsletter_action": "",
+        "tg_channel": "",
         "approved_sponsors": [],
     }
     path = HERE / "site.config.json"
@@ -914,6 +1002,8 @@ def load_config(args: argparse.Namespace) -> dict:
         sys.exit("base_url должен начинаться с https://")
     if cfg["bot_username"] and not re.fullmatch(r"[A-Za-z0-9_]{5,32}", cfg["bot_username"]):
         sys.exit("bot_username: только латиница, цифры и _, 5-32 символа, без @")
+    if cfg["tg_channel"] and not cfg["tg_channel"].startswith("https://t.me/"):
+        sys.exit("tg_channel должен начинаться с https://t.me/")
     if cfg["newsletter_action"] and not cfg["newsletter_action"].startswith("https://"):
         sys.exit("newsletter_action должен начинаться с https://")
     return cfg
@@ -956,6 +1046,12 @@ def main() -> None:
             gdir = out / lang / "guides" / slug
             gdir.mkdir(parents=True)
             (gdir / "index.html").write_text(render_guide(lang, slug, by_id, cfg), "utf-8")
+    for lang in LANGS:
+        pdir = out / lang / "start"
+        pdir.mkdir(parents=True)
+        (pdir / "index.html").write_text(render_prelanding(lang, cfg), "utf-8")
+    (out / "start").mkdir()
+    (out / "start" / "index.html").write_text(render_prelanding_root(cfg), "utf-8")
     (out / "index.html").write_text(render_root(cfg), "utf-8")
     (out / "404.html").write_text(render_404(cfg), "utf-8")
     (out / "favicon.svg").write_text(FAVICON, "utf-8")

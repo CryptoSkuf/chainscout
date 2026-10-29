@@ -107,6 +107,18 @@ def main() -> None:
         for slug in GUIDES:
             pages[f"{lang}/guides/{slug}/index.html"] = parse(DIST / lang / "guides" / slug / "index.html")
 
+    for lang in LANGS:  # прелендинги: ссылки должны работать, страница не для индекса
+        rel = f"{lang}/start/index.html"
+        pages[rel] = parse(DIST / lang / "start" / "index.html")
+        raw = (DIST / rel).read_text("utf-8")
+        if 'name="robots" content="noindex' not in raw:
+            fail(f"{rel}: нет noindex")
+        if pages[rel].h1 != 1:
+            fail(f"{rel}: h1 должно быть одно")
+        if "/start/" in (DIST / "sitemap.xml").read_text("utf-8"):
+            fail("sitemap: прелендинг не должен попадать в карту сайта")
+    pages["start/index.html"] = parse(DIST / "start" / "index.html")
+
     for rel, page in pages.items():
         here = (DIST / rel).parent
         for href in page.hrefs:
@@ -115,6 +127,9 @@ def main() -> None:
             if href.startswith("#"):
                 if href[1:] not in page.ids:
                     fail(f"{rel}: нет якоря {href}")
+                continue
+            href = href.split("#")[0].split("?")[0]
+            if not href:
                 continue
             target = (DIST / href.lstrip("/")) if href.startswith("/") else (here / href)
             target = target.resolve()

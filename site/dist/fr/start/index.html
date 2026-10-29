@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ChainScout : comprendre les actifs numériques, en sécurité</title>
+<meta name="description" content="Guides gratuits en 5 langues, un catalogue d&#x27;outils et un bot Telegram. De l&#x27;éducation sur les actifs numériques, les arnaques et les risques. Nous ne vendons rien.">
+<meta name="robots" content="noindex,follow">
+<meta name="theme-color" content="#070b1a">
+<link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+<style>
+:root{color-scheme:dark;--paper:#070b1a;--surface:#0e1530;--ink:#e9eefc;--muted:#9fabd6;--line:#232f5e;--hover:#16214a;--btn-bg:#35e0c0;--btn-fg:#04121a;--ring:#35e0c0;--focus:#ffc23d;--mark:#ffc23d;--mark-bg:#3a2d08;--mark-ink:#ffd98a;--glow:rgba(53,224,192,.14);--glow2:rgba(124,92,255,.16)}
+.coins{position:absolute;top:5.5rem;right:0;z-index:-1;width:15rem;height:15rem;pointer-events:none;opacity:.6}@media (max-width:760px){.coins{opacity:.22}}
+.coins svg{position:absolute}
+@media (prefers-reduced-motion:no-preference){.coins svg{animation:bob 7s ease-in-out infinite}.coins svg:nth-child(2){animation-delay:-2s}.coins svg:nth-child(3){animation-delay:-4s}.coins svg:nth-child(4){animation-delay:-5.5s}}
+@keyframes bob{50%{transform:translateY(-10px)}}
+.ticker{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 22px;padding:0;list-style:none}
+.ticker a{display:inline-flex;align-items:center;gap:6px;min-height:36px;padding:4px 14px;border:1px solid var(--line);border-radius:999px;background:var(--surface);font-size:.85rem;color:var(--ink);text-decoration:none}
+.ticker a:hover{border-color:var(--ring);background:var(--hover)}
+.ticker b{font-size:1rem;color:var(--ring)}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{-webkit-text-size-adjust:100%}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+body{margin:0;position:relative;overflow-x:hidden;background:radial-gradient(60rem 30rem at 85% -5%,var(--glow2),transparent 60%),radial-gradient(50rem 28rem at -10% 10%,var(--glow),transparent 60%),linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px) 0 0/44px 44px,linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px) 0 0/44px 44px,var(--paper);color:var(--ink);font:17px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans",sans-serif}
+.wrap{position:relative}
+.panel,.ask,.join{border:1px solid var(--line)}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--focus);outline-offset:3px;border-radius:6px}
+.wrap{max-width:50rem;margin:0 auto;padding:0 16px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.skip{position:absolute;left:-999px;top:8px;z-index:10;padding:10px 14px;border-radius:8px;background:var(--btn-bg);color:var(--btn-fg)}
+.skip:focus{left:16px}
+.top{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 20px;padding:18px 0 6px}
+.brand{display:inline-flex;align-items:center;gap:10px;font-weight:800;font-size:1.15rem;letter-spacing:-.01em;text-decoration:none}
+.logo{flex:none}
+.langs{display:flex;flex-wrap:wrap;gap:2px}
+.langs a{padding:6px 10px;border-radius:8px;font-size:.95rem;text-decoration:none;color:var(--muted)}
+.langs a:hover{background:var(--hover);color:var(--ink)}
+.langs a[aria-current]{background:var(--ink);color:var(--paper);font-weight:650}
+h1{max-width:16ch;margin:44px 0 18px;font-size:clamp(2.5rem,9.5vw,4.75rem);line-height:1.02;letter-spacing:-.035em;font-weight:800;text-wrap:balance}
+.lede{max-width:60ch;margin:0 0 26px;font-size:1.1rem;color:var(--muted)}
+input[type=search],input[type=email]{width:100%;min-height:52px;padding:0 16px;border:2px solid var(--line);border-radius:12px;background:var(--surface);color:var(--ink);font:inherit}
+input[type=search]:focus-visible,input[type=email]:focus-visible{border-color:var(--focus)}
+.asks{display:grid;gap:10px;margin:22px 0 0;padding:0;list-style:none}
+.ask{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:16px 18px 16px 22px;border-radius:14px;background:var(--surface);box-shadow:inset 5px 0 0 var(--ring);font-size:1.2rem;font-weight:700;line-height:1.3;text-decoration:none}
+.ask.first{box-shadow:inset 5px 0 0 var(--mark)}
+.ask:hover{background:var(--hover)}
+.ask small{flex:none;font-size:.9rem;font-weight:500;color:var(--muted)}
+.start{display:block;width:max-content;margin-top:6px;padding:2px 8px;border-radius:6px;background:var(--mark-bg);color:var(--mark-ink);font-size:.8rem;font-weight:700}
+.empty{margin:28px 0 0;color:var(--muted)}
+section{margin-top:56px;scroll-margin-top:12px}
+h2{max-width:24ch;margin:0 0 16px;font-size:clamp(1.55rem,5vw,2.1rem);line-height:1.15;letter-spacing:-.02em;font-weight:800;text-wrap:balance}
+.panel{margin:0;padding:0;list-style:none;overflow:hidden;border-radius:18px;background:var(--surface)}
+.tool{display:grid;gap:14px;padding:20px;border-top:1px solid var(--line)}
+.tool:first-child{border-top:0}
+.tool h3{margin:0;font-size:1.2rem;line-height:1.3;font-weight:750}
+.tool p{max-width:60ch;margin:4px 0 0}
+.tool .meta{display:flex;flex-wrap:wrap;align-items:center;gap:6px 18px;margin-top:10px;font-size:.9rem;color:var(--muted)}
+.lvl{display:inline-flex;align-items:center;gap:8px}
+.dots{display:inline-flex;gap:4px}
+.dots i{display:block;width:11px;height:11px;border:2px solid var(--ring);border-radius:50%}
+.dots i.on{background:var(--ring)}
+.tag{display:inline-block;margin-left:8px;padding:1px 8px;border-radius:6px;background:var(--mark-bg);color:var(--mark-ink);font-size:.75rem;font-weight:700;vertical-align:middle}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:8px 18px;border:0;border-radius:10px;background:var(--btn-bg);color:var(--btn-fg);font:inherit;font-weight:650;line-height:1.25;text-align:center;text-decoration:none;cursor:pointer}
+.btn:hover{filter:brightness(1.1)}
+@media (min-width:640px){.tool{grid-template-columns:1fr auto;align-items:center;gap:24px}.tool .btn{min-width:13rem}}
+.safe{padding-left:20px;border-left:5px solid var(--mark)}
+.safe h2{font-size:clamp(1.3rem,4vw,1.6rem)}
+.safe ul{max-width:60ch;margin:0;padding-left:1.2em}
+.safe li+li{margin-top:10px}
+.join{padding:24px 20px;border-radius:18px;background:var(--surface)}
+.join h2{margin-bottom:8px}
+.join p{max-width:56ch;margin:0 0 18px;color:var(--muted)}
+.mail{display:grid;gap:10px;max-width:28rem;margin-top:18px}
+.mail label{font-weight:650}
+.fine{margin-top:56px;padding:24px 0 40px;border-top:1px solid var(--line);color:var(--muted);font-size:.9rem}
+.fine h2{margin:0 0 8px;font-size:1rem;color:var(--ink)}
+.fine p{max-width:68ch;margin:0 0 14px}
+.tool h3 a{text-decoration-thickness:2px;text-underline-offset:3px}
+.safe .more{max-width:60ch;margin:16px 0 0}
+.g h1{max-width:22ch;margin:22px 0 18px;font-size:clamp(2rem,7.5vw,3.3rem);line-height:1.08}
+.back{display:inline-block;margin-top:14px;padding:6px 0;color:var(--muted)}
+.prose{max-width:60ch}
+.prose .lead{margin:0 0 8px;font-size:1.15rem;color:var(--muted)}
+.prose h2{max-width:none;margin:40px 0 12px;font-size:1.45rem}
+.prose p{margin:0 0 16px}
+.prose ul,.prose ol{margin:0;padding-left:1.35em}
+.prose li+li{margin-top:12px}
+.prose li::marker{color:var(--ring);font-weight:700}
+.g .tools-box{max-width:none}
+
+.pre h1{max-width:20ch;font-size:clamp(2rem,8vw,3.6rem);margin-top:36px}
+.pre h1,.pre-text{position:relative}
+@media (max-width:640px){.pre .coins{display:none}}
+.pre-text{max-width:60ch;font-size:1.1rem}
+.pre-text p{margin:0 0 18px}
+.cta-row{display:flex;flex-wrap:wrap;gap:12px;margin:26px 0}
+.btn.alt{background:transparent;color:var(--ink);border:2px solid var(--ring)}
+.btn.alt:hover{background:var(--hover)}
+.safe p{max-width:60ch;margin:0}
+.how{margin-top:12px;max-width:60ch}
+.how summary{cursor:pointer;font-weight:700;color:var(--ring);min-height:32px}
+.how ol{margin:10px 0 0;padding-left:1.35em}
+.how li+li{margin-top:8px}
+.hnote{margin:10px 0 0;color:var(--muted);font-size:.92rem}
+.coins{width:15rem;height:15rem}
+.fx{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 16px}
+.fx button{min-height:44px;padding:6px 16px;border:2px solid var(--line);border-radius:999px;background:var(--surface);color:var(--ink);font:inherit;font-weight:650;cursor:pointer}
+.fx button[aria-pressed=true]{background:var(--btn-bg);color:var(--btn-fg);border-color:var(--btn-bg)}
+.cc{display:inline-flex;flex-wrap:wrap;gap:6px;margin:10px 0 0;padding:0;list-style:none}
+.cc li{padding:1px 8px;border:1px solid var(--line);border-radius:6px;font-size:.78rem;font-weight:700;color:var(--muted)}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 0;padding:0;list-style:none}
+.chips li{padding:2px 9px;border-radius:999px;background:var(--hover);font-size:.8rem;color:var(--ink)}
+.exfine{max-width:60ch;margin:0 0 16px;color:var(--muted)}
+</style>
+</head>
+<body class="pre">
+<div class="wrap">
+<header class="top"><span class="brand"><svg class="logo" width="28" height="28" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="12" fill="none" stroke="#35e0c0" stroke-width="3"/><circle cx="16" cy="16" r="4.5" fill="#ffc23d"/></svg><span>ChainScout</span></span></header>
+<main>
+<h1>Les rêves demandent des moyens. Le savoir aide à trouver son chemin.</h1>
+<div class="coins" aria-hidden="true"><svg style="left:46px;top:34px" width="128" height="160" viewBox="0 0 160 200"><line x1="80" y1="26" x2="80" y2="10" stroke="#8c9bff" stroke-width="3"/><circle cx="80" cy="8" r="6" fill="#35e0c0"/><rect x="28" y="52" width="12" height="26" rx="5" fill="#8c9bff" fill-opacity=".35" stroke="#8c9bff" stroke-width="2"/><rect x="120" y="52" width="12" height="26" rx="5" fill="#8c9bff" fill-opacity=".35" stroke="#8c9bff" stroke-width="2"/><rect x="40" y="26" width="80" height="76" rx="28" fill="#aab8ff" fill-opacity=".14" stroke="#aab8ff" stroke-width="3"/><rect x="52" y="46" width="56" height="30" rx="15" fill="#070b1a" stroke="#35e0c0" stroke-width="2.5"/><circle cx="68" cy="61" r="5.5" fill="#35e0c0"/><circle cx="92" cy="61" r="5.5" fill="#35e0c0"/><path d="M68 90h24" stroke="#aab8ff" stroke-width="3" stroke-linecap="round"/><rect x="70" y="102" width="20" height="12" fill="#aab8ff" fill-opacity=".3"/><rect x="38" y="114" width="84" height="68" rx="22" fill="#aab8ff" fill-opacity=".12" stroke="#aab8ff" stroke-width="3"/><circle cx="80" cy="148" r="16" fill="none" stroke="#35e0c0" stroke-width="2.5"/><text x="80" y="154" text-anchor="middle" font-size="16" font-weight="800" fill="#35e0c0" font-family="system-ui,Segoe UI,Arial,sans-serif">AI</text><path d="M38 134H18v26M122 134h20v26" fill="none" stroke="#aab8ff" stroke-width="3" stroke-linecap="round"/><circle cx="18" cy="164" r="5" fill="#ffb02e"/><circle cx="142" cy="164" r="5" fill="#ffb02e"/></svg><svg style="left:0;top:8px" width="58" height="58" viewBox="0 0 64 64"><path d="M20 6v8M32 6v8M44 6v8M20 50v8M32 50v8M44 50v8M6 20h8M6 32h8M6 44h8M50 20h8M50 32h8M50 44h8" stroke="#c58bff" stroke-width="3" stroke-linecap="round"/><rect x="14" y="14" width="36" height="36" rx="8" fill="#c58bff" fill-opacity=".14" stroke="#c58bff" stroke-width="3"/><text x="32" y="39" text-anchor="middle" font-size="19" font-weight="800" fill="#c58bff" font-family="system-ui,Segoe UI,Arial,sans-serif">AI</text></svg><svg style="left:184px;top:104px" width="30" height="30" viewBox="0 0 30 30"><path d="M15 2l3.2 9.8L28 15l-9.8 3.2L15 28l-3.2-9.8L2 15l9.8-3.2z" fill="#35e0c0" fill-opacity=".85"/></svg><svg style="left:166px;top:0px" width="64" height="64" viewBox="0 0 80 80"><circle cx="40" cy="40" r="36" fill="#ffb02e" fill-opacity=".12" stroke="#ffb02e" stroke-width="3"/><circle cx="40" cy="40" r="28" fill="none" stroke="#ffb02e" stroke-opacity=".35" stroke-width="1.5"/><text x="40" y="53" text-anchor="middle" font-size="38" font-weight="800" fill="#ffb02e" font-family="system-ui,Segoe UI,Arial,sans-serif">&#8383;</text></svg><svg style="left:8px;top:128px" width="56" height="56" viewBox="0 0 80 80"><circle cx="40" cy="40" r="36" fill="#8c9bff" fill-opacity=".12" stroke="#8c9bff" stroke-width="3"/><circle cx="40" cy="40" r="28" fill="none" stroke="#8c9bff" stroke-opacity=".35" stroke-width="1.5"/><text x="40" y="53" text-anchor="middle" font-size="38" font-weight="800" fill="#8c9bff" font-family="system-ui,Segoe UI,Arial,sans-serif">&#926;</text></svg><svg style="left:172px;top:150px" width="60" height="60" viewBox="0 0 80 80"><circle cx="40" cy="40" r="36" fill="#35e0c0" fill-opacity=".12" stroke="#35e0c0" stroke-width="3"/><circle cx="40" cy="40" r="28" fill="none" stroke="#35e0c0" stroke-opacity=".35" stroke-width="1.5"/><text x="40" y="53" text-anchor="middle" font-size="38" font-weight="800" fill="#35e0c0" font-family="system-ui,Segoe UI,Arial,sans-serif">&#8366;</text></svg></div>
+<div class="prose pre-text"><p>Nous vivons dans un monde où il est difficile de réaliser ses rêves sans argent. Souvent, nous ne savons pas par où commencer. Et le monde n&#x27;attend pas : chaque jour apparaissent de nouvelles possibilités d&#x27;améliorer sa vie.</p><p>Tout le monde a entendu le mot « bitcoin ». Pour beaucoup, il reste flou et lointain. Pourtant, des millions de personnes ont appris comment fonctionnent les actifs financiers numériques, et beaucoup utilisent ce savoir pour mieux planifier, participer à l&#x27;économie moderne et aider les autres.</p><p>Les actifs numériques sont aussi risqués. Les prix peuvent baisser aussi vite qu&#x27;ils montent, et les escrocs visent chaque jour les débutants. Un vrai savoir, une approche prudente du risque et les bons outils comptent plus que la chance.</p></div>
+<div class="cta-row"><a class="btn" href="../../fr/#guides" data-pass>Ouvrir les guides</a><a class="btn alt" href="https://t.me/The_ChainScout_Bot" target="_blank" rel="noopener">Ouvrir le bot</a></div>
+<section class="safe" aria-labelledby="h-honest"><h2 id="h-honest">Qui nous sommes, en toute honnêteté</h2><p>ChainScout est un projet éducatif et social. Nous ne vous vendons rien, nous ne donnons pas de signaux de trading et nous ne promettons aucun revenu. Certains liens de notre site peuvent être des liens partenaires, et ils sont toujours signalés.</p></section>
+<section aria-labelledby="h-cards"><h2 id="h-cards">Ce que vous recevez, gratuitement</h2><ul class="panel"><li class="tool"><div><h3>Guides</h3><p>Comment repérer les arnaques, protéger un portefeuille et éviter les erreurs coûteuses, en 5 langues.</p></div></li><li class="tool"><div><h3>Catalogue d&#x27;outils</h3><p>Des outils d&#x27;IA et de données pour la recherche, avec de courtes instructions pas à pas.</p></div></li><li class="tool"><div><h3>Bot Telegram</h3><p>Les guides et les outils dans votre poche, dans votre langue.</p></div></li></ul></section>
+<div class="cta-row"><a class="btn" href="../../fr/#guides" data-pass>Ouvrir les guides</a><a class="btn alt" href="https://t.me/The_ChainScout_Bot" target="_blank" rel="noopener">Ouvrir le bot</a></div>
+</main>
+<footer class="fine"><p>Informations uniquement, pas un conseil financier. Les crypto-actifs sont très risqués et vous pouvez perdre tout ce que vous y mettez. Vérifiez les règles de votre pays avant d&#x27;agir.</p><p>&copy; 2026 ChainScout</p></footer>
+</div>
+<script>
+(function(){
+  var q=location.search;if(!q)return;
+  [].slice.call(document.querySelectorAll('a[data-pass]')).forEach(function(a){
+    var h=a.getAttribute('href');if(h.indexOf('?')<0)a.setAttribute('href',h.replace(/(#.*)?$/,q+'$1'));
+  });
+})();
+</script>
+</body>
+</html>
