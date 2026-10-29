@@ -330,7 +330,27 @@ h2{max-width:24ch;margin:0 0 16px;font-size:clamp(1.55rem,5vw,2.1rem);line-heigh
 CSS += """
 .pre h1{max-width:20ch;font-size:clamp(2rem,8vw,3.6rem);margin-top:36px}
 .pre h1,.pre-text{position:relative}
-@media (max-width:640px){.pre .coins{display:none}}
+body.pre{--paper:#fff;--surface:#f6f8fc;--ink:#101733;--muted:#4b5678;--line:#d9e0ef;--hover:#e8eefb;--btn-bg:#0b7a6c;--btn-fg:#fff;--ring:#0b7a6c;--focus:#b45309;--mark:#d97706;--mark-bg:#fff2cc;--mark-ink:#5c3f00;color-scheme:light;background:#fff;position:relative;overflow-x:hidden}
+.pre .coins{display:none}
+.pre .checker{position:absolute;inset:0;z-index:-1;display:grid;grid-template-columns:repeat(2,1fr);grid-auto-rows:max-content;pointer-events:none;overflow:hidden}
+.pre .checker i{display:block;aspect-ratio:4/3;background-size:cover;background-position:center;opacity:.5;visibility:hidden}
+.pre .checker i:nth-child(4n+1),.pre .checker i:nth-child(4n+4){visibility:visible}
+.pre .checker i:nth-child(5n+1),.pre .checker i:nth-child(5n+4){background-image:var(--img-a)}
+.pre .checker i:nth-child(5n+2),.pre .checker i:nth-child(5n){background-image:var(--img-b)}
+.pre .checker i:nth-child(5n+3){background-image:var(--img-c)}
+@media (min-width:760px){
+.pre .checker{grid-template-columns:repeat(3,1fr)}
+.pre .checker i{visibility:hidden}
+.pre .checker i:nth-child(odd){visibility:visible}
+}
+.pre h1{display:inline-block;padding:12px 18px;border-radius:16px;background:rgba(255,255,255,.9)}
+.pre .pre-text,.pre .safe,.pre .panel,.pre .fine p{background:rgba(255,255,255,.9)}
+.pre .pre-text{padding:18px 20px;border-radius:16px}
+.pre .safe{padding:14px 20px;border-radius:0 16px 16px 0}
+.pre .fine{border-top:0}
+.pre .btn.alt{background:rgba(255,255,255,.94)}
+.pre main>section>h2,.pre .brand{display:inline-block;padding:4px 12px;border-radius:10px;background:rgba(255,255,255,.9)}
+.pre .fine p{display:inline-block;padding:8px 14px;border-radius:12px}
 .pre-text{max-width:60ch;font-size:1.1rem}
 .pre-text p{margin:0 0 18px}
 .cta-row{display:flex;flex-wrap:wrap;gap:12px;margin:26px 0}
@@ -840,16 +860,17 @@ def render_prelanding(lang: str, cfg: dict) -> str:
 <title>{esc(P["title"])}</title>
 <meta name="description" content="{esc(P["description"])}">
 <meta name="robots" content="noindex,follow">
-<meta name="theme-color" content="#070b1a">
+<meta name="theme-color" content="#ffffff">
 <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
-<style>{CSS}</style>
+<style>{CSS}
+.pre{{--img-a:url(../../assets/robot-1.webp);--img-b:url(../../assets/robot-2.webp);--img-c:url(../../assets/robot-3.webp)}}</style>
 </head>
 <body class="pre">
+<div class="checker" aria-hidden="true">{"<i></i>" * 40}</div>
 <div class="wrap">
 <header class="top"><span class="brand">{LOGO}<span>{esc(name)}</span></span></header>
 <main>
 <h1>{esc(P["h1"])}</h1>
-{COINS}
 <div class="prose pre-text">{paras}</div>
 <div class="cta-row">{ctas}</div>
 <section class="safe" aria-labelledby="h-honest"><h2 id="h-honest">{esc(P["honest_title"])}</h2><p>{esc(P["honest"])}</p></section>
@@ -1054,6 +1075,8 @@ def main() -> None:
     (out / "start" / "index.html").write_text(render_prelanding_root(cfg), "utf-8")
     (out / "index.html").write_text(render_root(cfg), "utf-8")
     (out / "404.html").write_text(render_404(cfg), "utf-8")
+    if (HERE / "assets").exists():
+        shutil.copytree(HERE / "assets", out / "assets")
     (out / "favicon.svg").write_text(FAVICON, "utf-8")
     (out / "sitemap.xml").write_text(render_sitemap(cfg, today.strftime("%Y-%m-%d")), "utf-8")
     (out / "robots.txt").write_text(f"User-agent: *\nAllow: /\n\nSitemap: {cfg['base_url']}/sitemap.xml\n", "utf-8")
