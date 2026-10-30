@@ -245,7 +245,7 @@ SITE = {
 
 # --------------------------------------------------------------------------- оформление
 CSS = """
-:root{color-scheme:dark;--paper:#070b1a;--surface:#0e1530;--ink:#e9eefc;--muted:#9fabd6;--line:#232f5e;--hover:#16214a;--btn-bg:#35e0c0;--btn-fg:#04121a;--ring:#35e0c0;--focus:#ffc23d;--mark:#ffc23d;--mark-bg:#3a2d08;--mark-ink:#ffd98a;--glow:rgba(53,224,192,.14);--glow2:rgba(124,92,255,.16)}
+:root{color-scheme:light;--paper:#fff;--surface:rgba(255,255,255,.93);--ink:#101733;--muted:#4b5678;--line:#d9e0ef;--hover:#e8eefb;--btn-bg:#0b7a6c;--btn-fg:#fff;--ring:#0b7a6c;--focus:#b45309;--mark:#d97706;--mark-bg:#fff2cc;--mark-ink:#5c3f00}
 .coins{position:absolute;top:5.5rem;right:0;z-index:-1;width:15rem;height:15rem;pointer-events:none;opacity:.6}@media (max-width:760px){.coins{opacity:.22}}
 .coins svg{position:absolute}
 @media (prefers-reduced-motion:no-preference){.coins svg{animation:bob 7s ease-in-out infinite}.coins svg:nth-child(2){animation-delay:-2s}.coins svg:nth-child(3){animation-delay:-4s}.coins svg:nth-child(4){animation-delay:-5.5s}}
@@ -253,12 +253,12 @@ CSS = """
 .ticker{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 22px;padding:0;list-style:none}
 .ticker a{display:inline-flex;align-items:center;gap:6px;min-height:36px;padding:4px 14px;border:1px solid var(--line);border-radius:999px;background:var(--surface);font-size:.85rem;color:var(--ink);text-decoration:none}
 .ticker a:hover{border-color:var(--ring);background:var(--hover)}
-.ticker b{font-size:1rem;color:var(--ring)}
+.ticker b{display:inline-grid;place-items:center;min-width:24px;height:24px;padding:0 4px;border-radius:12px;color:#fff;font-size:.8rem;line-height:1}
 *{box-sizing:border-box}
 [hidden]{display:none!important}
 html{-webkit-text-size-adjust:100%}
 @media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
-body{margin:0;position:relative;overflow-x:hidden;background:radial-gradient(60rem 30rem at 85% -5%,var(--glow2),transparent 60%),radial-gradient(50rem 28rem at -10% 10%,var(--glow),transparent 60%),linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px) 0 0/44px 44px,linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px) 0 0/44px 44px,var(--paper);color:var(--ink);font:17px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans",sans-serif}
+body{margin:0;position:relative;overflow-x:hidden;background:#fff;color:var(--ink);font:17px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans",sans-serif}
 .wrap{position:relative}
 .panel,.ask,.join{border:1px solid var(--line)}
 a{color:inherit}
@@ -332,16 +332,17 @@ CSS += """
 .pre h1,.pre-text{position:relative}
 body.pre{--paper:#fff;--surface:#f6f8fc;--ink:#101733;--muted:#4b5678;--line:#d9e0ef;--hover:#e8eefb;--btn-bg:#0b7a6c;--btn-fg:#fff;--ring:#0b7a6c;--focus:#b45309;--mark:#d97706;--mark-bg:#fff2cc;--mark-ink:#5c3f00;color-scheme:light;background:#fff;position:relative;overflow-x:hidden}
 .pre .coins{display:none}
-.pre .checker{position:absolute;inset:0;z-index:-1;display:grid;grid-template-columns:1fr;grid-template-rows:repeat(3,1fr);align-items:center;pointer-events:none;overflow:hidden}
-.pre .checker i{display:block;width:100%;aspect-ratio:4/3;background-size:cover;background-position:center;opacity:.25}
-.pre .checker i:nth-child(1){background-image:var(--img-a)}
-.pre .checker i:nth-child(2){background-image:var(--img-b)}
-.pre .checker i:nth-child(3){background-image:var(--img-c)}
+.checker{position:absolute;inset:0;z-index:-1;display:grid;grid-template-columns:1fr;grid-template-rows:repeat(var(--rows,3),1fr);align-items:center;pointer-events:none;overflow:hidden}
+.checker i{display:block;width:100%;aspect-ratio:4/3;background-size:cover;background-position:center;opacity:.25}
+.checker i.c{background-size:contain;background-repeat:no-repeat;width:62%;justify-self:center;aspect-ratio:1}
+.checker b.k{display:grid;place-items:center;width:6.5rem;height:6.5rem;border-radius:50%;color:#fff;font:700 3.4rem/1 system-ui,sans-serif;opacity:.25;margin:1.5rem;justify-self:end;box-shadow:inset 0 0 0 .5rem rgba(255,255,255,.35)}
+.checker>*{grid-column:1}
 @media (min-width:760px){
-.pre .checker{grid-template-columns:1fr 1fr}
-.pre .checker i:nth-child(1){grid-column:1;grid-row:1}
-.pre .checker i:nth-child(2){grid-column:2;grid-row:2}
-.pre .checker i:nth-child(3){grid-column:1;grid-row:3}
+.checker{grid-template-columns:1fr 1fr}
+.checker>*{grid-column:var(--col)}
+.checker i.c{width:min(46%,300px);aspect-ratio:1;justify-self:var(--js);margin:0 1rem}
+.checker i:not(.c){width:80%;justify-self:center}
+.checker b.k{width:13.5rem;height:13.5rem;font-size:7.5rem;margin:2rem 1rem;justify-self:var(--js);box-shadow:inset 0 0 0 1rem rgba(255,255,255,.35)}
 }
 .pre h1{display:inline-block;padding:12px 18px;border-radius:16px;background:rgba(255,255,255,.9)}
 .pre .pre-text,.pre .safe,.pre .panel,.pre .fine p{background:rgba(255,255,255,.9)}
@@ -441,16 +442,16 @@ ROBOT = (
     '<circle cx="80" cy="8" r="6" fill="#35e0c0"/>'
     '<rect x="28" y="52" width="12" height="26" rx="5" fill="#8c9bff" fill-opacity=".35" stroke="#8c9bff" stroke-width="2"/>'
     '<rect x="120" y="52" width="12" height="26" rx="5" fill="#8c9bff" fill-opacity=".35" stroke="#8c9bff" stroke-width="2"/>'
-    '<rect x="40" y="26" width="80" height="76" rx="28" fill="#aab8ff" fill-opacity=".14" stroke="#aab8ff" stroke-width="3"/>'
-    '<rect x="52" y="46" width="56" height="30" rx="15" fill="#070b1a" stroke="#35e0c0" stroke-width="2.5"/>'
+    '<rect x="40" y="26" width="80" height="76" rx="28" fill="#5b6bd0" fill-opacity=".14" stroke="#5b6bd0" stroke-width="3"/>'
+    '<rect x="52" y="46" width="56" height="30" rx="15" fill="#101733" stroke="#35e0c0" stroke-width="2.5"/>'
     '<circle cx="68" cy="61" r="5.5" fill="#35e0c0"/><circle cx="92" cy="61" r="5.5" fill="#35e0c0"/>'
-    '<path d="M68 90h24" stroke="#aab8ff" stroke-width="3" stroke-linecap="round"/>'
-    '<rect x="70" y="102" width="20" height="12" fill="#aab8ff" fill-opacity=".3"/>'
-    '<rect x="38" y="114" width="84" height="68" rx="22" fill="#aab8ff" fill-opacity=".12" stroke="#aab8ff" stroke-width="3"/>'
+    '<path d="M68 90h24" stroke="#5b6bd0" stroke-width="3" stroke-linecap="round"/>'
+    '<rect x="70" y="102" width="20" height="12" fill="#5b6bd0" fill-opacity=".3"/>'
+    '<rect x="38" y="114" width="84" height="68" rx="22" fill="#5b6bd0" fill-opacity=".12" stroke="#5b6bd0" stroke-width="3"/>'
     '<circle cx="80" cy="148" r="16" fill="none" stroke="#35e0c0" stroke-width="2.5"/>'
     '<text x="80" y="154" text-anchor="middle" font-size="16" font-weight="800" fill="#35e0c0" '
     'font-family="system-ui,Segoe UI,Arial,sans-serif">AI</text>'
-    '<path d="M38 134H18v26M122 134h20v26" fill="none" stroke="#aab8ff" stroke-width="3" stroke-linecap="round"/>'
+    '<path d="M38 134H18v26M122 134h20v26" fill="none" stroke="#5b6bd0" stroke-width="3" stroke-linecap="round"/>'
     '<circle cx="18" cy="164" r="5" fill="#ffb02e"/><circle cx="142" cy="164" r="5" fill="#ffb02e"/></svg>'
 )
 AI_CHIP = (
@@ -471,31 +472,56 @@ COINS = (
     + ROBOT
     + AI_CHIP
     + SPARK
-    + _coin(166, 0, 64, "#ffb02e", "&#8383;")
-    + _coin(8, 128, 56, "#8c9bff", "&#926;")
-    + _coin(172, 150, 60, "#35e0c0", "&#8366;")
+    + _coin(166, 0, 64, "#f7931a", "&#8383;")
+    + _coin(8, 128, 56, "#627eea", "&#926;")
+    + _coin(172, 150, 60, "#26a17b", "&#8366;")
     + "</div>"
 )
 TICKER = (
-    ("AI", "guides/ai-tools-crypto-research/", False),
-    ("BTC", "https://www.coingecko.com/en/coins/bitcoin", True),
-    ("ETH", "https://www.coingecko.com/en/coins/ethereum", True),
-    ("USDT", "https://www.coingecko.com/en/coins/tether", True),
-    ("SOL", "https://www.coingecko.com/en/coins/solana", True),
-    ("USDC", "https://www.coingecko.com/en/coins/usd-coin", True),
+    ("AI", "guides/ai-tools-crypto-research/", False, "#7c4dff", "AI"),
+    ("BTC", "https://www.coingecko.com/en/coins/bitcoin", True, "#f7931a", "&#8383;"),
+    ("ETH", "https://www.coingecko.com/en/coins/ethereum", True, "#627eea", "&#926;"),
+    ("USDT", "https://www.coingecko.com/en/coins/tether", True, "#26a17b", "&#8366;"),
+    ("SOL", "https://www.coingecko.com/en/coins/solana", True, "#9945ff", "&#9678;"),
+    ("USDC", "https://www.coingecko.com/en/coins/usd-coin", True, "#2775ca", "$"),
+    ("TON", "https://www.coingecko.com/en/coins/toncoin", True, "#0098ea", "&#9670;"),
 )
 TICKER_HTML = (
     '<ul class="ticker">'
     + "".join(
         f'<li><a href="{href}"'
         + (' target="_blank" rel="noopener"' if external else "")
-        + f'><b>&#9679;</b>{t}</a></li>'
-        for t, href, external in TICKER
+        + f'><b style="background:{color}">{glyph}</b>{t}</a></li>'
+        for t, href, external, color, glyph in TICKER
     )
     + "</ul>"
 )
 
 esc = html.escape
+
+HOME_IMGS = ("robot-4", "robot-1", "robot-5", "robot-2", "robot-6", "robot-3", "robot-8", "robot-7", "robot-9")
+GUIDE_IMGS = ("robot-4", "robot-5", "robot-2")
+PRE_IMGS = ("robot-1", "robot-2", "robot-3")
+# маленькие исходники: показываем мельче и целиком, не растягивая
+CONTAIN = {"robot-4", "robot-5", "robot-6", "robot-7", "robot-8", "robot-9"}
+BIG_COINS = (
+    ("#f7931a", "&#8383;"), ("#627eea", "&#926;"), ("#26a17b", "&#8366;"),
+    ("#9945ff", "&#9678;"), ("#2775ca", "$"), ("#0098ea", "&#9670;"),
+)
+
+
+def checker(prefix: str, names: tuple, coins: bool = False) -> str:
+    """Фон-шахматка: каждая картинка один раз, зигзагом слева/справа. coins=True: ещё крупные монеты напротив."""
+    cells = []
+    for r, n in enumerate(names, 1):
+        col = 1 if r % 2 else 2
+        cls = ' class=c' if n in CONTAIN else ""
+        cells.append(f'<i{cls} style="grid-row:{r};--col:{col};--js:{"start" if col == 1 else "end"};background-image:url({prefix}assets/{n}.webp)"></i>')
+        if coins:
+            for k, al in enumerate(("start", "end")):
+                color, glyph = BIG_COINS[((r - 1) * 2 + k) % len(BIG_COINS)]
+                cells.append(f'<b class="k" style="grid-row:{r};--col:{3 - col};--js:{"start" if col == 2 else "end"};align-self:{al};background:{color}">{glyph}</b>')
+    return f'<div class="checker" style="--rows:{len(names)}" aria-hidden="true">{"".join(cells)}</div>'
 
 
 def norm(text: str) -> str:
@@ -685,12 +711,13 @@ def render_page(lang: str, tools: list[dict], cfg: dict, year: int) -> str:
 <meta property="og:url" content="{url}">
 <meta property="og:locale" content="{OG_LOCALE[lang]}">
 <meta name="twitter:card" content="summary">
-<meta name="theme-color" content="#070b1a">
+<meta name="theme-color" content="#ffffff">
 <link rel="icon" href="../favicon.svg" type="image/svg+xml">
 <style>{CSS}</style>
 <script type="application/ld+json">{ld}</script>
 </head>
-<body>
+<body class="bg">
+{checker("../", HOME_IMGS, True)}
 <a class="skip" href="#main">{esc(S["skip"])}</a>
 <div class="wrap">
 <header class="top">
@@ -801,12 +828,13 @@ def render_guide(lang: str, slug: str, by_id: dict, cfg: dict) -> str:
 <meta property="og:url" content="{url}">
 <meta property="og:locale" content="{OG_LOCALE[lang]}">
 <meta name="twitter:card" content="summary">
-<meta name="theme-color" content="#070b1a">
+<meta name="theme-color" content="#ffffff">
 <link rel="icon" href="../../../favicon.svg" type="image/svg+xml">
 <style>{CSS}</style>
 <script type="application/ld+json">{ld}</script>
 </head>
-<body>
+<body class="bg">
+{checker("../../../", GUIDE_IMGS)}
 <a class="skip" href="#main">{esc(S["skip"])}</a>
 <div class="wrap">
 <header class="top">
@@ -862,11 +890,10 @@ def render_prelanding(lang: str, cfg: dict) -> str:
 <meta name="robots" content="noindex,follow">
 <meta name="theme-color" content="#ffffff">
 <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
-<style>{CSS}
-.pre{{--img-a:url(../../assets/robot-1.webp);--img-b:url(../../assets/robot-2.webp);--img-c:url(../../assets/robot-3.webp)}}</style>
+<style>{CSS}</style>
 </head>
 <body class="pre">
-<div class="checker" aria-hidden="true"><i></i><i></i><i></i></div>
+{checker("../../", PRE_IMGS)}
 <div class="wrap">
 <header class="top"><span class="brand">{LOGO}<span>{esc(name)}</span></span></header>
 <main>

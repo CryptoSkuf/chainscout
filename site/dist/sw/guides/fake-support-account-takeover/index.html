@@ -14,10 +14,10 @@
 <meta property="og:url" content="https://chainscout.app/sw/guides/fake-support-account-takeover/">
 <meta property="og:locale" content="sw_KE">
 <meta name="twitter:card" content="summary">
-<meta name="theme-color" content="#070b1a">
+<meta name="theme-color" content="#ffffff">
 <link rel="icon" href="../../../favicon.svg" type="image/svg+xml">
 <style>
-:root{color-scheme:dark;--paper:#070b1a;--surface:#0e1530;--ink:#e9eefc;--muted:#9fabd6;--line:#232f5e;--hover:#16214a;--btn-bg:#35e0c0;--btn-fg:#04121a;--ring:#35e0c0;--focus:#ffc23d;--mark:#ffc23d;--mark-bg:#3a2d08;--mark-ink:#ffd98a;--glow:rgba(53,224,192,.14);--glow2:rgba(124,92,255,.16)}
+:root{color-scheme:light;--paper:#fff;--surface:rgba(255,255,255,.93);--ink:#101733;--muted:#4b5678;--line:#d9e0ef;--hover:#e8eefb;--btn-bg:#0b7a6c;--btn-fg:#fff;--ring:#0b7a6c;--focus:#b45309;--mark:#d97706;--mark-bg:#fff2cc;--mark-ink:#5c3f00}
 .coins{position:absolute;top:5.5rem;right:0;z-index:-1;width:15rem;height:15rem;pointer-events:none;opacity:.6}@media (max-width:760px){.coins{opacity:.22}}
 .coins svg{position:absolute}
 @media (prefers-reduced-motion:no-preference){.coins svg{animation:bob 7s ease-in-out infinite}.coins svg:nth-child(2){animation-delay:-2s}.coins svg:nth-child(3){animation-delay:-4s}.coins svg:nth-child(4){animation-delay:-5.5s}}
@@ -25,12 +25,12 @@
 .ticker{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 22px;padding:0;list-style:none}
 .ticker a{display:inline-flex;align-items:center;gap:6px;min-height:36px;padding:4px 14px;border:1px solid var(--line);border-radius:999px;background:var(--surface);font-size:.85rem;color:var(--ink);text-decoration:none}
 .ticker a:hover{border-color:var(--ring);background:var(--hover)}
-.ticker b{font-size:1rem;color:var(--ring)}
+.ticker b{display:inline-grid;place-items:center;min-width:24px;height:24px;padding:0 4px;border-radius:12px;color:#fff;font-size:.8rem;line-height:1}
 *{box-sizing:border-box}
 [hidden]{display:none!important}
 html{-webkit-text-size-adjust:100%}
 @media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
-body{margin:0;position:relative;overflow-x:hidden;background:radial-gradient(60rem 30rem at 85% -5%,var(--glow2),transparent 60%),radial-gradient(50rem 28rem at -10% 10%,var(--glow),transparent 60%),linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px) 0 0/44px 44px,linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px) 0 0/44px 44px,var(--paper);color:var(--ink);font:17px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans",sans-serif}
+body{margin:0;position:relative;overflow-x:hidden;background:#fff;color:var(--ink);font:17px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans",sans-serif}
 .wrap{position:relative}
 .panel,.ask,.join{border:1px solid var(--line)}
 a{color:inherit}
@@ -102,16 +102,17 @@ h2{max-width:24ch;margin:0 0 16px;font-size:clamp(1.55rem,5vw,2.1rem);line-heigh
 .pre h1,.pre-text{position:relative}
 body.pre{--paper:#fff;--surface:#f6f8fc;--ink:#101733;--muted:#4b5678;--line:#d9e0ef;--hover:#e8eefb;--btn-bg:#0b7a6c;--btn-fg:#fff;--ring:#0b7a6c;--focus:#b45309;--mark:#d97706;--mark-bg:#fff2cc;--mark-ink:#5c3f00;color-scheme:light;background:#fff;position:relative;overflow-x:hidden}
 .pre .coins{display:none}
-.pre .checker{position:absolute;inset:0;z-index:-1;display:grid;grid-template-columns:1fr;grid-template-rows:repeat(3,1fr);align-items:center;pointer-events:none;overflow:hidden}
-.pre .checker i{display:block;width:100%;aspect-ratio:4/3;background-size:cover;background-position:center;opacity:.25}
-.pre .checker i:nth-child(1){background-image:var(--img-a)}
-.pre .checker i:nth-child(2){background-image:var(--img-b)}
-.pre .checker i:nth-child(3){background-image:var(--img-c)}
+.checker{position:absolute;inset:0;z-index:-1;display:grid;grid-template-columns:1fr;grid-template-rows:repeat(var(--rows,3),1fr);align-items:center;pointer-events:none;overflow:hidden}
+.checker i{display:block;width:100%;aspect-ratio:4/3;background-size:cover;background-position:center;opacity:.25}
+.checker i.c{background-size:contain;background-repeat:no-repeat;width:62%;justify-self:center;aspect-ratio:1}
+.checker b.k{display:grid;place-items:center;width:6.5rem;height:6.5rem;border-radius:50%;color:#fff;font:700 3.4rem/1 system-ui,sans-serif;opacity:.25;margin:1.5rem;justify-self:end;box-shadow:inset 0 0 0 .5rem rgba(255,255,255,.35)}
+.checker>*{grid-column:1}
 @media (min-width:760px){
-.pre .checker{grid-template-columns:1fr 1fr}
-.pre .checker i:nth-child(1){grid-column:1;grid-row:1}
-.pre .checker i:nth-child(2){grid-column:2;grid-row:2}
-.pre .checker i:nth-child(3){grid-column:1;grid-row:3}
+.checker{grid-template-columns:1fr 1fr}
+.checker>*{grid-column:var(--col)}
+.checker i.c{width:min(46%,300px);aspect-ratio:1;justify-self:var(--js);margin:0 1rem}
+.checker i:not(.c){width:80%;justify-self:center}
+.checker b.k{width:13.5rem;height:13.5rem;font-size:7.5rem;margin:2rem 1rem;justify-self:var(--js);box-shadow:inset 0 0 0 1rem rgba(255,255,255,.35)}
 }
 .pre h1{display:inline-block;padding:12px 18px;border-radius:16px;background:rgba(255,255,255,.9)}
 .pre .pre-text,.pre .safe,.pre .panel,.pre .fine p{background:rgba(255,255,255,.9)}
@@ -144,7 +145,8 @@ body.pre{--paper:#fff;--surface:#f6f8fc;--ink:#101733;--muted:#4b5678;--line:#d9
 </style>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Msaada bandia na kuvamiwa kwa akaunti kwenye Telegram na WhatsApp", "description": "Jinsi “wahudumu wa msaada” bandia na mazungumzo yaliyovamiwa yanavyoiba crypto na akaunti, jinsi ya kuwatambua, kulinda Telegram na WhatsApp, na cha kufanya ukiathirika.", "inLanguage": "sw", "mainEntityOfPage": "https://chainscout.app/sw/guides/fake-support-account-takeover/", "author": {"@type": "Organization", "name": "ChainScout"}, "publisher": {"@type": "Organization", "name": "ChainScout"}}</script>
 </head>
-<body>
+<body class="bg">
+<div class="checker" style="--rows:3" aria-hidden="true"><i class=c style="grid-row:1;--col:1;--js:start;background-image:url(../../../assets/robot-4.webp)"></i><i class=c style="grid-row:2;--col:2;--js:end;background-image:url(../../../assets/robot-5.webp)"></i><i style="grid-row:3;--col:1;--js:start;background-image:url(../../../assets/robot-2.webp)"></i></div>
 <a class="skip" href="#main">Ruka hadi maudhui</a>
 <div class="wrap">
 <header class="top">
