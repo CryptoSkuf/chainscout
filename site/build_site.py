@@ -332,8 +332,10 @@ CSS += """
 .pre h1,.pre-text{position:relative}
 body.pre{--paper:#fff;--surface:#f6f8fc;--ink:#101733;--muted:#4b5678;--line:#d9e0ef;--hover:#e8eefb;--btn-bg:#0b7a6c;--btn-fg:#fff;--ring:#0b7a6c;--focus:#b45309;--mark:#d97706;--mark-bg:#fff2cc;--mark-ink:#5c3f00;color-scheme:light;background:#fff;position:relative;overflow-x:hidden}
 .pre .coins{display:none}
+main .checklist,.prose .checklist{list-style:none;padding:0;margin:0 0 1rem;max-width:none}.checklist li{margin:.5rem 0}.checklist label{display:flex;gap:.7rem;align-items:flex-start;padding:.7rem .9rem;border:1px solid var(--line);border-radius:12px;background:var(--surface);cursor:pointer}
+.checklist input{width:1.3rem;height:1.3rem;flex:none;margin-top:.15rem;accent-color:var(--btn-bg)}.checklist input:checked+span{color:var(--muted);text-decoration:line-through}
 .checker{position:absolute;inset:0;z-index:-1;display:grid;grid-template-columns:1fr;grid-template-rows:repeat(var(--rows,3),1fr);align-items:center;pointer-events:none;overflow:hidden}
-.checker i{display:block;width:100%;aspect-ratio:4/3;background-size:cover;background-position:center;opacity:.25}
+.checker i{-webkit-mask-image:radial-gradient(ellipse 62% 62% at 50% 50%,#000 30%,transparent 100%);mask-image:radial-gradient(ellipse 62% 62% at 50% 50%,#000 30%,transparent 100%);display:block;width:100%;aspect-ratio:4/3;background-size:cover;background-position:center;opacity:.25}
 .checker i.c{background-size:contain;background-repeat:no-repeat;width:62%;justify-self:center;aspect-ratio:1}
 .checker b.k{display:grid;place-items:center;width:6.5rem;height:6.5rem;border-radius:50%;color:#fff;font:700 3.4rem/1 system-ui,sans-serif;opacity:.25;margin:1.5rem;justify-self:end;box-shadow:inset 0 0 0 .5rem rgba(255,255,255,.35)}
 .checker>*{grid-column:1}
@@ -469,9 +471,7 @@ SPARK = (
 
 COINS = (
     '<div class="coins" aria-hidden="true">'
-    + ROBOT
     + AI_CHIP
-    + SPARK
     + _coin(166, 0, 64, "#f7931a", "&#8383;")
     + _coin(8, 128, 56, "#627eea", "&#926;")
     + _coin(172, 150, 60, "#26a17b", "&#8366;")
@@ -764,6 +764,9 @@ def render_blocks(blocks: list) -> str:
             out.append(f"<h2>{esc(value)}</h2>")
         elif kind == "p":
             out.append(f"<p>{rich(value)}</p>")
+        elif kind == "check":
+            items = "".join(f'<li><label><input type="checkbox"><span>{rich(item)}</span></label></li>' for item in value)
+            out.append(f'<ul class="checklist">{items}</ul>')
         elif kind in ("ul", "ol"):
             items = "".join(f"<li>{rich(item)}</li>" for item in value)
             out.append(f"<{kind}>{items}</{kind}>")
@@ -899,6 +902,7 @@ def render_prelanding(lang: str, cfg: dict) -> str:
 <main>
 <h1>{esc(P["h1"])}</h1>
 <div class="prose pre-text">{paras}</div>
+<div class="prose pre-text"><h2>{esc(P["soon_title"])}</h2><p>{esc(P["soon"])}</p></div>
 <div class="cta-row">{ctas}</div>
 <section class="safe" aria-labelledby="h-honest"><h2 id="h-honest">{esc(P["honest_title"])}</h2><p>{esc(P["honest"])}</p></section>
 <section aria-labelledby="h-cards"><h2 id="h-cards">{esc(P["cards_title"])}</h2><ul class="panel">{cards}</ul></section>

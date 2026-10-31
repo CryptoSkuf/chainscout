@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Checklist kiểm tra token: đi theo đúng thứ tự này | ChainScout</title>
+<meta name="description" content="Checklist từng bước để kiểm tra token trước khi mua: hợp đồng thật, quét bảo mật, dữ liệu thị trường, dự án và giới hạn của chính bạn.">
+<link rel="canonical" href="https://chainscout.app/vi/guides/token-check-checklist/">
+<link rel="alternate" hreflang="en" href="https://chainscout.app/en/guides/token-check-checklist/"><link rel="alternate" hreflang="fr" href="https://chainscout.app/fr/guides/token-check-checklist/"><link rel="alternate" hreflang="id" href="https://chainscout.app/id/guides/token-check-checklist/"><link rel="alternate" hreflang="vi" href="https://chainscout.app/vi/guides/token-check-checklist/"><link rel="alternate" hreflang="sw" href="https://chainscout.app/sw/guides/token-check-checklist/"><link rel="alternate" hreflang="x-default" href="https://chainscout.app/en/guides/token-check-checklist/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="ChainScout">
+<meta property="og:title" content="Checklist kiểm tra token: đi theo đúng thứ tự này">
+<meta property="og:description" content="Checklist từng bước để kiểm tra token trước khi mua: hợp đồng thật, quét bảo mật, dữ liệu thị trường, dự án và giới hạn của chính bạn.">
+<meta property="og:url" content="https://chainscout.app/vi/guides/token-check-checklist/">
+<meta property="og:locale" content="vi_VN">
+<meta name="twitter:card" content="summary">
+<meta name="theme-color" content="#ffffff">
+<link rel="icon" href="../../../favicon.svg" type="image/svg+xml">
+<style>
+:root{color-scheme:light;--paper:#fff;--surface:rgba(255,255,255,.93);--ink:#101733;--muted:#4b5678;--line:#d9e0ef;--hover:#e8eefb;--btn-bg:#0b7a6c;--btn-fg:#fff;--ring:#0b7a6c;--focus:#b45309;--mark:#d97706;--mark-bg:#fff2cc;--mark-ink:#5c3f00}
+.coins{position:absolute;top:5.5rem;right:0;z-index:-1;width:15rem;height:15rem;pointer-events:none;opacity:.6}@media (max-width:760px){.coins{opacity:.22}}
+.coins svg{position:absolute}
+@media (prefers-reduced-motion:no-preference){.coins svg{animation:bob 7s ease-in-out infinite}.coins svg:nth-child(2){animation-delay:-2s}.coins svg:nth-child(3){animation-delay:-4s}.coins svg:nth-child(4){animation-delay:-5.5s}}
+@keyframes bob{50%{transform:translateY(-10px)}}
+.ticker{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 22px;padding:0;list-style:none}
+.ticker a{display:inline-flex;align-items:center;gap:6px;min-height:36px;padding:4px 14px;border:1px solid var(--line);border-radius:999px;background:var(--surface);font-size:.85rem;color:var(--ink);text-decoration:none}
+.ticker a:hover{border-color:var(--ring);background:var(--hover)}
+.ticker b{display:inline-grid;place-items:center;min-width:24px;height:24px;padding:0 4px;border-radius:12px;color:#fff;font-size:.8rem;line-height:1}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{-webkit-text-size-adjust:100%}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+body{margin:0;position:relative;overflow-x:hidden;background:#fff;color:var(--ink);font:17px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans",sans-serif}
+.wrap{position:relative}
+.panel,.ask,.join{border:1px solid var(--line)}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--focus);outline-offset:3px;border-radius:6px}
+.wrap{max-width:50rem;margin:0 auto;padding:0 16px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.skip{position:absolute;left:-999px;top:8px;z-index:10;padding:10px 14px;border-radius:8px;background:var(--btn-bg);color:var(--btn-fg)}
+.skip:focus{left:16px}
+.top{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 20px;padding:18px 0 6px}
+.brand{display:inline-flex;align-items:center;gap:10px;font-weight:800;font-size:1.15rem;letter-spacing:-.01em;text-decoration:none}
+.logo{flex:none}
+.langs{display:flex;flex-wrap:wrap;gap:2px}
+.langs a{padding:6px 10px;border-radius:8px;font-size:.95rem;text-decoration:none;color:var(--muted)}
+.langs a:hover{background:var(--hover);color:var(--ink)}
+.langs a[aria-current]{background:var(--ink);color:var(--paper);font-weight:650}
+h1{max-width:16ch;margin:44px 0 18px;font-size:clamp(2.5rem,9.5vw,4.75rem);line-height:1.02;letter-spacing:-.035em;font-weight:800;text-wrap:balance}
+.lede{max-width:60ch;margin:0 0 26px;font-size:1.1rem;color:var(--muted)}
+input[type=search],input[type=email]{width:100%;min-height:52px;padding:0 16px;border:2px solid var(--line);border-radius:12px;background:var(--surface);color:var(--ink);font:inherit}
+input[type=search]:focus-visible,input[type=email]:focus-visible{border-color:var(--focus)}
+.asks{display:grid;gap:10px;margin:22px 0 0;padding:0;list-style:none}
+.ask{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:16px 18px 16px 22px;border-radius:14px;background:var(--surface);box-shadow:inset 5px 0 0 var(--ring);font-size:1.2rem;font-weight:700;line-height:1.3;text-decoration:none}
+.ask.first{box-shadow:inset 5px 0 0 var(--mark)}
+.ask:hover{background:var(--hover)}
+.ask small{flex:none;font-size:.9rem;font-weight:500;color:var(--muted)}
+.start{display:block;width:max-content;margin-top:6px;padding:2px 8px;border-radius:6px;background:var(--mark-bg);color:var(--mark-ink);font-size:.8rem;font-weight:700}
+.empty{margin:28px 0 0;color:var(--muted)}
+section{margin-top:56px;scroll-margin-top:12px}
+h2{max-width:24ch;margin:0 0 16px;font-size:clamp(1.55rem,5vw,2.1rem);line-height:1.15;letter-spacing:-.02em;font-weight:800;text-wrap:balance}
+.panel{margin:0;padding:0;list-style:none;overflow:hidden;border-radius:18px;background:var(--surface)}
+.tool{display:grid;gap:14px;padding:20px;border-top:1px solid var(--line)}
+.tool:first-child{border-top:0}
+.tool h3{margin:0;font-size:1.2rem;line-height:1.3;font-weight:750}
+.tool p{max-width:60ch;margin:4px 0 0}
+.tool .meta{display:flex;flex-wrap:wrap;align-items:center;gap:6px 18px;margin-top:10px;font-size:.9rem;color:var(--muted)}
+.lvl{display:inline-flex;align-items:center;gap:8px}
+.dots{display:inline-flex;gap:4px}
+.dots i{display:block;width:11px;height:11px;border:2px solid var(--ring);border-radius:50%}
+.dots i.on{background:var(--ring)}
+.tag{display:inline-block;margin-left:8px;padding:1px 8px;border-radius:6px;background:var(--mark-bg);color:var(--mark-ink);font-size:.75rem;font-weight:700;vertical-align:middle}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:8px 18px;border:0;border-radius:10px;background:var(--btn-bg);color:var(--btn-fg);font:inherit;font-weight:650;line-height:1.25;text-align:center;text-decoration:none;cursor:pointer}
+.btn:hover{filter:brightness(1.1)}
+@media (min-width:640px){.tool{grid-template-columns:1fr auto;align-items:center;gap:24px}.tool .btn{min-width:13rem}}
+.safe{padding-left:20px;border-left:5px solid var(--mark)}
+.safe h2{font-size:clamp(1.3rem,4vw,1.6rem)}
+.safe ul{max-width:60ch;margin:0;padding-left:1.2em}
+.safe li+li{margin-top:10px}
+.join{padding:24px 20px;border-radius:18px;background:var(--surface)}
+.join h2{margin-bottom:8px}
+.join p{max-width:56ch;margin:0 0 18px;color:var(--muted)}
+.mail{display:grid;gap:10px;max-width:28rem;margin-top:18px}
+.mail label{font-weight:650}
+.fine{margin-top:56px;padding:24px 0 40px;border-top:1px solid var(--line);color:var(--muted);font-size:.9rem}
+.fine h2{margin:0 0 8px;font-size:1rem;color:var(--ink)}
+.fine p{max-width:68ch;margin:0 0 14px}
+.tool h3 a{text-decoration-thickness:2px;text-underline-offset:3px}
+.safe .more{max-width:60ch;margin:16px 0 0}
+.g h1{max-width:22ch;margin:22px 0 18px;font-size:clamp(2rem,7.5vw,3.3rem);line-height:1.08}
+.back{display:inline-block;margin-top:14px;padding:6px 0;color:var(--muted)}
+.prose{max-width:60ch}
+.prose .lead{margin:0 0 8px;font-size:1.15rem;color:var(--muted)}
+.prose h2{max-width:none;margin:40px 0 12px;font-size:1.45rem}
+.prose p{margin:0 0 16px}
+.prose ul,.prose ol{margin:0;padding-left:1.35em}
+.prose li+li{margin-top:12px}
+.prose li::marker{color:var(--ring);font-weight:700}
+.g .tools-box{max-width:none}
+
+.pre h1{max-width:20ch;font-size:clamp(2rem,8vw,3.6rem);margin-top:36px}
+.pre h1,.pre-text{position:relative}
+body.pre{--paper:#fff;--surface:#f6f8fc;--ink:#101733;--muted:#4b5678;--line:#d9e0ef;--hover:#e8eefb;--btn-bg:#0b7a6c;--btn-fg:#fff;--ring:#0b7a6c;--focus:#b45309;--mark:#d97706;--mark-bg:#fff2cc;--mark-ink:#5c3f00;color-scheme:light;background:#fff;position:relative;overflow-x:hidden}
+.pre .coins{display:none}
+main .checklist,.prose .checklist{list-style:none;padding:0;margin:0 0 1rem;max-width:none}.checklist li{margin:.5rem 0}.checklist label{display:flex;gap:.7rem;align-items:flex-start;padding:.7rem .9rem;border:1px solid var(--line);border-radius:12px;background:var(--surface);cursor:pointer}
+.checklist input{width:1.3rem;height:1.3rem;flex:none;margin-top:.15rem;accent-color:var(--btn-bg)}.checklist input:checked+span{color:var(--muted);text-decoration:line-through}
+.checker{position:absolute;inset:0;z-index:-1;display:grid;grid-template-columns:1fr;grid-template-rows:repeat(var(--rows,3),1fr);align-items:center;pointer-events:none;overflow:hidden}
+.checker i{-webkit-mask-image:radial-gradient(ellipse 62% 62% at 50% 50%,#000 30%,transparent 100%);mask-image:radial-gradient(ellipse 62% 62% at 50% 50%,#000 30%,transparent 100%);display:block;width:100%;aspect-ratio:4/3;background-size:cover;background-position:center;opacity:.25}
+.checker i.c{background-size:contain;background-repeat:no-repeat;width:62%;justify-self:center;aspect-ratio:1}
+.checker b.k{display:grid;place-items:center;width:6.5rem;height:6.5rem;border-radius:50%;color:#fff;font:700 3.4rem/1 system-ui,sans-serif;opacity:.25;margin:1.5rem;justify-self:end;box-shadow:inset 0 0 0 .5rem rgba(255,255,255,.35)}
+.checker>*{grid-column:1}
+@media (min-width:760px){
+.checker{grid-template-columns:1fr 1fr}
+.checker>*{grid-column:var(--col)}
+.checker i.c{width:min(46%,300px);aspect-ratio:1;justify-self:var(--js);margin:0 1rem}
+.checker i:not(.c){width:80%;justify-self:center}
+.checker b.k{width:13.5rem;height:13.5rem;font-size:7.5rem;margin:2rem 1rem;justify-self:var(--js);box-shadow:inset 0 0 0 1rem rgba(255,255,255,.35)}
+}
+.pre h1{display:inline-block;padding:12px 18px;border-radius:16px;background:rgba(255,255,255,.9)}
+.pre .pre-text,.pre .safe,.pre .panel,.pre .fine p{background:rgba(255,255,255,.9)}
+.pre .pre-text{padding:18px 20px;border-radius:16px}
+.pre .safe{padding:14px 20px;border-radius:0 16px 16px 0}
+.pre .fine{border-top:0}
+.pre .btn.alt{background:rgba(255,255,255,.94)}
+.pre main>section>h2,.pre .brand{display:inline-block;padding:4px 12px;border-radius:10px;background:rgba(255,255,255,.9)}
+.pre .fine p{display:inline-block;padding:8px 14px;border-radius:12px}
+.pre-text{max-width:60ch;font-size:1.1rem}
+.pre-text p{margin:0 0 18px}
+.cta-row{display:flex;flex-wrap:wrap;gap:12px;margin:26px 0}
+.btn.alt{background:transparent;color:var(--ink);border:2px solid var(--ring)}
+.btn.alt:hover{background:var(--hover)}
+.safe p{max-width:60ch;margin:0}
+.how{margin-top:12px;max-width:60ch}
+.how summary{cursor:pointer;font-weight:700;color:var(--ring);min-height:32px}
+.how ol{margin:10px 0 0;padding-left:1.35em}
+.how li+li{margin-top:8px}
+.hnote{margin:10px 0 0;color:var(--muted);font-size:.92rem}
+.coins{width:15rem;height:15rem}
+.fx{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 16px}
+.fx button{min-height:44px;padding:6px 16px;border:2px solid var(--line);border-radius:999px;background:var(--surface);color:var(--ink);font:inherit;font-weight:650;cursor:pointer}
+.fx button[aria-pressed=true]{background:var(--btn-bg);color:var(--btn-fg);border-color:var(--btn-bg)}
+.cc{display:inline-flex;flex-wrap:wrap;gap:6px;margin:10px 0 0;padding:0;list-style:none}
+.cc li{padding:1px 8px;border:1px solid var(--line);border-radius:6px;font-size:.78rem;font-weight:700;color:var(--muted)}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 0;padding:0;list-style:none}
+.chips li{padding:2px 9px;border-radius:999px;background:var(--hover);font-size:.8rem;color:var(--ink)}
+.exfine{max-width:60ch;margin:0 0 16px;color:var(--muted)}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Checklist kiểm tra token: đi theo đúng thứ tự này", "description": "Checklist từng bước để kiểm tra token trước khi mua: hợp đồng thật, quét bảo mật, dữ liệu thị trường, dự án và giới hạn của chính bạn.", "inLanguage": "vi", "mainEntityOfPage": "https://chainscout.app/vi/guides/token-check-checklist/", "author": {"@type": "Organization", "name": "ChainScout"}, "publisher": {"@type": "Organization", "name": "ChainScout"}}</script>
+</head>
+<body class="bg">
+<div class="checker" style="--rows:3" aria-hidden="true"><i class=c style="grid-row:1;--col:1;--js:start;background-image:url(../../../assets/robot-4.webp)"></i><i class=c style="grid-row:2;--col:2;--js:end;background-image:url(../../../assets/robot-5.webp)"></i><i style="grid-row:3;--col:1;--js:start;background-image:url(../../../assets/robot-2.webp)"></i></div>
+<a class="skip" href="#main">Bỏ qua đến nội dung</a>
+<div class="wrap">
+<header class="top">
+<a class="brand" href="../../"><svg class="logo" width="28" height="28" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="12" fill="none" stroke="#35e0c0" stroke-width="3"/><circle cx="16" cy="16" r="4.5" fill="#ffc23d"/></svg><span>ChainScout</span></a>
+<nav class="langs" aria-label="Ngôn ngữ"><a href="../../../en/guides/token-check-checklist/" lang="en" hreflang="en">English</a><a href="../../../fr/guides/token-check-checklist/" lang="fr" hreflang="fr">Français</a><a href="../../../id/guides/token-check-checklist/" lang="id" hreflang="id">Bahasa Indonesia</a><a href="../../../vi/guides/token-check-checklist/" lang="vi" hreflang="vi" aria-current="page">Tiếng Việt</a><a href="../../../sw/guides/token-check-checklist/" lang="sw" hreflang="sw">Kiswahili</a></nav>
+</header>
+<main id="main" class="g">
+<a class="back" href="../../">Quay lại danh mục</a>
+<h1>Checklist kiểm tra token: đi theo đúng thứ tự này</h1>
+<article class="prose">
+<p class="lead">Hãy đi qua các bước đúng thứ tự. Mục DỪNG nghĩa là: đừng mua, đừng cấp quyền gì và đừng sang bước tiếp theo. Danh sách sạch không phải là đảm bảo, nó chỉ cho thấy bạn chưa tìm thấy các dấu hiệu cảnh báo thông thường.</p>
+<h2>Bước 1. Đây có phải token thật không?</h2>
+<ul class="checklist"><li><label><input type="checkbox"><span>Tôi tìm trang web chính thức của dự án từ nguồn đáng tin, không phải từ tin nhắn hay quảng cáo.</span></label></li><li><label><input type="checkbox"><span>Tôi sao chép địa chỉ hợp đồng từ trang web chính thức đó.</span></label></li><li><label><input type="checkbox"><span>Trên CoinGecko, tên, ký hiệu và địa chỉ hợp đồng khớp với thông tin chính thức. <strong>DỪNG</strong> nếu khác nhau hoặc có nhiều token giống nhau mà tôi không biết cái nào thật.</span></label></li><li><label><input type="checkbox"><span>Mạng của token đúng là mạng tôi định dùng.</span></label></li></ul>
+<h2>Bước 2. Quét bảo mật</h2>
+<ul class="checklist"><li><label><input type="checkbox"><span>Tôi đã đưa địa chỉ hợp đồng vào GoPlus, chọn đúng mạng.</span></label></li><li><label><input type="checkbox"><span>Không phải honeypot, nên bán được. <strong>DỪNG</strong> nếu kết quả quét cho biết không thể bán.</span></label></li><li><label><input type="checkbox"><span>Thuế mua và bán thấp và bình thường. Thuế rất cao là dấu hiệu cảnh báo.</span></label></li><li><label><input type="checkbox"><span>Chủ sở hữu không thể tạo thêm token vô hạn hay đổi quy tắc, và không có chủ sở hữu ẩn.</span></label></li><li><label><input type="checkbox"><span>Thanh khoản được khóa hoặc đốt. Nếu người tạo rút được, họ có thể rút cạn pool.</span></label></li></ul>
+<h2>Bước 3. Dữ liệu thị trường</h2>
+<ul class="checklist"><li><label><input type="checkbox"><span>Khối lượng giao dịch 24 giờ hợp lý so với vốn hóa. Khối lượng quá nhỏ nghĩa là một giao dịch cũng làm giá biến động.</span></label></li><li><label><input type="checkbox"><span>Token được giao dịch trên nhiều hơn một thị trường, tốt nhất là có ít nhất một sàn nổi tiếng.</span></label></li><li><label><input type="checkbox"><span>Lịch sử giá không phải là một đợt tăng vọt duy nhất trong vài ngày gần đây. Token quá mới có rủi ro cao hơn.</span></label></li></ul>
+<h2>Bước 4. Dự án và con người</h2>
+<ul class="checklist"><li><label><input type="checkbox"><span>Trang web giải thích bằng lời đơn giản dự án làm gì và ai đứng sau.</span></label></li><li><label><input type="checkbox"><span>Vài ví không nắm phần lớn nguồn cung. Tôi đã xem những người nắm giữ lớn nhất, ví dụ bằng Arkham.</span></label></li><li><label><input type="checkbox"><span>Tôi biết có đợt mở khóa token lớn nào sắp tới không, vì nguồn cung mới có thể kéo giá xuống.</span></label></li><li><label><input type="checkbox"><span>Không ai hứa lợi nhuận chắc chắn hay thúc tôi phải vội. <strong>DỪNG</strong> nếu có.</span></label></li></ul>
+<h2>Bước 5. Trước khi chi tiền</h2>
+<ul class="checklist"><li><label><input type="checkbox"><span>Tôi đã đặt số tiền tối đa có thể mất hoàn toàn, và sẽ không vượt quá.</span></label></li><li><label><input type="checkbox"><span>Tôi sẽ gửi thử một khoản nhỏ trước và kiểm tra mạng cùng địa chỉ.</span></label></li><li><label><input type="checkbox"><span>Tôi không kết nối ví với liên kết từ tin nhắn và không cấp quyền chi tiêu không giới hạn.</span></label></li><li><label><input type="checkbox"><span>Tôi đã ghi lại lý do mua và khi nào sẽ xem xét lại quyết định.</span></label></li></ul>
+<h2>Cách đọc kết quả</h2>
+<p>Nếu gặp mục DỪNG, hãy bỏ token đó. Nếu nhiều mục chưa được đánh dấu, hãy coi là cảnh báo và chờ. Nếu đã đánh dấu hết, rủi ro vẫn cao, vì vậy hãy giữ số tiền nhỏ.</p>
+</article>
+<section class="tools-box" aria-labelledby="h-tools"><h2 id="h-tools">Công cụ được nhắc đến trong hướng dẫn này</h2><ul class="panel"><li class="tool" data-tool data-search="coingecko gia, von hoa va du lieu co ban cua hang nghin dong coin. bay gio no co gia bao nhieu?"><div><h3>CoinGecko</h3><p>Giá, vốn hóa và dữ liệu cơ bản của hàng nghìn đồng coin.</p><details class="how"><summary>Cách bắt đầu (5 bước)</summary><ol><li>Mở trang web CoinGecko và nhập tên hoặc mã của token vào ô tìm kiếm.</li><li>Chọn kết quả có đúng tên và ký hiệu. Token giả thường sao chép tên, vì vậy hãy so sánh địa chỉ hợp đồng trên trang với địa chỉ mà dự án công bố trên trang web chính thức của mình.</li><li>Xem vốn hóa thị trường, khối lượng giao dịch 24 giờ và số lượng thị trường. Khối lượng rất thấp, hoặc chỉ có một thị trường nhỏ, nghĩa là một giao dịch cũng có thể làm giá biến động.</li><li>Dùng trang web chính thức và liên kết mạng xã hội ghi trên trang token, không dùng liên kết được gửi qua tin nhắn.</li><li>Mở biểu đồ giá với khoảng thời gian dài nhất để xem toàn bộ lịch sử và kiểm tra những sàn nào niêm yết token.</li></ol><p class="hnote">CoinGecko chỉ hiển thị dữ liệu. Nó không cho biết token có an toàn hay sẽ tăng giá hay không.</p></details><div class="meta"><span class="lvl"><span class="dots" aria-hidden="true"><i class="on"></i><i></i><i></i></span><span><span class="sr">Mức độ: </span>Người mới</span></span></div></div><a class="btn" href="https://www.coingecko.com" target="_blank" rel="noopener">Mở CoinGecko<span class="sr"> (mở trong tab mới)</span></a></li><li class="tool" data-tool data-search="goplus security kiem tra token, hop dong va lien ket de phat hien rui ro lua dao, honeypot. token hoac lien ket nay co an toan khong?"><div><h3>GoPlus Security</h3><p>Kiểm tra token, hợp đồng và liên kết để phát hiện rủi ro lừa đảo, honeypot.</p><details class="how"><summary>Cách bắt đầu (5 bước)</summary><ol><li>Mở trang web GoPlus và tìm công cụ kiểm tra bảo mật token.</li><li>Chọn mạng blockchain mà token đang chạy, ví dụ Ethereum, BNB Chain, Solana hoặc TRON.</li><li>Dán địa chỉ hợp đồng. Hãy sao chép từ trang web chính thức của dự án hoặc từ CoinGecko, không lấy từ tin nhắn, rồi chạy kiểm tra.</li><li>Đọc cảnh báo trước: honeypot (mua được nhưng không bán được), thuế mua hoặc bán rất cao, chủ sở hữu có thể tạo thêm token hoặc đổi quy tắc, và chủ sở hữu ẩn.</li><li>Nếu báo cáo cho thấy nhiều rủi ro, đừng mua hay cấp quyền gì cả. Nếu trông sạch, hãy nhớ đó chỉ là một yếu tố tham khảo.</li></ol><p class="hnote">Kết quả sạch không phải là đảm bảo. Các chiêu lừa mới được tạo ra để vượt qua kiểm tra, và công cụ không thấy được kế hoạch của đội ngũ.</p></details><div class="meta"><span class="lvl"><span class="dots" aria-hidden="true"><i class="on"></i><i></i><i></i></span><span><span class="sr">Mức độ: </span>Người mới</span></span></div></div><a class="btn" href="https://gopluslabs.io" target="_blank" rel="noopener">Mở GoPlus Security<span class="sr"> (mở trong tab mới)</span></a></li><li class="tool" data-tool data-search="defillama xep hang giao thuc defi, tvl va du lieu chuoi o mot noi. bay gio no co gia bao nhieu?"><div><h3>DefiLlama</h3><p>Xếp hạng giao thức DeFi, TVL và dữ liệu chuỗi ở một nơi.</p><details class="how"><summary>Cách bắt đầu (5 bước)</summary><ol><li>Mở DefiLlama và xem bảng xếp hạng DeFi theo TVL (tổng giá trị bị khóa).</li><li>Bấm vào một dự án và kiểm tra TVL thay đổi ra sao theo thời gian và nó chạy trên những blockchain nào.</li><li>Cảnh giác với các đợt giảm đột ngột, hoặc TVL phần lớn là token của chính dự án. Nó có thể trông lớn hơn thực tế.</li><li>Tìm thông tin kiểm toán và các vụ tấn công trước đây trên trang, và xem các trang stablecoin và blockchain để hiểu bối cảnh.</li><li>Hãy nghi ngờ mức lợi suất quá cao. Lợi suất cao thường đi cùng rủi ro cao.</li></ol><p class="hnote">TVL đo lượng tiền đã gửi vào. Nó không đo mức độ an toàn của dự án.</p></details><div class="meta"><span class="lvl"><span class="dots" aria-hidden="true"><i class="on"></i><i></i><i></i></span><span><span class="sr">Mức độ: </span>Người mới</span></span></div></div><a class="btn" href="https://defillama.com" target="_blank" rel="noopener">Mở DefiLlama<span class="sr"> (mở trong tab mới)</span></a></li><li class="tool" data-tool data-search="arkham intelligence theo doi vi va thuc the tren nhieu blockchain bang cong cu truc quan. vi lon dang lam gi?"><div><h3>Arkham Intelligence</h3><p>Theo dõi ví và thực thể trên nhiều blockchain bằng công cụ trực quan.</p><details class="how"><summary>Cách bắt đầu (5 bước)</summary><ol><li>Mở Arkham và dán một địa chỉ ví hoặc tìm theo tên.</li><li>Mở trình khám phá trực quan để xem ví giao dịch với những địa chỉ và thực thể nào.</li><li>Đọc nhãn cẩn thận. Địa chỉ không có nhãn là chưa biết, không phải là an toàn.</li><li>Theo dõi các giao dịch chuyển lớn nhất và xem tiền đi đâu, ví dụ vào sàn hoặc một ví mới.</li><li>Nếu có cảnh báo, hãy đặt một cái cho địa chỉ bạn muốn theo dõi.</li></ol><p class="hnote">Việc gắn địa chỉ với một người hay công ty thật có thể sai. Đừng buộc tội ai chỉ vì một cái nhãn.</p></details><div class="meta"><span class="lvl"><span class="dots" aria-hidden="true"><i class="on"></i><i class="on"></i><i></i></span><span><span class="sr">Mức độ: </span>Trung cấp</span></span></div></div><a class="btn" href="https://intel.arkm.com" target="_blank" rel="noopener">Mở Arkham Intelligence<span class="sr"> (mở trong tab mới)</span></a></li></ul></section>
+</main>
+<footer class="fine">
+<h2>Cách trang này hoạt động</h2>
+<p>Hướng dẫn này chỉ là thông tin chung, không phải lời khuyên pháp lý. Đây là danh mục độc lập. Một số liên kết là liên kết đối tác, và chúng mình có thể nhận hoa hồng nếu bạn đăng ký, bạn không phải trả thêm. Mục đối tác và tài trợ đều được đánh dấu. Giá và gói miễn phí có thể thay đổi, hãy kiểm tra từng trang chính thức. Không nội dung nào ở đây là lời khuyên tài chính, và tiền mã hóa có rủi ro cao.</p>
+<p>&copy; 2026 ChainScout</p>
+</footer>
+</div>
+</body>
+</html>
