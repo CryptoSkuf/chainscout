@@ -334,6 +334,7 @@ body.pre{--paper:#fff;--surface:#f6f8fc;--ink:#101733;--muted:#4b5678;--line:#d9
 .pre .coins{display:none}
 main .checklist,.prose .checklist{list-style:none;padding:0;margin:0 0 1rem;max-width:none}.checklist li{margin:.5rem 0}.checklist label{display:flex;gap:.7rem;align-items:flex-start;padding:.7rem .9rem;border:1px solid var(--line);border-radius:12px;background:var(--surface);cursor:pointer}
 .checklist input{width:1.3rem;height:1.3rem;flex:none;margin-top:.15rem;accent-color:var(--btn-bg)}.checklist input:checked+span{color:var(--muted);text-decoration:line-through}
+.cta-check{display:inline-block;margin:0 0 .9rem;padding:.7rem 1.1rem;border-radius:12px;background:var(--btn-bg);color:var(--btn-fg);font-weight:700;text-decoration:none}.cta-check:hover{filter:brightness(1.1)}
 .checker{position:absolute;inset:0;z-index:-1;display:grid;grid-template-columns:1fr;grid-template-rows:repeat(var(--rows,3),1fr);align-items:center;pointer-events:none;overflow:hidden}
 .checker i{-webkit-mask-image:radial-gradient(ellipse 62% 62% at 50% 50%,#000 30%,transparent 100%);mask-image:radial-gradient(ellipse 62% 62% at 50% 50%,#000 30%,transparent 100%);display:block;width:100%;aspect-ratio:4/3;background-size:cover;background-position:center;opacity:.25}
 .checker i.c{background-size:contain;background-repeat:no-repeat;width:62%;justify-self:center;aspect-ratio:1}
@@ -656,9 +657,13 @@ def render_page(lang: str, tools: list[dict], cfg: dict, year: int) -> str:
     sections = []
     for cat, items in groups:
         rows = "".join(tool_row(t, lang, S, L) for t in items)
+        cta = ""
+        if cat == "safety":
+            ck = GUIDES["token-check-checklist"]
+            cta = f'<a class="cta-check" href="guides/token-check-checklist/">{esc(ck["short"][lang])} &rarr;</a>'
         sections.append(
             f'<section id="q-{cat}" data-group aria-labelledby="h-{cat}">'
-            f'<h2 id="h-{cat}">{esc(S["q"][cat])}</h2><ul class="panel">{rows}</ul></section>'
+            f'<h2 id="h-{cat}">{esc(S["q"][cat])}</h2>{cta}<ul class="panel">{rows}</ul></section>'
         )
 
     tips = "".join(f"<li>{esc(tip)}</li>" for tip in S["tips"])
