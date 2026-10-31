@@ -1,6 +1,6 @@
 """Гиды для сайта ChainScout: 3 статьи (ещё 4 в guides_more_a.py и guides_more_b.py) на 5 языках (en, fr, id, vi, sw).
 
-Формат блока: ("h", "заголовок") | ("p", "абзац") | ("ul", [пункты]) | ("ol", [шаги]).
+Формат блока: ("h", "заголовок") | ("p", "абзац") | ("ul", [пункты]) | ("ol", [шаги]) | ("check", [пункты чек-листа]).
 В тексте можно выделять начало пункта так: **жирный**.
 Добавить гид: новый ключ в GUIDES, все 5 языков и список id инструментов из catalog.json.
 Поле short: короткое название гида для кнопки в боте (до 40 символов, с эмодзи).
@@ -577,3 +577,13 @@ from guides_more_b import GUIDES_B  # noqa: E402
 
 GUIDES.update(GUIDES_A)
 GUIDES.update(GUIDES_B)
+
+from guides_more_c import GUIDES_C  # noqa: E402
+from guides_more_d import GUIDES_D  # noqa: E402
+
+GUIDES.update(GUIDES_C)
+GUIDES.update(GUIDES_D)
+
+from guides_more_e import GUIDES_E  # noqa: E402
+
+GUIDES.update(GUIDES_E)

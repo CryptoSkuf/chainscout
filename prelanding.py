@@ -117,3 +117,30 @@ PRE = {
         "disclaimer": "Taarifa tu, si ushauri wa kifedha. Mali za crypto zina hatari kubwa na unaweza kupoteza kila ulichoweka. Angalia kanuni za nchi yako kabla ya kuchukua hatua.",
     },
 }
+
+
+# Блок «почему готовиться сейчас». Без обещаний роста: только «может» и «никто не знает».
+SOON = {
+    "en": {
+        "soon_title": "Why get ready now",
+        "soon": "Only about 900 thousand bitcoins are left to be mined. Together with a possible easing of the Fed's tough stance, this may give the market a strong push, although nobody can know for sure. Let us come to that period prepared, with a full set of tools we know how to use properly and with real experience of exchanges, wallets and pools. We can become skilled specialists in this promising, cutting-edge field and know more than most of the people around us.",
+    },
+    "fr": {
+        "soon_title": "Pourquoi se préparer dès maintenant",
+        "soon": "Il reste à peine 900 000 bitcoins environ à miner. Associé à un possible assouplissement de la ligne dure de la Fed, cela peut donner un fort élan au marché, même si personne ne peut le savoir avec certitude. Abordons cette période préparés, avec un jeu complet d'outils que nous savons bien utiliser et une vraie expérience des plateformes d'échange, des portefeuilles et des pools. Nous pouvons devenir des spécialistes compétents de ce domaine prometteur et de pointe, et en savoir plus que la plupart des gens autour de nous.",
+    },
+    "id": {
+        "soon_title": "Mengapa bersiap sekarang",
+        "soon": "Tinggal sekitar 900 ribu bitcoin lagi yang belum ditambang. Bersama kemungkinan melonggarnya sikap keras The Fed, hal ini bisa memberi dorongan kuat bagi pasar, meski tidak ada yang bisa memastikannya. Mari kita menyambut periode itu dengan siap, dengan perangkat alat lengkap yang kita tahu cara memakainya dengan benar, dan dengan pengalaman nyata soal bursa, dompet, dan pool. Kita bisa menjadi spesialis yang terampil di bidang yang menjanjikan dan mutakhir ini, serta tahu lebih banyak daripada kebanyakan orang di sekitar kita.",
+    },
+    "vi": {
+        "soon_title": "Vì sao nên chuẩn bị ngay từ bây giờ",
+        "soon": "Chỉ còn khoảng 900 nghìn bitcoin chưa được khai thác. Cùng với khả năng Fed nới lỏng lập trường cứng rắn, điều này có thể tạo cú hích mạnh cho thị trường, dù không ai có thể biết chắc. Hãy bước vào giai đoạn đó với sự chuẩn bị, với đầy đủ công cụ mà chúng ta biết dùng đúng cách và với kinh nghiệm thực tế về sàn giao dịch, ví và pool. Chúng ta có thể trở thành những chuyên gia giỏi trong lĩnh vực đầy triển vọng và tiên tiến này, và hiểu biết nhiều hơn phần lớn những người xung quanh.",
+    },
+    "sw": {
+        "soon_title": "Kwa nini ujiandae sasa",
+        "soon": "Zimebaki takriban bitcoin elfu 900 tu za kuchimbwa. Pamoja na uwezekano wa Fed kulegeza msimamo wake mkali, hili linaweza kulipa soko msukumo mkubwa, ingawa hakuna anayeweza kujua kwa uhakika. Tufikie kipindi hicho tukiwa tumejiandaa, tukiwa na zana kamili tunazojua kuzitumia ipasavyo na uzoefu halisi wa mabadilishano, pochi na pool. Tunaweza kuwa wataalamu stadi katika sekta hii yenye matumaini na ya kisasa, na kujua zaidi kuliko watu wengi wanaotuzunguka.",
+    },
+}
+for _k, _v in SOON.items():
+    PRE[_k].update(_v)

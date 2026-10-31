@@ -124,3 +124,11 @@ HOWTO = {
         }
     },
 }
+
+
+# Остальные инструкции лежат в отдельных файлах, чтобы этот не разрастался.
+from howto_more_a import HOWTO_A  # noqa: E402
+from howto_more_b import HOWTO_B  # noqa: E402
+
+HOWTO.update(HOWTO_A)
+HOWTO.update(HOWTO_B)

@@ -238,6 +238,8 @@ def guide_block(kind: str, value) -> str:
         return rich_html(value)
     if kind == "ul":
         return "\n\n".join(f"• {rich_html(item)}" for item in value)
+    if kind == "check":
+        return "\n\n".join(f"☐ {rich_html(item)}" for item in value)
     return "\n\n".join(f"{n}. {rich_html(item)}" for n, item in enumerate(value, 1))
 
 
@@ -320,6 +322,7 @@ async def render(update: Update, text: str, markup: InlineKeyboardMarkup) -> Non
 
 # ------------------------------------------------------------- user handlers
 async def cmd_start(update: Update, ctx: ContextTypes.DEFAULT_TYPE) -> None:
+    log.info("/start от пользователя %s", update.effective_user.id)
     user = get_user(update.effective_user.id)
     if user is None:
         await render(update, LANG_PROMPT, kb_langs())
@@ -614,6 +617,9 @@ def main() -> None:
     if not token:
         raise SystemExit("Задайте BOT_TOKEN (токен от @BotFather), см. README.md")
     logging.basicConfig(format="%(asctime)s %(levelname)s %(name)s: %(message)s", level=logging.INFO)
+    # httpx пишет в лог полный адрес запроса вместе с токеном бота: прячем эти строки
+    logging.getLogger("httpx").setLevel(logging.WARNING)
+    logging.getLogger("httpcore").setLevel(logging.WARNING)
 
     app = Application.builder().token(token).build()
     app.add_handler(CommandHandler("start", cmd_start))
