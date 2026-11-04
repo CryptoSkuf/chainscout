@@ -37,7 +37,8 @@ from telegram.ext import (
     ContextTypes,
 )
 
-from guides import GUIDE_UI, GUIDES
+from guides import GUIDE_UI, GUIDES, SECTION_GUIDES
+from sections import SEC
 from howto import HOWTO, HOWTO_UI
 from locales import LANGS, STRINGS
 
@@ -161,6 +162,7 @@ def kb_menu(lang: str, subscribed: bool) -> InlineKeyboardMarkup:
             [btn(t(lang, "btn_find"), "cats")],
             [btn(t(lang, "btn_all"), "all")],
             [btn(t(lang, "btn_guides"), "guides")],
+            [btn("🌊 " + SEC[lang]["earn"][0], "earn")],
             [btn(t(lang, "btn_unsub" if subscribed else "btn_sub"), "sub:0" if subscribed else "sub:1")],
             [btn(t(lang, "btn_about"), "about"), btn(t(lang, "btn_lang"), "chlang")],
         ]
@@ -264,8 +266,21 @@ def guide_pages(slug: str, lang: str) -> tuple[str, ...]:
     return tuple(pages)
 
 
-def kb_guides(lang: str) -> InlineKeyboardMarkup:
-    rows = [[btn(g["short"].get(lang) or g["short"]["en"], f"gd:{slug}:0")] for slug, g in GUIDES.items()]
+def guide_button(lang: str, slug: str) -> InlineKeyboardButton:
+    g = GUIDES[slug]
+    return btn(g["short"].get(lang) or g["short"]["en"], f"gd:{slug}:0")
+
+
+def kb_guides(lang: str, only: str = "") -> InlineKeyboardMarkup:
+    """Все гиды, сгруппированные по разделам сайта; only="earn" показывает один раздел без заголовка."""
+    parts = (("safety", "safety"), ("tools", "tools"), ("exchanges", "money"), ("earn", "earn"))
+    rows = []
+    for title_key, group in parts:
+        if only and only != title_key:
+            continue
+        if not only:
+            rows.append([btn(f"— {SEC[lang][title_key][0]} —", "noop")])
+        rows += [[guide_button(lang, slug)] for slug in SECTION_GUIDES[group]]
     rows.append([btn(t(lang, "btn_back"), "menu")])
     return InlineKeyboardMarkup(rows)
 
@@ -300,7 +315,7 @@ def guide_screen(lang: str, slug: str, page: str) -> tuple[str, InlineKeyboardMa
             tool = BY_ID.get(tool_id)
             if tool is not None and tool in shown:
                 rows.append([btn(tool["name"], f"tool:{tool_id}:g:{slug}")])
-    rows.append([btn(t(lang, "btn_back"), "guides")])
+    rows.append([btn(t(lang, "btn_back"), "earn" if slug in SECTION_GUIDES["earn"] else "guides")])
     return text, InlineKeyboardMarkup(rows)
 
 
@@ -420,6 +435,9 @@ async def on_button(update: Update, ctx: ContextTypes.DEFAULT_TYPE) -> None:
         await render(update, howto_text(tool, lang), markup)
     elif kind == "guides":
         await render(update, t(lang, "pick_guide"), kb_guides(lang))
+    elif kind == "earn":
+        X = SEC[lang]
+        await render(update, f"<b>{html.escape(X['earn'][0])}</b>\n\n{html.escape(X['earn'][1])}\n\n{html.escape(X['earn_warn'])}", kb_guides(lang, "earn"))
     elif kind == "gd":
         slug, _, page = rest.partition(":")
         if slug not in GUIDES:

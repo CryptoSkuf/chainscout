@@ -587,3 +587,25 @@ GUIDES.update(GUIDES_D)
 from guides_more_e import GUIDES_E  # noqa: E402
 
 GUIDES.update(GUIDES_E)
+
+from guides_more_f import GUIDES_F  # noqa: E402
+from guides_more_g import GUIDES_G  # noqa: E402
+from guides_more_h import GUIDES_H  # noqa: E402
+
+GUIDES.update(GUIDES_F)
+GUIDES.update(GUIDES_G)
+GUIDES.update(GUIDES_H)
+
+# Темы разделов сайта: какой гид к какому разделу относится (используют сайт и бот).
+SECTION_GUIDES = {
+    "safety": [
+        "token-check-checklist", "check-token-scams", "fake-support-account-takeover", "long-con-investment-scams",
+        "wallets-and-seed-phrase", "wrong-network-transfers", "fake-airdrops-trap-tokens", "stablecoins-depeg-risk",
+    ],
+    "tools": ["ai-tools-crypto-research", "on-chain-data-basics"],
+    "money": ["buy-crypto-safely", "send-money-home-stablecoins"],
+    "earn": [
+        "airdrops-retrodrops-explained", "join-airdrops-safely", "token-sales-launchpads",
+        "liquidity-pools-defi", "before-you-join-checklist",
+    ],
+}

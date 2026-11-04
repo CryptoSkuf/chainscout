@@ -116,7 +116,7 @@ async def main():
     assert "Choose your language" in out[-1].text, "/guides без языка должен предложить выбрать язык"
     await bot.on_button(press(uid, "lang:vi", out), None)
     await bot.cmd_guides(command(uid, out), None)
-    assert out[-1].markup.inline_keyboard[0][0].callback_data.startswith("gd:"), "/guides: нет списка гидов"
+    assert sum(b.callback_data.startswith("gd:") for r in out[-1].markup.inline_keyboard for b in r) == len(GUIDES), "/guides: в списке не все гиды"
     slug = next(iter(GUIDES))
     out.clear()
     await bot.on_button(press(uid, f"gd:{slug}:99", out), None)
