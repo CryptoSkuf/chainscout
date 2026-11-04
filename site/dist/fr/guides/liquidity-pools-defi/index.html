@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Pools de liquidité en DeFi : comment on gagne des frais et ce qu&#x27;on risque | ChainScout</title>
+<meta name="description" content="Comment fonctionne un pool de liquidité, d&#x27;où vient le revenu, les principaux risques dont la perte impermanente, et comment apprendre avec un petit montant.">
+<link rel="canonical" href="https://chainscout.app/fr/guides/liquidity-pools-defi/">
+<link rel="alternate" hreflang="en" href="https://chainscout.app/en/guides/liquidity-pools-defi/"><link rel="alternate" hreflang="fr" href="https://chainscout.app/fr/guides/liquidity-pools-defi/"><link rel="alternate" hreflang="id" href="https://chainscout.app/id/guides/liquidity-pools-defi/"><link rel="alternate" hreflang="vi" href="https://chainscout.app/vi/guides/liquidity-pools-defi/"><link rel="alternate" hreflang="sw" href="https://chainscout.app/sw/guides/liquidity-pools-defi/"><link rel="alternate" hreflang="x-default" href="https://chainscout.app/en/guides/liquidity-pools-defi/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="ChainScout">
+<meta property="og:title" content="Pools de liquidité en DeFi : comment on gagne des frais et ce qu&#x27;on risque">
+<meta property="og:description" content="Comment fonctionne un pool de liquidité, d&#x27;où vient le revenu, les principaux risques dont la perte impermanente, et comment apprendre avec un petit montant.">
+<meta property="og:url" content="https://chainscout.app/fr/guides/liquidity-pools-defi/">
+<meta property="og:locale" content="fr_FR">
+<meta name="twitter:card" content="summary">
+<meta name="theme-color" content="#ffffff">
+<link rel="icon" href="../../../favicon.svg" type="image/svg+xml">
+<style>
+:root{color-scheme:light;--paper:#fff;--surface:rgba(255,255,255,.93);--ink:#101733;--muted:#4b5678;--line:#d9e0ef;--hover:#e8eefb;--btn-bg:#0b7a6c;--btn-fg:#fff;--ring:#0b7a6c;--focus:#b45309;--mark:#d97706;--mark-bg:#fff2cc;--mark-ink:#5c3f00}
+.coins{position:absolute;top:5.5rem;right:0;z-index:-1;width:15rem;height:15rem;pointer-events:none;opacity:.6}@media (max-width:760px){.coins{opacity:.22}}
+.coins svg{position:absolute}
+@media (prefers-reduced-motion:no-preference){.coins svg{animation:bob 7s ease-in-out infinite}.coins svg:nth-child(2){animation-delay:-2s}.coins svg:nth-child(3){animation-delay:-4s}.coins svg:nth-child(4){animation-delay:-5.5s}}
+@keyframes bob{50%{transform:translateY(-10px)}}
+.ticker{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 22px;padding:0;list-style:none}
+.ticker a{display:inline-flex;align-items:center;gap:6px;min-height:36px;padding:4px 14px;border:1px solid var(--line);border-radius:999px;background:var(--surface);font-size:.85rem;color:var(--ink);text-decoration:none}
+.ticker a:hover{border-color:var(--ring);background:var(--hover)}
+.ticker b{display:inline-grid;place-items:center;min-width:24px;height:24px;padding:0 4px;border-radius:12px;color:#fff;font-size:.8rem;line-height:1}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{-webkit-text-size-adjust:100%}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+body{margin:0;position:relative;overflow-x:hidden;background:#fff;color:var(--ink);font:17px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans",sans-serif}
+.wrap{position:relative}
+.panel,.ask,.join{border:1px solid var(--line)}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--focus);outline-offset:3px;border-radius:6px}
+.wrap{max-width:50rem;margin:0 auto;padding:0 16px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.skip{position:absolute;left:-999px;top:8px;z-index:10;padding:10px 14px;border-radius:8px;background:var(--btn-bg);color:var(--btn-fg)}
+.skip:focus{left:16px}
+.top{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 20px;padding:18px 0 6px}
+.brand{display:inline-flex;align-items:center;gap:10px;font-weight:800;font-size:1.15rem;letter-spacing:-.01em;text-decoration:none}
+.logo{flex:none}
+.langs{display:flex;flex-wrap:wrap;gap:2px}
+.langs a{padding:6px 10px;border-radius:8px;font-size:.95rem;text-decoration:none;color:var(--muted)}
+.langs a:hover{background:var(--hover);color:var(--ink)}
+.langs a[aria-current]{background:var(--ink);color:var(--paper);font-weight:650}
+h1{max-width:16ch;margin:44px 0 18px;font-size:clamp(2.5rem,9.5vw,4.75rem);line-height:1.02;letter-spacing:-.035em;font-weight:800;text-wrap:balance}
+.lede{max-width:60ch;margin:0 0 26px;font-size:1.1rem;color:var(--muted)}
+input[type=search],input[type=email]{width:100%;min-height:52px;padding:0 16px;border:2px solid var(--line);border-radius:12px;background:var(--surface);color:var(--ink);font:inherit}
+input[type=search]:focus-visible,input[type=email]:focus-visible{border-color:var(--focus)}
+.asks{display:grid;gap:10px;margin:22px 0 0;padding:0;list-style:none}
+.ask{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:16px 18px 16px 22px;border-radius:14px;background:var(--surface);box-shadow:inset 5px 0 0 var(--ring);font-size:1.2rem;font-weight:700;line-height:1.3;text-decoration:none}
+.ask.first{box-shadow:inset 5px 0 0 var(--mark)}
+.ask:hover{background:var(--hover)}
+.ask small{flex:none;font-size:.9rem;font-weight:500;color:var(--muted)}
+.start{display:block;width:max-content;margin-top:6px;padding:2px 8px;border-radius:6px;background:var(--mark-bg);color:var(--mark-ink);font-size:.8rem;font-weight:700}
+.empty{margin:28px 0 0;color:var(--muted)}
+section{margin-top:56px;scroll-margin-top:12px}
+h2{max-width:24ch;margin:0 0 16px;font-size:clamp(1.55rem,5vw,2.1rem);line-height:1.15;letter-spacing:-.02em;font-weight:800;text-wrap:balance}
+.panel{margin:0;padding:0;list-style:none;overflow:hidden;border-radius:18px;background:var(--surface)}
+.tool{display:grid;gap:14px;padding:20px;border-top:1px solid var(--line)}
+.tool:first-child{border-top:0}
+.tool h3{margin:0;font-size:1.2rem;line-height:1.3;font-weight:750}
+.tool p{max-width:60ch;margin:4px 0 0}
+.tool .meta{display:flex;flex-wrap:wrap;align-items:center;gap:6px 18px;margin-top:10px;font-size:.9rem;color:var(--muted)}
+.lvl{display:inline-flex;align-items:center;gap:8px}
+.dots{display:inline-flex;gap:4px}
+.dots i{display:block;width:11px;height:11px;border:2px solid var(--ring);border-radius:50%}
+.dots i.on{background:var(--ring)}
+.tag{display:inline-block;margin-left:8px;padding:1px 8px;border-radius:6px;background:var(--mark-bg);color:var(--mark-ink);font-size:.75rem;font-weight:700;vertical-align:middle}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:8px 18px;border:0;border-radius:10px;background:var(--btn-bg);color:var(--btn-fg);font:inherit;font-weight:650;line-height:1.25;text-align:center;text-decoration:none;cursor:pointer}
+.btn:hover{filter:brightness(1.1)}
+@media (min-width:640px){.tool{grid-template-columns:1fr auto;align-items:center;gap:24px}.tool .btn{min-width:13rem}}
+.safe{padding-left:20px;border-left:5px solid var(--mark)}
+.safe h2{font-size:clamp(1.3rem,4vw,1.6rem)}
+.safe ul{max-width:60ch;margin:0;padding-left:1.2em}
+.safe li+li{margin-top:10px}
+.join{padding:24px 20px;border-radius:18px;background:var(--surface)}
+.join h2{margin-bottom:8px}
+.join p{max-width:56ch;margin:0 0 18px;color:var(--muted)}
+.mail{display:grid;gap:10px;max-width:28rem;margin-top:18px}
+.mail label{font-weight:650}
+.fine{margin-top:56px;padding:24px 0 40px;border-top:1px solid var(--line);color:var(--muted);font-size:.9rem}
+.fine h2{margin:0 0 8px;font-size:1rem;color:var(--ink)}
+.fine p{max-width:68ch;margin:0 0 14px}
+.tool h3 a{text-decoration-thickness:2px;text-underline-offset:3px}
+.safe .more{max-width:60ch;margin:16px 0 0}
+.g h1{max-width:22ch;margin:22px 0 18px;font-size:clamp(2rem,7.5vw,3.3rem);line-height:1.08}
+.back{display:inline-block;margin-top:14px;padding:6px 0;color:var(--muted)}
+.prose{max-width:60ch}
+.prose .lead{margin:0 0 8px;font-size:1.15rem;color:var(--muted)}
+.prose h2{max-width:none;margin:40px 0 12px;font-size:1.45rem}
+.prose p{margin:0 0 16px}
+.prose ul,.prose ol{margin:0;padding-left:1.35em}
+.prose li+li{margin-top:12px}
+.prose li::marker{color:var(--ring);font-weight:700}
+.g .tools-box{max-width:none}
+
+.pre h1{max-width:20ch;font-size:clamp(2rem,8vw,3.6rem);margin-top:36px}
+.pre h1,.pre-text{position:relative}
+body.pre{--paper:#fff;--surface:#f6f8fc;--ink:#101733;--muted:#4b5678;--line:#d9e0ef;--hover:#e8eefb;--btn-bg:#0b7a6c;--btn-fg:#fff;--ring:#0b7a6c;--focus:#b45309;--mark:#d97706;--mark-bg:#fff2cc;--mark-ink:#5c3f00;color-scheme:light;background:#fff;position:relative;overflow-x:hidden}
+.pre .coins{display:none}
+main .checklist,.prose .checklist{list-style:none;padding:0;margin:0 0 1rem;max-width:none}.checklist li{margin:.5rem 0}.checklist label{display:flex;gap:.7rem;align-items:flex-start;padding:.7rem .9rem;border:1px solid var(--line);border-radius:12px;background:var(--surface);cursor:pointer}
+.checklist input{width:1.3rem;height:1.3rem;flex:none;margin-top:.15rem;accent-color:var(--btn-bg)}.checklist input:checked+span{color:var(--muted);text-decoration:line-through}
+.menu{display:flex;flex-wrap:wrap;gap:.4rem;margin:0 0 1.2rem}.menu a{padding:.45rem .85rem;border:1px solid var(--line);border-radius:999px;background:var(--surface);color:var(--ink);text-decoration:none;font-weight:600;font-size:.95rem}.menu a:hover{background:var(--hover)}.menu a[aria-current=page]{background:var(--ink);color:#fff;border-color:var(--ink)}
+.hubstart{margin:1rem 0 1.6rem}.hubtitle{margin:1.4rem 0 .8rem}.hub{list-style:none;padding:0;margin:0 0 2rem;display:grid;gap:.9rem;grid-template-columns:1fr}
+@media (min-width:760px){.hub{grid-template-columns:1fr 1fr}}
+.hub-card{display:block;height:100%;padding:1.1rem 1.2rem;border:1px solid var(--line);border-radius:16px;background:var(--surface);color:var(--ink);text-decoration:none}.hub-card:hover{background:var(--hover);border-color:var(--ring)}.hub-card h2{margin:0 0 .4rem;font-size:1.3rem}.hub-card p{margin:0 0 .6rem;color:var(--muted)}.hub-card span{font-size:.9rem;font-weight:700;color:var(--btn-bg)}
+.cta-check{display:inline-block;margin:0 0 .9rem;padding:.7rem 1.1rem;border-radius:12px;background:var(--btn-bg);color:var(--btn-fg);font-weight:700;text-decoration:none}.cta-check:hover{filter:brightness(1.1)}
+.checker{position:absolute;inset:0;z-index:-1;display:grid;grid-template-columns:1fr;grid-template-rows:repeat(var(--rows,3),1fr);align-items:center;pointer-events:none;overflow:hidden}
+.checker i{-webkit-mask-image:radial-gradient(ellipse 62% 62% at 50% 50%,#000 30%,transparent 100%);mask-image:radial-gradient(ellipse 62% 62% at 50% 50%,#000 30%,transparent 100%);display:block;width:100%;aspect-ratio:4/3;background-size:cover;background-position:center;opacity:.25}
+.checker i.c{background-size:contain;background-repeat:no-repeat;width:62%;justify-self:center;aspect-ratio:1}
+.checker b.k{display:grid;place-items:center;width:6.5rem;height:6.5rem;border-radius:50%;color:#fff;font:700 3.4rem/1 system-ui,sans-serif;opacity:.25;margin:1.5rem;justify-self:end;box-shadow:inset 0 0 0 .5rem rgba(255,255,255,.35)}
+.checker>*{grid-column:1}
+@media (min-width:760px){
+.checker{grid-template-columns:1fr 1fr}
+.checker>*{grid-column:var(--col)}
+.checker i.c{width:min(46%,300px);aspect-ratio:1;justify-self:var(--js);margin:0 1rem}
+.checker i:not(.c){width:80%;justify-self:center}
+.checker b.k{width:13.5rem;height:13.5rem;font-size:7.5rem;margin:2rem 1rem;justify-self:var(--js);box-shadow:inset 0 0 0 1rem rgba(255,255,255,.35)}
+}
+.pre h1{display:inline-block;padding:12px 18px;border-radius:16px;background:rgba(255,255,255,.9)}
+.pre .pre-text,.pre .safe,.pre .panel,.pre .fine p{background:rgba(255,255,255,.9)}
+.pre .pre-text{padding:18px 20px;border-radius:16px}
+.pre .safe{padding:14px 20px;border-radius:0 16px 16px 0}
+.pre .fine{border-top:0}
+.pre .btn.alt{background:rgba(255,255,255,.94)}
+.pre main>section>h2,.pre .brand{display:inline-block;padding:4px 12px;border-radius:10px;background:rgba(255,255,255,.9)}
+.pre .fine p{display:inline-block;padding:8px 14px;border-radius:12px}
+.pre-text{max-width:60ch;font-size:1.1rem}
+.pre-text p{margin:0 0 18px}
+.cta-row{display:flex;flex-wrap:wrap;gap:12px;margin:26px 0}
+.btn.alt{background:transparent;color:var(--ink);border:2px solid var(--ring)}
+.btn.alt:hover{background:var(--hover)}
+.safe p{max-width:60ch;margin:0}
+.how{margin-top:12px;max-width:60ch}
+.how summary{cursor:pointer;font-weight:700;color:var(--ring);min-height:32px}
+.how ol{margin:10px 0 0;padding-left:1.35em}
+.how li+li{margin-top:8px}
+.hnote{margin:10px 0 0;color:var(--muted);font-size:.92rem}
+.coins{width:15rem;height:15rem}
+.fx{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 16px}
+.fx button{min-height:44px;padding:6px 16px;border:2px solid var(--line);border-radius:999px;background:var(--surface);color:var(--ink);font:inherit;font-weight:650;cursor:pointer}
+.fx button[aria-pressed=true]{background:var(--btn-bg);color:var(--btn-fg);border-color:var(--btn-bg)}
+.cc{display:inline-flex;flex-wrap:wrap;gap:6px;margin:10px 0 0;padding:0;list-style:none}
+.cc li{padding:1px 8px;border:1px solid var(--line);border-radius:6px;font-size:.78rem;font-weight:700;color:var(--muted)}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 0;padding:0;list-style:none}
+.chips li{padding:2px 9px;border-radius:999px;background:var(--hover);font-size:.8rem;color:var(--ink)}
+.exfine{max-width:60ch;margin:0 0 16px;color:var(--muted)}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Pools de liquidité en DeFi : comment on gagne des frais et ce qu'on risque", "description": "Comment fonctionne un pool de liquidité, d'où vient le revenu, les principaux risques dont la perte impermanente, et comment apprendre avec un petit montant.", "inLanguage": "fr", "mainEntityOfPage": "https://chainscout.app/fr/guides/liquidity-pools-defi/", "author": {"@type": "Organization", "name": "ChainScout"}, "publisher": {"@type": "Organization", "name": "ChainScout"}}</script>
+</head>
+<body class="bg">
+<div class="checker" style="--rows:3" aria-hidden="true"><i class=c style="grid-row:1;--col:1;--js:start;background-image:url(../../../assets/robot-4.webp)"></i><i class=c style="grid-row:2;--col:2;--js:end;background-image:url(../../../assets/robot-5.webp)"></i><i style="grid-row:3;--col:1;--js:start;background-image:url(../../../assets/robot-2.webp)"></i></div>
+<a class="skip" href="#main">Aller au contenu</a>
+<div class="wrap">
+<header class="top">
+<a class="brand" href="../../"><svg class="logo" width="28" height="28" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="12" fill="none" stroke="#35e0c0" stroke-width="3"/><circle cx="16" cy="16" r="4.5" fill="#ffc23d"/></svg><span>ChainScout</span></a>
+<nav class="langs" aria-label="Langue"><a href="../../../en/guides/liquidity-pools-defi/" lang="en" hreflang="en">English</a><a href="../../../fr/guides/liquidity-pools-defi/" lang="fr" hreflang="fr" aria-current="page">Français</a><a href="../../../id/guides/liquidity-pools-defi/" lang="id" hreflang="id">Bahasa Indonesia</a><a href="../../../vi/guides/liquidity-pools-defi/" lang="vi" hreflang="vi">Tiếng Việt</a><a href="../../../sw/guides/liquidity-pools-defi/" lang="sw" hreflang="sw">Kiswahili</a></nav>
+</header>
+<nav class="menu" aria-label="menu"><a href="../../../fr/">Accueil</a><a href="../../../fr/safety/">Sécurité</a><a href="../../../fr/tools/">Outils</a><a href="../../../fr/exchanges/">Plateformes et argent</a><a href="../../../fr/earn/">Gains et DeFi</a><a href="../../../fr/guides/" aria-current="page">Tous les guides</a></nav>
+<main id="main" class="g">
+<a class="back" href="../../earn/">&larr; Gains et DeFi</a>
+<h1>Pools de liquidité en DeFi : comment on gagne des frais et ce qu&#x27;on risque</h1>
+<article class="prose">
+<p class="lead">Un pool de liquidité est un réservoir de deux tokens ou plus contre lequel les traders échangent. Ceux qui y ajoutent des tokens, les fournisseurs de liquidité, gagnent une part des frais de trading. Cela peut rapporter, mais ce n&#x27;est pas de l&#x27;argent gratuit et vous pouvez perdre.</p>
+<h2>Comment ça marche</h2>
+<ul><li>Un pool contient une paire de tokens, par exemple une cryptomonnaie et un stablecoin.</li><li>Vous déposez les deux à valeur égale et recevez un reçu qui montre votre part.</li><li>Chaque échange paie de petits frais, partagés entre les fournisseurs.</li><li>Vous pouvez retirer votre part plus tard, mais sa valeur peut différer de ce que vous avez mis.</li></ul>
+<h2>D&#x27;où vient le revenu</h2>
+<p>Principalement des frais de trading, et parfois de tokens de récompense supplémentaires. Un rendement élevé (APY) affiché sur un site est une estimation qui peut changer en quelques heures, et un chiffre très élevé est souvent un signal d&#x27;alerte, pas une aubaine.</p>
+<h2>Les principaux risques</h2>
+<ul><li><strong>Perte impermanente.</strong> Si les prix des deux tokens s&#x27;éloignent, vous pouvez vous retrouver avec moins de valeur que si vous les aviez simplement conservés.</li><li><strong>Risque de smart contract.</strong> Un bug ou un piratage peut vider le pool.</li><li><strong>Rug pull.</strong> Dans les pools de nouveaux tokens, les créateurs peuvent retirer le côté de valeur et vous laisser un token sans valeur.</li><li><strong>Risque du token de récompense.</strong> Des récompenses versées dans un token qui peut perdre vite de la valeur.</li><li><strong>Pools de stablecoins.</strong> Ils réduisent les variations de prix mais pas le risque du contrat, et un stablecoin peut perdre son ancrage.</li></ul>
+<h2>Un exemple simple</h2>
+<p>Vous ajoutez une valeur égale de Token A et d&#x27;un stablecoin. Si le Token A monte beaucoup, le pool vend une partie de votre Token A en chemin, et vous en détenez moins qu&#x27;au départ. Au retrait, les frais gagnés peuvent ne pas couvrir la différence par rapport au simple fait de garder le Token A.</p>
+<h2>Si vous voulez apprendre</h2>
+<ol><li>Commencez avec un montant que vous pouvez perdre entièrement, assez petit pour que les frais ne l&#x27;absorbent pas.</li><li>Préférez des protocoles importants et anciens, et vérifiez-les sur DefiLlama : montant bloqué, ancienneté, audit.</li><li>Choisissez des paires que vous comprenez, et passez le token dans la checklist des tokens.</li><li>Entraînez-vous à retirer avant d&#x27;ajouter davantage.</li><li>Comparez votre résultat après frais avec le simple fait de conserver, et gardez des justificatifs pour les impôts.</li></ol>
+</article>
+<section class="tools-box" aria-labelledby="h-tools"><h2 id="h-tools">Outils cités dans ce guide</h2><ul class="panel"><li class="tool" data-tool data-search="defillama classements de protocoles defi, tvl et donnees par blockchain au meme endroit. combien ca vaut en ce moment ?"><div><h3>DefiLlama</h3><p>Classements de protocoles DeFi, TVL et données par blockchain au même endroit.</p><details class="how"><summary>Comment commencer (5 étapes)</summary><ol><li>Ouvrez DefiLlama et regardez le classement DeFi par TVL (valeur totale verrouillée).</li><li>Cliquez sur un projet et vérifiez comment sa TVL a évolué et sur quelles blockchains il fonctionne.</li><li>Méfiez-vous des chutes soudaines ou d&#x27;une TVL surtout composée du token du projet lui-même. Elle peut paraître plus grande qu&#x27;elle n&#x27;est.</li><li>Cherchez les informations sur les audits et les piratages passés, et consultez les pages stablecoins et blockchains pour le contexte.</li><li>Soyez méfiant face aux rendements très élevés. Un rendement élevé signifie en général un risque élevé.</li></ol><p class="hnote">La TVL mesure ce qui est déposé. Elle ne mesure pas la sécurité d&#x27;un projet.</p></details><div class="meta"><span class="lvl"><span class="dots" aria-hidden="true"><i class="on"></i><i></i><i></i></span><span><span class="sr">Niveau: </span>Débutant</span></span></div></div><a class="btn" href="https://defillama.com" target="_blank" rel="noopener">Ouvrir DefiLlama<span class="sr"> (s&#x27;ouvre dans un nouvel onglet)</span></a></li><li class="tool" data-tool data-search="dune tableaux de bord communautaires et requetes sql sur les donnees publiques des blockchains. que font les gros portefeuilles ?"><div><h3>Dune</h3><p>Tableaux de bord communautaires et requêtes SQL sur les données publiques des blockchains.</p><details class="how"><summary>Comment commencer (5 étapes)</summary><ol><li>Ouvrez Dune et cherchez un tableau de bord par nom de projet.</li><li>Ouvrez un tableau de bord de la communauté et lisez son titre, son auteur et sa date de mise à jour.</li><li>Vérifiez quelle blockchain il couvre et ce qu&#x27;il compte exactement. Les définitions diffèrent d&#x27;un tableau à l&#x27;autre.</li><li>Comparez deux tableaux de bord pour le même projet. Si les chiffres diffèrent, cherchez pourquoi.</li><li>Seulement si vous connaissez le SQL : copiez une requête dans votre compte et changez une chose à la fois.</li></ol><p class="hnote">N&#x27;importe qui peut publier un tableau de bord. Vérifiez l&#x27;auteur et les données avant de faire confiance à un graphique.</p></details><div class="meta"><span class="lvl"><span class="dots" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i></span><span><span class="sr">Niveau: </span>Avancé</span></span></div></div><a class="btn" href="https://dune.com" target="_blank" rel="noopener">Ouvrir Dune<span class="sr"> (s&#x27;ouvre dans un nouvel onglet)</span></a></li><li class="tool" data-tool data-search="coingecko prix, capitalisations et donnees de base pour des milliers de cryptos. combien ca vaut en ce moment ?"><div><h3>CoinGecko</h3><p>Prix, capitalisations et données de base pour des milliers de cryptos.</p><details class="how"><summary>Comment commencer (5 étapes)</summary><ol><li>Ouvrez le site de CoinGecko et saisissez le nom ou le symbole du token dans la recherche.</li><li>Choisissez le résultat avec le bon nom et le bon symbole. Les faux tokens copient les noms : comparez l&#x27;adresse du contrat sur la page avec celle que le projet publie sur son propre site.</li><li>Regardez la capitalisation, le volume d&#x27;échange sur 24 heures et le nombre de marchés. Un volume très faible, ou un seul petit marché, signifie qu&#x27;un seul échange peut faire bouger le prix.</li><li>Utilisez le site officiel et les réseaux sociaux indiqués sur la page du token, pas les liens reçus dans une conversation.</li><li>Ouvrez le graphique sur la période la plus longue pour voir tout l&#x27;historique, et vérifiez sur quelles plateformes le token est coté.</li></ol><p class="hnote">CoinGecko affiche des données. Il ne dit pas si un token est sûr ni s&#x27;il va monter.</p></details><div class="meta"><span class="lvl"><span class="dots" aria-hidden="true"><i class="on"></i><i></i><i></i></span><span><span class="sr">Niveau: </span>Débutant</span></span></div></div><a class="btn" href="https://www.coingecko.com" target="_blank" rel="noopener">Ouvrir CoinGecko<span class="sr"> (s&#x27;ouvre dans un nouvel onglet)</span></a></li><li class="tool" data-tool data-search="goplus security verifie tokens, contrats et liens pour les risques d&#x27;arnaque et de honeypot. ce token ou ce lien est-il sur ?"><div><h3>GoPlus Security</h3><p>Vérifie tokens, contrats et liens pour les risques d&#x27;arnaque et de honeypot.</p><details class="how"><summary>Comment commencer (5 étapes)</summary><ol><li>Ouvrez le site de GoPlus et trouvez son analyseur de sécurité de token.</li><li>Choisissez le réseau blockchain du token, par exemple Ethereum, BNB Chain, Solana ou TRON.</li><li>Collez l&#x27;adresse du contrat. Copiez-la depuis le site officiel du projet ou depuis CoinGecko, pas depuis un message, puis lancez l&#x27;analyse.</li><li>Lisez d&#x27;abord les alertes : honeypot (on peut acheter mais pas vendre), taxe d&#x27;achat ou de vente très élevée, propriétaire qui peut créer des tokens ou changer les règles, propriétaires cachés.</li><li>Si le rapport montre plusieurs risques, n&#x27;achetez et n&#x27;autorisez rien. S&#x27;il semble propre, rappelez-vous que ce n&#x27;est qu&#x27;un élément parmi d&#x27;autres.</li></ol><p class="hnote">Une analyse sans alerte n&#x27;est pas une garantie. Les nouvelles arnaques sont conçues pour passer les contrôles, et l&#x27;outil ne voit pas les plans de l&#x27;équipe.</p></details><div class="meta"><span class="lvl"><span class="dots" aria-hidden="true"><i class="on"></i><i></i><i></i></span><span><span class="sr">Niveau: </span>Débutant</span></span></div></div><a class="btn" href="https://gopluslabs.io" target="_blank" rel="noopener">Ouvrir GoPlus Security<span class="sr"> (s&#x27;ouvre dans un nouvel onglet)</span></a></li></ul></section>
+</main>
+<footer class="fine">
+<h2>Comment fonctionne ce site</h2>
+<p>Ce guide donne des informations générales, pas un conseil juridique. Ceci est un annuaire indépendant. Certains liens sont des liens partenaires, et nous pouvons recevoir une commission si vous vous inscrivez, sans frais supplémentaires pour vous. Les fiches partenaires et sponsorisées sont signalées. Les tarifs et offres gratuites changent : vérifiez chaque site officiel. Rien ici n&#x27;est un conseil financier, et les cryptos sont très risquées.</p>
+<p>&copy; 2026 ChainScout</p>
+</footer>
+</div>
+</body>
+</html>

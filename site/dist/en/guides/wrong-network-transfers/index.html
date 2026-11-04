@@ -104,6 +104,10 @@ body.pre{--paper:#fff;--surface:#f6f8fc;--ink:#101733;--muted:#4b5678;--line:#d9
 .pre .coins{display:none}
 main .checklist,.prose .checklist{list-style:none;padding:0;margin:0 0 1rem;max-width:none}.checklist li{margin:.5rem 0}.checklist label{display:flex;gap:.7rem;align-items:flex-start;padding:.7rem .9rem;border:1px solid var(--line);border-radius:12px;background:var(--surface);cursor:pointer}
 .checklist input{width:1.3rem;height:1.3rem;flex:none;margin-top:.15rem;accent-color:var(--btn-bg)}.checklist input:checked+span{color:var(--muted);text-decoration:line-through}
+.menu{display:flex;flex-wrap:wrap;gap:.4rem;margin:0 0 1.2rem}.menu a{padding:.45rem .85rem;border:1px solid var(--line);border-radius:999px;background:var(--surface);color:var(--ink);text-decoration:none;font-weight:600;font-size:.95rem}.menu a:hover{background:var(--hover)}.menu a[aria-current=page]{background:var(--ink);color:#fff;border-color:var(--ink)}
+.hubstart{margin:1rem 0 1.6rem}.hubtitle{margin:1.4rem 0 .8rem}.hub{list-style:none;padding:0;margin:0 0 2rem;display:grid;gap:.9rem;grid-template-columns:1fr}
+@media (min-width:760px){.hub{grid-template-columns:1fr 1fr}}
+.hub-card{display:block;height:100%;padding:1.1rem 1.2rem;border:1px solid var(--line);border-radius:16px;background:var(--surface);color:var(--ink);text-decoration:none}.hub-card:hover{background:var(--hover);border-color:var(--ring)}.hub-card h2{margin:0 0 .4rem;font-size:1.3rem}.hub-card p{margin:0 0 .6rem;color:var(--muted)}.hub-card span{font-size:.9rem;font-weight:700;color:var(--btn-bg)}
 .cta-check{display:inline-block;margin:0 0 .9rem;padding:.7rem 1.1rem;border-radius:12px;background:var(--btn-bg);color:var(--btn-fg);font-weight:700;text-decoration:none}.cta-check:hover{filter:brightness(1.1)}
 .checker{position:absolute;inset:0;z-index:-1;display:grid;grid-template-columns:1fr;grid-template-rows:repeat(var(--rows,3),1fr);align-items:center;pointer-events:none;overflow:hidden}
 .checker i{-webkit-mask-image:radial-gradient(ellipse 62% 62% at 50% 50%,#000 30%,transparent 100%);mask-image:radial-gradient(ellipse 62% 62% at 50% 50%,#000 30%,transparent 100%);display:block;width:100%;aspect-ratio:4/3;background-size:cover;background-position:center;opacity:.25}
@@ -156,8 +160,9 @@ main .checklist,.prose .checklist{list-style:none;padding:0;margin:0 0 1rem;max-
 <a class="brand" href="../../"><svg class="logo" width="28" height="28" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="12" fill="none" stroke="#35e0c0" stroke-width="3"/><circle cx="16" cy="16" r="4.5" fill="#ffc23d"/></svg><span>ChainScout</span></a>
 <nav class="langs" aria-label="Language"><a href="../../../en/guides/wrong-network-transfers/" lang="en" hreflang="en" aria-current="page">English</a><a href="../../../fr/guides/wrong-network-transfers/" lang="fr" hreflang="fr">Français</a><a href="../../../id/guides/wrong-network-transfers/" lang="id" hreflang="id">Bahasa Indonesia</a><a href="../../../vi/guides/wrong-network-transfers/" lang="vi" hreflang="vi">Tiếng Việt</a><a href="../../../sw/guides/wrong-network-transfers/" lang="sw" hreflang="sw">Kiswahili</a></nav>
 </header>
+<nav class="menu" aria-label="menu"><a href="../../../en/">Home</a><a href="../../../en/safety/">Safety</a><a href="../../../en/tools/">Tools</a><a href="../../../en/exchanges/">Exchanges &amp; money</a><a href="../../../en/earn/">Earn &amp; DeFi</a><a href="../../../en/guides/" aria-current="page">All guides</a></nav>
 <main id="main" class="g">
-<a class="back" href="../../">Back to the directory</a>
+<a class="back" href="../../safety/">&larr; Safety</a>
 <h1>Sending to the wrong network: how to avoid losing your money</h1>
 <article class="prose">
 <p class="lead">Sending crypto on the wrong network is one of the most common ways to lose money by mistake. A short checklist before each transfer prevents almost all of these cases.</p>
