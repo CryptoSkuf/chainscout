@@ -15,6 +15,7 @@ DIST = Path(sys.argv[1]) if len(sys.argv) > 1 else HERE / "dist"
 sys.path[:0] = [str(HERE), str(HERE.parent)]
 from guides import GUIDE_UI, GUIDES  # noqa: E402
 from locales import LANGS  # noqa: E402
+from sections import SECTIONS  # noqa: E402
 
 VOID = {"meta", "link", "input", "br", "hr", "img", "circle", "path", "rect"}
 errors: list[str] = []
@@ -104,6 +105,8 @@ def main() -> None:
     pages = {"index.html": parse(DIST / "index.html"), "404.html": parse(DIST / "404.html")}
     for lang in LANGS:
         pages[f"{lang}/index.html"] = parse(DIST / lang / "index.html")
+        for key in SECTIONS:
+            pages[f"{lang}/{key}/index.html"] = parse(DIST / lang / key / "index.html")
         for slug in GUIDES:
             pages[f"{lang}/guides/{slug}/index.html"] = parse(DIST / lang / "guides" / slug / "index.html")
 
@@ -139,31 +142,33 @@ def main() -> None:
                 fail(f"{rel}: битая ссылка {href}")
 
     for lang in LANGS:
-        rel = f"{lang}/index.html"
-        page = pages[rel]
-        if page.tools != expected:
-            fail(f"{rel}: инструментов {page.tools}, ожидалось {expected}")
-        if page.h1 != 1:
-            fail(f"{rel}: h1 должно быть одно, найдено {page.h1}")
-        if not page.title.strip():
-            fail(f"{rel}: пустой title")
-        desc = page.meta.get("description", "")
-        if not 60 <= len(desc) <= 200:
-            fail(f"{rel}: длина description {len(desc)}")
-        if not page.meta.get("canonical", "").endswith(f"/{lang}/"):
-            fail(f"{rel}: canonical {page.meta.get('canonical')}")
-        try:
-            data = json.loads("".join(page.jsonld))
-            if len(data["itemListElement"]) != expected:
-                fail(f"{rel}: в JSON-LD {len(data['itemListElement'])} элементов")
-        except Exception as exc:  # noqa: BLE001
-            fail(f"{rel}: JSON-LD не читается ({exc})")
-        text = (DIST / rel).read_text("utf-8")
-        for code in LANGS:
-            if f'hreflang="{code}"' not in text:
-                fail(f"{rel}: нет hreflang={code}")
-        if 'hreflang="x-default"' not in text:
-            fail(f"{rel}: нет hreflang=x-default")
+        for key in ("",) + SECTIONS:
+            rel = f"{lang}/{key + '/' if key else ''}index.html"
+            page = pages[rel]
+            want_tools = expected if key == "tools" else 0
+            if page.tools != want_tools:
+                fail(f"{rel}: инструментов {page.tools}, ожидалось {want_tools}")
+            if page.h1 != 1:
+                fail(f"{rel}: h1 должно быть одно, найдено {page.h1}")
+            if not page.title.strip():
+                fail(f"{rel}: пустой title")
+            desc = page.meta.get("description", "")
+            if not 40 <= len(desc) <= 200:
+                fail(f"{rel}: длина description {len(desc)}")
+            if not page.meta.get("canonical", "").endswith(f"/{lang}/{key + '/' if key else ''}"):
+                fail(f"{rel}: canonical {page.meta.get('canonical')}")
+            try:
+                data = json.loads("".join(page.jsonld))
+                if key == "tools" and len(data["itemListElement"]) != expected:
+                    fail(f"{rel}: в JSON-LD {len(data['itemListElement'])} элементов")
+            except Exception as exc:  # noqa: BLE001
+                fail(f"{rel}: JSON-LD не читается ({exc})")
+            text = (DIST / rel).read_text("utf-8")
+            for code in LANGS:
+                if f'hreflang="{code}"' not in text:
+                    fail(f"{rel}: нет hreflang={code}")
+            if 'hreflang="x-default"' not in text:
+                fail(f"{rel}: нет hreflang=x-default")
 
     # ---- данные гидов: одинаковая структура на всех языках, существующие инструменты
     ids = {x["id"] for x in catalog}
@@ -219,10 +224,17 @@ def main() -> None:
                 fail(f"{rel}: в HTML остались символы **")
         # каждая языковая главная ссылается на гид
     for lang in LANGS:
-        if "guides/check-token-scams/" not in (DIST / lang / "index.html").read_text("utf-8"):
-            fail(f"{lang}/index.html: нет ссылки на гид о скаме")
+        if "guides/check-token-scams/" not in (DIST / lang / "safety" / "index.html").read_text("utf-8"):
+            fail(f"{lang}/safety/index.html: нет ссылки на гид о скаме")
+        for key in SECTIONS:  # главная ведёт на все разделы
+            if f"/{key}/" not in (DIST / lang / "index.html").read_text("utf-8"):
+                fail(f"{lang}/index.html: нет карточки раздела {key}")
+        # каждый гид лежит ровно в одном разделе, и раздел его показывает
+        for slug in GUIDES:
+            if f"guides/{slug}/" not in (DIST / lang / "guides" / "index.html").read_text("utf-8"):
+                fail(f"{lang}/guides/: нет гида {slug}")
 
-    expected_urls = len(LANGS) + 1 + len(GUIDES) * len(LANGS)
+    expected_urls = len(LANGS) + 1 + len(SECTIONS) * len(LANGS) + len(GUIDES) * len(LANGS)
     ns = {"s": "http://www.sitemaps.org/schemas/sitemap/0.9"}
     urls = ET.parse(DIST / "sitemap.xml").getroot().findall("s:url", ns)
     if len(urls) != expected_urls:

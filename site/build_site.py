@@ -22,7 +22,8 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 sys.path[:0] = [str(HERE), str(HERE.parent)]
-from guides import GUIDE_UI, GUIDES  # noqa: E402
+from guides import GUIDE_UI, GUIDES, SECTION_GUIDES  # noqa: E402
+from sections import SEC, SECTIONS  # noqa: E402
 from locales import LANGS, STRINGS  # noqa: E402
 from prelanding import PRE  # noqa: E402
 from howto import HOWTO, HOWTO_UI  # noqa: E402
@@ -334,6 +335,10 @@ body.pre{--paper:#fff;--surface:#f6f8fc;--ink:#101733;--muted:#4b5678;--line:#d9
 .pre .coins{display:none}
 main .checklist,.prose .checklist{list-style:none;padding:0;margin:0 0 1rem;max-width:none}.checklist li{margin:.5rem 0}.checklist label{display:flex;gap:.7rem;align-items:flex-start;padding:.7rem .9rem;border:1px solid var(--line);border-radius:12px;background:var(--surface);cursor:pointer}
 .checklist input{width:1.3rem;height:1.3rem;flex:none;margin-top:.15rem;accent-color:var(--btn-bg)}.checklist input:checked+span{color:var(--muted);text-decoration:line-through}
+.menu{display:flex;flex-wrap:wrap;gap:.4rem;margin:0 0 1.2rem}.menu a{padding:.45rem .85rem;border:1px solid var(--line);border-radius:999px;background:var(--surface);color:var(--ink);text-decoration:none;font-weight:600;font-size:.95rem}.menu a:hover{background:var(--hover)}.menu a[aria-current=page]{background:var(--ink);color:#fff;border-color:var(--ink)}
+.hubstart{margin:1rem 0 1.6rem}.hubtitle{margin:1.4rem 0 .8rem}.hub{list-style:none;padding:0;margin:0 0 2rem;display:grid;gap:.9rem;grid-template-columns:1fr}
+@media (min-width:760px){.hub{grid-template-columns:1fr 1fr}}
+.hub-card{display:block;height:100%;padding:1.1rem 1.2rem;border:1px solid var(--line);border-radius:16px;background:var(--surface);color:var(--ink);text-decoration:none}.hub-card:hover{background:var(--hover);border-color:var(--ring)}.hub-card h2{margin:0 0 .4rem;font-size:1.3rem}.hub-card p{margin:0 0 .6rem;color:var(--muted)}.hub-card span{font-size:.9rem;font-weight:700;color:var(--btn-bg)}
 .cta-check{display:inline-block;margin:0 0 .9rem;padding:.7rem 1.1rem;border-radius:12px;background:var(--btn-bg);color:var(--btn-fg);font-weight:700;text-decoration:none}.cta-check:hover{filter:brightness(1.1)}
 .checker{position:absolute;inset:0;z-index:-1;display:grid;grid-template-columns:1fr;grid-template-rows:repeat(var(--rows,3),1fr);align-items:center;pointer-events:none;overflow:hidden}
 .checker i{-webkit-mask-image:radial-gradient(ellipse 62% 62% at 50% 50%,#000 30%,transparent 100%);mask-image:radial-gradient(ellipse 62% 62% at 50% 50%,#000 30%,transparent 100%);display:block;width:100%;aspect-ratio:4/3;background-size:cover;background-position:center;opacity:.25}
@@ -602,21 +607,54 @@ def exchanges_section(lang: str) -> str:
     )
 
 
-def render_page(lang: str, tools: list[dict], cfg: dict, year: int) -> str:
-    S, L = SITE[lang], STRINGS[lang]
-    name, base = cfg["site_name"], cfg["base_url"]
-    title = S["title"].format(name=name)
-    url = f"{base}/{lang}/"
+PAGE_IMGS = {
+    "home": ("robot-1", "robot-4", "robot-5"),
+    "safety": ("robot-2", "robot-6"),
+    "tools": ("robot-3", "robot-7", "robot-8", "robot-9"),
+    "exchanges": ("robot-5", "robot-8"),
+    "earn": ("robot-6", "robot-3"),
+    "guides": ("robot-4", "robot-7", "robot-2"),
+}
+GUIDE_SECTION = {slug: ("exchanges" if sec == "money" else sec) for sec, slugs in SECTION_GUIDES.items() for slug in slugs}
 
-    groups = [(c, [x for x in tools if x["category"] == c]) for c in ORDER]
-    groups = [(c, items) for c, items in groups if items]
+
+def menu(lang: str, up: str, current: str) -> str:
+    X = SEC[lang]
+    items = [("home", X["nav_home"], f"{up}{lang}/")] + [(k, X[k][0], f"{up}{lang}/{k}/") for k in SECTIONS]
+    links = "".join(
+        f'<a href="{href}"' + (' aria-current="page"' if key == current else "") + f">{esc(label)}</a>"
+        for key, label, href in items
+    )
+    return f'<nav class="menu" aria-label="menu">{links}</nav>'
+
+
+def guide_list(slugs, lang: str, up: str) -> str:
+    items = "".join(
+        f'<li class="tool"><div><h3><a href="{up}{lang}/guides/{slug}/">{esc(GUIDES[slug]["lang"][lang]["title"])}</a></h3>'
+        f'<p>{esc(GUIDES[slug]["lang"][lang]["description"])}</p></div></li>'
+        for slug in slugs
+    )
+    return f'<ul class="panel">{items}</ul>'
+
+
+def render_page(lang: str, tools: list[dict], cfg: dict, year: int, page: str = "home") -> str:
+    S, L, G, X = SITE[lang], STRINGS[lang], GUIDE_UI[lang], SEC[lang]
+    name, base = cfg["site_name"], cfg["base_url"]
+    up = "../" if page == "home" else "../../"
+    suffix = "" if page == "home" else f"{page}/"
+    url = f"{base}/{lang}/{suffix}"
+    if page == "home":
+        title, desc, h1, lede = S["title"].format(name=name), S["description"], S["h1"], S["lede"]
+    else:
+        sec = X[page]
+        title, desc, h1, lede = f"{sec[2]} | {name}", sec[1], sec[2], sec[3]
 
     alternates = "".join(
-        f'<link rel="alternate" hreflang="{code}" href="{base}/{code}/">' for code in LANGS
-    ) + f'<link rel="alternate" hreflang="x-default" href="{base}/">'
+        f'<link rel="alternate" hreflang="{code}" href="{base}/{code}/{suffix}">' for code in LANGS
+    ) + f'<link rel="alternate" hreflang="x-default" href="{base}/{"" if page == "home" else "en/" + suffix}">'
 
-    ld = json_ld(
-        {
+    if page == "tools":
+        ld_obj = {
             "@context": "https://schema.org",
             "@type": "ItemList",
             "name": title,
@@ -636,112 +674,151 @@ def render_page(lang: str, tools: list[dict], cfg: dict, year: int) -> str:
                 for i, t in enumerate(tools, 1)
             ],
         }
-    )
+    else:
+        ld_obj = {"@context": "https://schema.org", "@type": "WebPage", "name": title, "inLanguage": lang, "url": url}
+    ld = json_ld(ld_obj)
 
     langs_nav = "".join(
-        f'<a href="../{code}/" lang="{code}" hreflang="{code}"'
+        f'<a href="{up}{code}/{suffix}" lang="{code}" hreflang="{code}"'
         + (' aria-current="page"' if code == lang else "")
         + f">{esc(label)}</a>"
         for code, label in LANGS.items()
     )
 
-    asks = []
-    for i, (cat, items) in enumerate(groups):
-        count = S["tools_one"] if len(items) == 1 else S["tools_many"].format(n=len(items))
-        start = f'<span class="start">{esc(S["start_here"])}</span>' if cat == "safety" else ""
-        asks.append(
-            f'<li><a class="ask{" first" if cat == "safety" else ""}" href="#q-{cat}">'
-            f'<span>{esc(S["q"][cat])}{start}</span><small>{esc(count)}</small></a></li>'
-        )
+    G_title = G["guides_title"]
+    checklist_href = f"{up}{lang}/guides/token-check-checklist/"
+    cta_start = f'<a class="cta-check" href="{checklist_href}">{esc(GUIDES["token-check-checklist"]["short"][lang])} &rarr;</a>'
+    body = ""
+    scripts = ""
 
-    sections = []
-    for cat, items in groups:
-        rows = "".join(tool_row(t, lang, S, L) for t in items)
-        cta = ""
-        if cat == "safety":
-            ck = GUIDES["token-check-checklist"]
-            cta = f'<a class="cta-check" href="guides/token-check-checklist/">{esc(ck["short"][lang])} &rarr;</a>'
-        sections.append(
-            f'<section id="q-{cat}" data-group aria-labelledby="h-{cat}">'
-            f'<h2 id="h-{cat}">{esc(S["q"][cat])}</h2>{cta}<ul class="panel">{rows}</ul></section>'
+    if page == "home":
+        cards = []
+        for key in SECTIONS:
+            if key == "tools":
+                count = X["n_tools"].format(n=len(tools))
+            elif key == "guides":
+                count = X["n_guides"].format(n=len(GUIDES))
+            else:
+                slugs = SECTION_GUIDES["earn"] if key == "earn" else (SECTION_GUIDES["safety"] if key == "safety" else SECTION_GUIDES["money"])
+                count = X["n_guides"].format(n=len(slugs))
+            cards.append(
+                f'<li><a class="hub-card" href="{up}{lang}/{key}/"><h2>{esc(X[key][0])}</h2>'
+                f'<p>{esc(X[key][1])}</p><span>{esc(count)}</span></a></li>'
+            )
+        body = (
+            f'{TICKER_HTML}<p class="hubstart">{cta_start}</p>'
+            f'<h2 class="hubtitle">{esc(X["explore"])}</h2><ul class="hub">{"".join(cards)}</ul>'
         )
-
-    tips = "".join(f"<li>{esc(tip)}</li>" for tip in S["tips"])
-    G = GUIDE_UI[lang]
-    scam = GUIDES["check-token-scams"]["lang"][lang]
-    safe = (
-        f'<section class="safe" id="safe"><h2>{esc(S["safety_title"])}</h2><ul>{tips}</ul>'
-        f'<p class="more">{esc(G["full_guide"])} <a href="guides/check-token-scams/">{esc(scam["title"])}</a></p></section>'
-    )
-    guide_items = "".join(
-        f'<li class="tool"><div><h3><a href="guides/{slug}/">{esc(g["lang"][lang]["title"])}</a></h3>'
-        f'<p>{esc(g["lang"][lang]["description"])}</p></div></li>'
-        for slug, g in GUIDES.items()
-    )
-    guides_html = (
-        f'<section id="guides" aria-labelledby="h-guides"><h2 id="h-guides">{esc(G["guides_title"])}</h2>'
-        f'<ul class="panel">{guide_items}</ul></section>'
-    )
+    elif page == "safety":
+        tips = "".join(f"<li>{esc(tip)}</li>" for tip in S["tips"])
+        body = (
+            f'<p>{cta_start}</p>'
+            f'<section class="safe" id="safe"><h2>{esc(S["safety_title"])}</h2><ul>{tips}</ul></section>'
+            f'<section><h2>{esc(G_title)}</h2>{guide_list(SECTION_GUIDES["safety"], lang, up)}</section>'
+        )
+    elif page == "tools":
+        groups = [(c, [x for x in tools if x["category"] == c]) for c in ORDER]
+        groups = [(c, items) for c, items in groups if items]
+        asks = []
+        for cat, items in groups:
+            count = S["tools_one"] if len(items) == 1 else S["tools_many"].format(n=len(items))
+            start = f'<span class="start">{esc(S["start_here"])}</span>' if cat == "safety" else ""
+            asks.append(
+                f'<li><a class="ask{" first" if cat == "safety" else ""}" href="#q-{cat}">'
+                f'<span>{esc(S["q"][cat])}{start}</span><small>{esc(count)}</small></a></li>'
+            )
+        sections = []
+        for cat, items in groups:
+            rows = "".join(tool_row(t, lang, S, L) for t in items)
+            cta = cta_start if cat == "safety" else ""
+            sections.append(
+                f'<section id="q-{cat}" data-group aria-labelledby="h-{cat}">'
+                f'<h2 id="h-{cat}">{esc(S["q"][cat])}</h2>{cta}<ul class="panel">{rows}</ul></section>'
+            )
+        body = (
+            f'<div><label class="sr" for="q">{esc(S["search_label"])}</label>'
+            f'<input id="q" type="search" placeholder="{esc(S["search_ph"])}" autocomplete="off"></div>'
+            f'<ul class="asks" id="asks">{"".join(asks)}</ul>'
+            f'<p class="empty" id="empty" role="status" hidden>{esc(S["no_results"])}</p>'
+            f'{"".join(sections)}'
+            f'<section><h2>{esc(G_title)}</h2>{guide_list(SECTION_GUIDES["tools"], lang, up)}</section>'
+        )
+        scripts = f"<script>{SEARCH_JS}</script>"
+    elif page == "exchanges":
+        body = (
+            f'{exchanges_section(lang)}'
+            f'<section><h2>{esc(G_title)}</h2>{guide_list(SECTION_GUIDES["money"], lang, up)}</section>'
+        )
+        scripts = f"<script>{EX_JS}</script>"
+    elif page == "earn":
+        nots = "".join(f"<li>{esc(x)}</li>" for x in X["earn_not"])
+        earn_cta = f'<a class="cta-check" href="{up}{lang}/guides/before-you-join-checklist/">{esc(GUIDES["before-you-join-checklist"]["short"][lang])} &rarr;</a>'
+        body = (
+            f'<section class="safe"><h2>{esc(X["earn_not_title"])}</h2><ul>{nots}</ul>'
+            f'<p class="more">{esc(X["earn_warn"])}</p></section>'
+            f'<p>{earn_cta}</p>'
+            f'<section><h2>{esc(G_title)}</h2>{guide_list(SECTION_GUIDES["earn"], lang, up)}</section>'
+        )
+    else:  # guides
+        blocks = []
+        for key, slugs in (("safety", SECTION_GUIDES["safety"]), ("tools", SECTION_GUIDES["tools"]), ("exchanges", SECTION_GUIDES["money"]), ("earn", SECTION_GUIDES["earn"])):
+            blocks.append(f'<section><h2>{esc(X[key][0])}</h2>{guide_list(slugs, lang, up)}</section>')
+        body = "".join(blocks)
 
     join = ""
-    actions = ""
-    if cfg.get("bot_username"):
-        actions += f'<a class="btn" href="https://t.me/{esc(cfg["bot_username"])}" rel="noopener">{esc(S["tg_button"])}</a>'
-    if cfg.get("newsletter_action"):
-        actions += (
-            f'<form class="mail" action="{esc(cfg["newsletter_action"])}" method="post">'
-            f'<label for="email">{esc(S["email_label"])}</label>'
-            f'<input id="email" name="email" type="email" autocomplete="email" required>'
-            f'<button class="btn" type="submit">{esc(S["email_button"])}</button></form>'
-        )
-    if actions:
-        join = (
-            f'<section class="join" id="join"><h2>{esc(S["join_title"])}</h2>'
-            f'<p>{esc(S["join_text"])}</p>{actions}</section>'
-        )
+    if page == "home":
+        actions = ""
+        if cfg.get("bot_username"):
+            actions += f'<a class="btn" href="https://t.me/{esc(cfg["bot_username"])}" rel="noopener">{esc(S["tg_button"])}</a>'
+        if cfg.get("newsletter_action"):
+            actions += (
+                f'<form class="mail" action="{esc(cfg["newsletter_action"])}" method="post">'
+                f'<label for="email">{esc(S["email_label"])}</label>'
+                f'<input id="email" name="email" type="email" autocomplete="email" required>'
+                f'<button class="btn" type="submit">{esc(S["email_button"])}</button></form>'
+            )
+        if actions:
+            join = (
+                f'<section class="join" id="join"><h2>{esc(S["join_title"])}</h2>'
+                f'<p>{esc(S["join_text"])}</p>{actions}</section>'
+            )
 
+    coins = COINS if page == "home" else ""
     return f"""<!doctype html>
 <html lang="{lang}">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{esc(title)}</title>
-<meta name="description" content="{esc(S["description"])}">
+<meta name="description" content="{esc(desc)}">
 <link rel="canonical" href="{url}">
 {alternates}
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="{esc(name)}">
 <meta property="og:title" content="{esc(title)}">
-<meta property="og:description" content="{esc(S["description"])}">
+<meta property="og:description" content="{esc(desc)}">
 <meta property="og:url" content="{url}">
 <meta property="og:locale" content="{OG_LOCALE[lang]}">
 <meta name="twitter:card" content="summary">
 <meta name="theme-color" content="#ffffff">
-<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="icon" href="{up}favicon.svg" type="image/svg+xml">
 <style>{CSS}</style>
 <script type="application/ld+json">{ld}</script>
 </head>
 <body class="bg">
-{checker("../", HOME_IMGS, True)}
+{checker(up, PAGE_IMGS[page], True)}
 <a class="skip" href="#main">{esc(S["skip"])}</a>
 <div class="wrap">
 <header class="top">
-<a class="brand" href="./">{LOGO}<span>{esc(name)}</span></a>
+<a class="brand" href="{up}{lang}/">{LOGO}<span>{esc(name)}</span></a>
 <nav class="langs" aria-label="{esc(S["lang_label"])}">{langs_nav}</nav>
 </header>
+{menu(lang, up, page)}
 <main id="main">
-{COINS}
-<h1>{esc(S["h1"])}</h1>
-<p class="lede">{esc(S["lede"])}</p>
-{TICKER_HTML}
-<div><label class="sr" for="q">{esc(S["search_label"])}</label>
-<input id="q" type="search" placeholder="{esc(S["search_ph"])}" autocomplete="off"></div>
-<ul class="asks" id="asks">{"".join(asks)}</ul>
-<p class="empty" id="empty" role="status" hidden>{esc(S["no_results"])}</p>
-{"".join(sections)}
-{guides_html}
-{exchanges_section(lang)}
-{safe}
+{coins}
+<h1>{esc(h1)}</h1>
+<p class="lede">{esc(lede)}</p>
+{body}
 {join}
 </main>
 <footer class="fine">
@@ -750,8 +827,7 @@ def render_page(lang: str, tools: list[dict], cfg: dict, year: int) -> str:
 <p>&copy; {year} {esc(name)}</p>
 </footer>
 </div>
-<script>{SEARCH_JS}</script>
-<script>{EX_JS}</script>
+{scripts}
 </body>
 </html>
 """
@@ -849,8 +925,9 @@ def render_guide(lang: str, slug: str, by_id: dict, cfg: dict) -> str:
 <a class="brand" href="../../">{LOGO}<span>{esc(name)}</span></a>
 <nav class="langs" aria-label="{esc(S["lang_label"])}">{langs_nav}</nav>
 </header>
+{menu(lang, "../../../", "guides")}
 <main id="main" class="g">
-<a class="back" href="../../">{esc(G["back"])}</a>
+<a class="back" href="../../{GUIDE_SECTION.get(slug, "guides")}/">&larr; {esc(SEC[lang][GUIDE_SECTION.get(slug, "guides")][0])}</a>
 <h1>{esc(g["title"])}</h1>
 <article class="prose">
 <p class="lead">{esc(g["intro"])}</p>
@@ -883,7 +960,7 @@ def render_prelanding(lang: str, cfg: dict) -> str:
     P, name, base = PRE[lang], cfg["site_name"], cfg["base_url"]
     paras = "".join(f"<p>{esc(x)}</p>" for x in P["paras"])
     cards = "".join(f'<li class="tool"><div><h3>{esc(t)}</h3><p>{esc(d)}</p></div></li>' for t, d in P["cards"])
-    ctas = f'<a class="btn" href="../../{lang}/#guides" data-pass>{esc(P["cta_site"])}</a>'
+    ctas = f'<a class="btn" href="../../{lang}/guides/" data-pass>{esc(P["cta_site"])}</a>'
     if cfg.get("tg_channel"):
         ctas += f'<a class="btn alt" href="{esc(cfg["tg_channel"])}" target="_blank" rel="noopener">{esc(P["cta_tg"])}</a>'
     if cfg.get("bot_username"):
@@ -1019,6 +1096,12 @@ def render_sitemap(cfg: dict, today: str) -> str:
             f'<xhtml:link rel="alternate" hreflang="{c}" href="{base}/{c}/"/>' for c in LANGS
         ) + f'<xhtml:link rel="alternate" hreflang="x-default" href="{base}/"/>'
         entries.append(f"<url><loc>{base}/{lang}/</loc><lastmod>{today}</lastmod>{alts}</url>")
+    for key in SECTIONS:
+        alts = "".join(
+            f'<xhtml:link rel="alternate" hreflang="{c}" href="{base}/{c}/{key}/"/>' for c in LANGS
+        ) + f'<xhtml:link rel="alternate" hreflang="x-default" href="{base}/en/{key}/"/>'
+        for lang in LANGS:
+            entries.append(f"<url><loc>{base}/{lang}/{key}/</loc><lastmod>{today}</lastmod>{alts}</url>")
     for slug in GUIDES:
         alts = "".join(
             f'<xhtml:link rel="alternate" hreflang="{c}" href="{base}/{c}/guides/{slug}/"/>' for c in LANGS
@@ -1097,6 +1180,9 @@ def main() -> None:
     for lang in LANGS:
         (out / lang).mkdir()
         (out / lang / "index.html").write_text(render_page(lang, tools, cfg, today.year), "utf-8")
+        for key in SECTIONS:
+            (out / lang / key).mkdir()
+            (out / lang / key / "index.html").write_text(render_page(lang, tools, cfg, today.year, key), "utf-8")
     by_id = {t["id"]: t for t in tools}
     for slug in GUIDES:
         for lang in LANGS:
