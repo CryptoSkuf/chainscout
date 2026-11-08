@@ -12,6 +12,7 @@ GUIDES_B = {
             "id": "🏦 Beli kripto dengan aman",
             "vi": "🏦 Mua tiền mã hóa an toàn",
             "sw": "🏦 Nunua crypto kwa usalama",
+            "simple": "🏦 Buy crypto safely (P2P, exchange)",
         },
         "lang": {
             "en": {
@@ -204,6 +205,44 @@ GUIDES_B = {
                     ]),
                 ],
             },
+            "simple": {
+                "title": "How to buy crypto safely where you live: exchanges and P2P",
+                "description": "Where to buy crypto, how to use P2P with escrow step by step, the most common traps for buyers and sellers, and good habits for your first buys.",
+                "intro": "Many beginners lose money when they buy. Most often it is a fake site or a fake payment. It is not the market. A few rules make your first buy much safer.",
+                "blocks": [
+                    ("h", "Choose where to buy"),
+                    ("ul", [
+                        "**A licensed or well-known exchange.** It is easy to use. It has rules and support. It usually asks for ID. Check on your regulator's website that it is allowed in your country.",
+                        "**P2P on an exchange platform.** You buy from another person by bank transfer or mobile money. The platform holds the crypto in escrow until the payment is confirmed.",
+                        "**Never buy from strangers in chats or social media** outside a platform with escrow. Nobody can help you if something goes wrong.",
+                        "**Payment methods differ by country.** Check which bank or mobile money options the platform supports before you deposit.",
+                        "**Local rules matter.** In some countries, banks limit crypto payments, or crypto trading is limited. Check with your national regulator first.",
+                    ]),
+                    ("h", "Safe P2P, step by step"),
+                    ("ol", [
+                        "**Use the platform's own P2P market with escrow.** Choose sellers with many completed trades and a high completion rate.",
+                        "**Read the seller's payment terms.** Pay only with the method and account shown in the order. Never pay to a different account.",
+                        "**Pay from an account in your own name.** Payments from other people are often rejected or reversed.",
+                        "**Press “paid” only after you really paid.** If you are the seller, release the crypto only when the money is in your own account. A screenshot is not proof.",
+                        "**Keep every message inside the platform chat.** If there is a dispute, use the platform's appeal process. Do not use a private chat.",
+                    ]),
+                    ("h", "Common traps"),
+                    ("ul", [
+                        "Fake payment screenshots shown to you when you are the seller.",
+                        "A seller or buyer who asks you to chat or pay outside the platform.",
+                        "Bank transfers that are reversed later. Wait until the money is final in your account.",
+                        "Fake exchange websites and apps. Open the exchange from its official site or store page. Read the address letter by letter.",
+                        "A price far better than the market. Compare it with a price page such as CoinGecko before you trust an offer.",
+                    ]),
+                    ("h", "Good habits"),
+                    ("ul", [
+                        "Start with a small amount to learn the steps.",
+                        "Turn on two-step verification for your exchange account before you deposit anything.",
+                        "Keep records of what you buy. Tax rules differ by country, so check yours.",
+                        "Never borrow money to buy crypto. Use only money that you can afford to lose.",
+                    ]),
+                ],
+            },
         },
     },
     # ====================================================================== 7. Не та сеть
@@ -215,6 +254,7 @@ GUIDES_B = {
             "id": "🧭 Salah jaringan saat transfer",
             "vi": "🧭 Chuyển nhầm mạng",
             "sw": "🧭 Kutuma kwenye mtandao usio sahihi",
+            "simple": "🧭 Sending on the wrong network",
         },
         "lang": {
             "en": {
@@ -399,6 +439,43 @@ GUIDES_B = {
                         "Wasiliana mara moja na msaada wa huduma ya mpokeaji, ukiwa na kitambulisho cha muamala, anwani, mtandao na kiasi. Kurejesha kunaweza kuchukua siku na kunaweza kuwa na ada. Hakuna uhakika kamwe.",
                         "Ikiwa fedha ziliingia kwenye pochi unayoidhibiti, unaweza kuziona kwa kuongeza mtandao mwingine kwenye pochi yako. Kwenye mitandao mingi, anwani ileile hufanya kazi.",
                         "Kuwa mwangalifu na “huduma za kurejesha” zinazotaka pesa au seed phrase yako. Huo ni ulaghai wa pili wa kawaida.",
+                    ]),
+                ],
+            },
+            "simple": {
+                "title": "Sending on the wrong network: how to avoid losing money",
+                "description": "Why one coin exists on several networks, a checklist to use before every transfer, how to pick a network, and what to do if your funds went to the wrong one.",
+                "intro": "Sending crypto on the wrong network is one of the most common ways to lose money by mistake. A short checklist before each transfer stops almost all of these cases.",
+                "blocks": [
+                    ("h", "What goes wrong"),
+                    ("ul", [
+                        "The same coin can exist on several networks. For example, USDT is on TRON, Ethereum, BNB Chain and Solana. They are separate systems, like different banks.",
+                        "Some addresses look the same on different networks. An address that looks right does not mean the network is right.",
+                        "You may send on a network that the receiver does not support. Then the funds may not arrive. Sometimes the receiving service can get them back for a fee, after a wait. Sometimes they are lost.",
+                        "Some coins need an extra memo or tag. If you forget it, the deposit may arrive but not show in your account.",
+                    ]),
+                    ("h", "Before every transfer"),
+                    ("ol", [
+                        "**Open the deposit page on the receiving side.** Choose the coin. Read the list of supported networks. Copy the address and any memo.",
+                        "**Choose the same network in the sending app.** The names must match exactly.",
+                        "**Check the address.** After you paste it, compare the first and last characters. Some malware changes the address in your clipboard.",
+                        "**Check the minimum deposit and the fee.** A deposit below the minimum may not be credited.",
+                        "**Send a small test first.** Wait for it to arrive. Then send the rest.",
+                        "**Keep the transaction ID** until the funds are credited to your account.",
+                    ]),
+                    ("h", "Choosing a network"),
+                    ("ul", [
+                        "Fees differ a lot between networks. A cheaper network can be fine for small amounts. But both sides must support it.",
+                        "Are you sending to a person? Ask which network their wallet or exchange uses.",
+                        "Check the token's real contract address and networks on its CoinGecko page. Then you will not deal with a fake token that has the same name.",
+                        "If you are not sure, use the network that the receiving service lists first. Test with a small amount.",
+                    ]),
+                    ("h", "If you sent to the wrong network"),
+                    ("ul", [
+                        "Stop. Do not send more funds to fix it.",
+                        "Contact the support of the receiving service at once. Give them the transaction ID, the address, the network and the amount. Recovery can take days and may cost a fee. It is never guaranteed.",
+                        "If the funds went to a wallet you control, you may be able to see them. Add the other network in your wallet. On many networks the same address works.",
+                        "Be careful with “recovery services” that ask for money or your seed phrase. They are a common second scam.",
                     ]),
                 ],
             },

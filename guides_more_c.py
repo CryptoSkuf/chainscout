@@ -10,6 +10,7 @@ GUIDES_C = {
             "id": "🔑 Dompet & seed phrase",
             "vi": "🔑 Ví & cụm từ khôi phục",
             "sw": "🔑 Pochi na seed phrase",
+            "simple": "🔑 Wallets & seed phrase",
         },
         "lang": {
             "en": {
@@ -207,6 +208,45 @@ GUIDES_C = {
                     ]),
                 ],
             },
+            "simple": {
+                "title": "Wallets and seed phrases: who holds the keys, and how to keep them safe",
+                "description": "The difference between an exchange account and your own wallet, what a seed phrase is, how to store it, and what to do if you think someone saw it.",
+                "intro": "A wallet is where you control your crypto from. The person who holds the keys really owns the money. Learn this before you put anything in.",
+                "blocks": [
+                    ("h", "Two kinds of wallet"),
+                    ("ul", [
+                        "**Custodial.** An exchange or app holds the keys for you. You log in with a password. This is easy. But if the company freezes your account, fails or is hacked, you depend on it.",
+                        "**Non-custodial.** You hold the keys yourself. A seed phrase is the backup. Nobody can freeze your wallet. But nobody can get it back for you either.",
+                        "**Hardware wallet.** This is a small device that keeps the keys offline. It is the safest choice for larger amounts. But it costs money and you must take care of it.",
+                    ]),
+                    ("h", "What a seed phrase is"),
+                    ("ul", [
+                        "It is a list of 12 or 24 words. These words can restore your whole wallet on any device.",
+                        "Anyone who has the words controls all your funds. There is no password reset. No support desk can undo it.",
+                        "Never type it into a website, a chat or a form. Never take a photo of it. Never put it in a cloud note or send it to anyone.",
+                        "No real company, admin or “support agent” will ever ask you for it.",
+                        "If you lose it and you also lose the device, the funds are gone.",
+                    ]),
+                    ("h", "Set up a wallet safely"),
+                    ("ol", [
+                        "**Get the app from the official source.** Open the wallet's official website yourself. Follow its link to the store. Check the publisher name, because fake apps copy the logo.",
+                        "**Write the seed phrase on paper**, offline, before you put in any money. Check each word two times.",
+                        "**Keep two copies in separate safe places.** A cloud note, a screenshot or a messenger chat is not safe.",
+                        "**Send a small test amount first.** Check that it arrives before you move the rest.",
+                        "**Keep small amounts in a phone wallet** that you use often. Keep larger savings in a safer place, such as a hardware wallet.",
+                    ]),
+                    ("h", "Which one should you use?"),
+                    ("p", "There is no single right answer. A custodial account is simpler when you start. But you must trust the company. A non-custodial wallet gives you control. It also gives you all the responsibility. Many people use both. They keep a small amount on an exchange for buying and selling. They keep their savings in their own wallet."),
+                    ("h", "If you think your seed phrase leaked"),
+                    ("ul", [
+                        "Act fast. Make a new wallet on a clean device and move your funds there.",
+                        "Do not use the old seed phrase again for anything.",
+                        "Revoke the old approvals from the wallet that was exposed.",
+                        "Tell the platform that is involved. Keep screenshots and transaction IDs.",
+                        "Be careful with strangers who offer to “recover” your funds for a fee. This is a common second scam.",
+                    ]),
+                ],
+            },
         },
     },
 
@@ -219,6 +259,7 @@ GUIDES_C = {
             "id": "🎁 Airdrop palsu & token jebakan",
             "vi": "🎁 Airdrop giả & token bẫy",
             "sw": "🎁 Airdrop bandia na tokeni za mtego",
+            "simple": "🎁 Fake airdrops & trap tokens",
         },
         "lang": {
             "en": {
@@ -408,6 +449,44 @@ GUIDES_C = {
                         "Hamisha fedha zilizobaki kwenye pochi mpya iliyotengenezwa kwenye kifaa safi.",
                         "Ripoti ulaghai kwa jukwaa na kwa polisi au kitengo cha uhalifu wa mtandaoni cha eneo lako. Hifadhi picha za skrini na vitambulisho vya miamala.",
                         "Puuza yeyote anayetoa “kurejesha” fedha zako kwa ada.",
+                    ]),
+                ],
+            },
+            "simple": {
+                "title": "Fake airdrops and trap tokens: how to spot them and what not to click",
+                "description": "How free-token scams work, why a token you did not ask for can be bait, how to check that an airdrop is real, and what to do if you already signed.",
+                "intro": "Free tokens sound great. Scammers use this. A token shows up in your wallet, or a post promises a reward. The real goal is to get your signature or your seed phrase.",
+                "blocks": [
+                    ("h", "How the trick works"),
+                    ("ul", [
+                        "A token you never bought shows up in your wallet. Its name has a website in it, like “claim your reward at …”.",
+                        "The site asks you to connect your wallet and sign something. That signature can let the scammer move your tokens.",
+                        "Another version asks you to pay a small “fee” or “gas” first. They say you will then get a bigger reward. The reward never comes.",
+                        "Fake posts copy the name and logo of a real project. They promise an airdrop to people who “verify” their wallet.",
+                        "Some trap tokens are honeypots. You can buy them, but you cannot sell them.",
+                    ]),
+                    ("h", "Before you touch it"),
+                    ("ol", [
+                        "**Do not use a token you did not ask for.** Do not sell it. Do not click its link. Do not approve anything.",
+                        "**Look for the news on the project's official website** and on its verified account. Open them yourself. A link from a chat does not count.",
+                        "**Scan the contract** with a tool such as GoPlus. Also check the token's page on CoinGecko.",
+                        "**Read what you are asked to sign.** An “approve” or “set approval for all” request can let someone move your tokens.",
+                        "**Use a separate wallet with a small balance** for anything new or risky. Never use your main savings wallet.",
+                    ]),
+                    ("h", "What real airdrops usually look like"),
+                    ("ul", [
+                        "The project shares them on its official channels. It does this well before they happen.",
+                        "They never ask for your seed phrase or private key.",
+                        "They never ask you to send money first so you can get more.",
+                        "You claim them on the official domain. You reach it by typing the address yourself.",
+                    ]),
+                    ("h", "If you already signed or connected"),
+                    ("ul", [
+                        "Stop using the site. Do not enter your seed phrase anywhere to “fix” it.",
+                        "Revoke the approvals for that wallet. Use a trusted approval checker.",
+                        "Move your remaining funds to a new wallet. Make it on a clean device.",
+                        "Report the scam to the platform. Also tell your local police or cybercrime unit. Keep screenshots and transaction IDs.",
+                        "Ignore anyone who offers to “recover” your funds for a fee.",
                     ]),
                 ],
             },

@@ -24,7 +24,8 @@ HERE = Path(__file__).resolve().parent
 sys.path[:0] = [str(HERE), str(HERE.parent)]
 from guides import GUIDE_UI, GUIDES, SECTION_GUIDES  # noqa: E402
 from sections import SEC, SECTIONS  # noqa: E402
-from locales import LANGS, STRINGS  # noqa: E402
+from checker import CHECK_JS, CHECK_UI  # noqa: E402
+from locales import HREFLANG_LANGS, HTML_LANG, LANGS, STRINGS, lang_attrs  # noqa: E402
 from prelanding import PRE  # noqa: E402
 from howto import HOWTO, HOWTO_UI  # noqa: E402
 from exchanges import EXCHANGES, TAGS as EX_TAGS, UI as EX_UI  # noqa: E402
@@ -33,7 +34,7 @@ DEFAULT_BASE = "https://example.com"
 # Порядок разделов: сначала безопасность, потом всё остальное от простого к сложному.
 ORDER = ["safety", "market", "research", "sentiment", "onchain"]
 LEVEL_DOTS = {"beginner": 1, "intermediate": 2, "advanced": 3}
-OG_LOCALE = {"en": "en_US", "fr": "fr_FR", "id": "id_ID", "vi": "vi_VN", "sw": "sw_KE"}
+OG_LOCALE = {"en": "en_US", "fr": "fr_FR", "id": "id_ID", "vi": "vi_VN", "sw": "sw_KE", "simple": "en_US"}
 
 # --------------------------------------------------------------------------- тексты сайта
 SITE = {
@@ -241,7 +242,48 @@ SITE = {
         "disclosure": "Hii ni orodha huru. Baadhi ya viungo ni vya washirika, na tunaweza kupata kamisheni ukijisajili, bila gharama ya ziada kwako. Orodha za washirika na zilizodhaminiwa zimewekwa alama. Bei na mipango ya bure hubadilika, kwa hiyo angalia kila tovuti rasmi. Hakuna kilicho hapa ni ushauri wa kifedha, na crypto ina hatari kubwa.",
         "not_found": "Ukurasa haupatikani",
         "not_found_text": "Chagua lugha ili kurudi kwenye orodha.",
+    },    "simple": {
+        "title": "{name}: AI and data tools to research crypto",
+        "description": "An easy directory of AI and data tools for crypto research. Check scams, prices, on-chain data and news mood. Information only, no trading signals.",
+        "h1": "What do you want to check?",
+        "lede": "Pick a question. See the tools that answer it. This site gives information only. It never gives buy or sell signals.",
+        "search_label": "Search tools",
+        "search_ph": "Search by name or topic",
+        "no_results": "No tool matches your search. Try a shorter word.",
+        "start_here": "Start here",
+        "tools_one": "1 tool",
+        "tools_many": "{n} tools",
+        "open": "Open {tool}",
+        "new_tab": " (opens in a new tab)",
+        "partner": "Partner link",
+        "checked_on": "Checked {date}",
+        "skip": "Skip to content",
+        "lang_label": "Language",
+        "q": {
+            "safety": "Is this token or link safe?",
+            "market": "What is it worth right now?",
+            "research": "What is this project about?",
+            "sentiment": "What are people saying?",
+            "onchain": "What are big wallets doing?",
+        },
+        "safety_title": "Before you use any crypto tool",
+        "tips": [
+            "Never share your seed phrase or private keys. No real tool, support agent or admin will ask for them.",
+            "Nobody can promise a profit. Be careful with anyone who does, even in a friendly chat.",
+            "Type the address yourself, or open tools from this list. Fake sites copy real ones.",
+            "Try a free plan first. Check the price on the official site before you pay.",
+        ],
+        "join_title": "Hear about new tools",
+        "join_text": "Get short news when we add or change a tool. You can stop at any time.",
+        "tg_button": "Open the Telegram bot",
+        "email_label": "Email address",
+        "email_button": "Subscribe",
+        "disclosure_title": "How this site works",
+        "disclosure": "This is an independent directory. Some links are partner links. We may earn a fee if you sign up. It costs you nothing extra. Partner and sponsored listings are marked. Prices and free plans change, so check each official site. Nothing here is financial advice. Crypto is high-risk.",
+        "not_found": "Page not found",
+        "not_found_text": "Choose a language to go back to the directory.",
     },
+
 }
 
 # --------------------------------------------------------------------------- оформление
@@ -335,6 +377,15 @@ body.pre{--paper:#fff;--surface:#f6f8fc;--ink:#101733;--muted:#4b5678;--line:#d9
 .pre .coins{display:none}
 main .checklist,.prose .checklist{list-style:none;padding:0;margin:0 0 1rem;max-width:none}.checklist li{margin:.5rem 0}.checklist label{display:flex;gap:.7rem;align-items:flex-start;padding:.7rem .9rem;border:1px solid var(--line);border-radius:12px;background:var(--surface);cursor:pointer}
 .checklist input{width:1.3rem;height:1.3rem;flex:none;margin-top:.15rem;accent-color:var(--btn-bg)}.checklist input:checked+span{color:var(--muted);text-decoration:line-through}
+.ck-form{display:grid;gap:.5rem;max-width:34rem;margin:0 0 .8rem}.ck-form label{font-weight:700}.ck-form select,.ck-form input{padding:.7rem .8rem;border:1px solid var(--line);border-radius:10px;font:inherit;background:#fff;color:var(--ink);min-width:0}.ck-form input{font-family:ui-monospace,monospace;font-size:.95rem}.ck-form .btn{justify-self:start;margin-top:.4rem}
+.ck-note{color:var(--muted);font-size:.95rem;margin:.3rem 0}.ck-err{padding:.7rem .9rem;border-radius:10px;background:var(--surface);border:1px solid var(--line)}
+.ck-sum,.ck-token,.ck-step{margin:1.2rem 0;padding:1rem 1.1rem;border:1px solid var(--line);border-radius:14px;background:var(--surface)}.ck-sum h2,.ck-token h2,.ck-step h2{margin:.1rem 0 .5rem;font-size:1.2rem}
+.ck-sum.stop{border-color:#b42318;border-width:2px}.ck-sum.flag{border-color:#b45309;border-width:2px}.ck-sum.ok{border-color:#0b7a6c;border-width:2px}.ck-big{font-weight:700;font-size:1.1rem;margin:.2rem 0 .5rem}.ck-name{font-weight:700;font-size:1.15rem;margin:.2rem 0}
+.ck-links a{margin-right:1rem}.ck-list{list-style:none;padding:0;margin:0}.ck-row{display:flex;gap:.7rem;align-items:flex-start;padding:.55rem 0;border-top:1px solid var(--line)}.ck-row:first-child{border-top:0}
+.ck-badge{flex:none;min-width:5.6rem;text-align:center;padding:.15rem .5rem;border-radius:999px;font-size:.8rem;font-weight:800;border:1.5px solid currentColor}
+.ck-row.ok .ck-badge{color:#0b7a6c}.ck-row.flag .ck-badge{color:#b45309}.ck-row.stop .ck-badge{color:#b42318;background:#fdecea}.ck-row.unknown .ck-badge{color:#4b5678}.ck-row.manual .ck-badge{color:#3a4a9a}
+.ck-text{display:grid;gap:.15rem}.ck-why{color:var(--muted);font-size:.95rem}.ck-copy{margin:.5rem 0 1rem}
+.cta-check.alt{background:#fff;color:var(--btn-bg);border:2px solid var(--btn-bg);margin-left:.4rem}
 .menu{display:flex;flex-wrap:wrap;gap:.4rem;margin:0 0 1.2rem}.menu a{padding:.45rem .85rem;border:1px solid var(--line);border-radius:999px;background:var(--surface);color:var(--ink);text-decoration:none;font-weight:600;font-size:.95rem}.menu a:hover{background:var(--hover)}.menu a[aria-current=page]{background:var(--ink);color:#fff;border-color:var(--ink)}
 .hubstart{margin:1rem 0 1.6rem}.hubtitle{margin:1.4rem 0 .8rem}.hub{list-style:none;padding:0;margin:0 0 2rem;display:grid;gap:.9rem;grid-template-columns:1fr}
 @media (min-width:760px){.hub{grid-template-columns:1fr 1fr}}
@@ -610,6 +661,7 @@ def exchanges_section(lang: str) -> str:
 PAGE_IMGS = {
     "home": ("robot-1", "robot-4", "robot-5"),
     "safety": ("robot-2", "robot-6"),
+    "check": ("robot-7", "robot-8"),
     "tools": ("robot-3", "robot-7", "robot-8", "robot-9"),
     "exchanges": ("robot-5", "robot-8"),
     "earn": ("robot-6", "robot-3"),
@@ -650,7 +702,7 @@ def render_page(lang: str, tools: list[dict], cfg: dict, year: int, page: str = 
         title, desc, h1, lede = f"{sec[2]} | {name}", sec[1], sec[2], sec[3]
 
     alternates = "".join(
-        f'<link rel="alternate" hreflang="{code}" href="{base}/{code}/{suffix}">' for code in LANGS
+        f'<link rel="alternate" hreflang="{code}" href="{base}/{code}/{suffix}">' for code in HREFLANG_LANGS
     ) + f'<link rel="alternate" hreflang="x-default" href="{base}/{"" if page == "home" else "en/" + suffix}">'
 
     if page == "tools":
@@ -679,7 +731,7 @@ def render_page(lang: str, tools: list[dict], cfg: dict, year: int, page: str = 
     ld = json_ld(ld_obj)
 
     langs_nav = "".join(
-        f'<a href="{up}{code}/{suffix}" lang="{code}" hreflang="{code}"'
+        f'<a href="{up}{code}/{suffix}" {lang_attrs(code)}'
         + (' aria-current="page"' if code == lang else "")
         + f">{esc(label)}</a>"
         for code, label in LANGS.items()
@@ -694,7 +746,9 @@ def render_page(lang: str, tools: list[dict], cfg: dict, year: int, page: str = 
     if page == "home":
         cards = []
         for key in SECTIONS:
-            if key == "tools":
+            if key == "check":
+                count = X["check_count"]
+            elif key == "tools":
                 count = X["n_tools"].format(n=len(tools))
             elif key == "guides":
                 count = X["n_guides"].format(n=len(GUIDES))
@@ -712,10 +766,26 @@ def render_page(lang: str, tools: list[dict], cfg: dict, year: int, page: str = 
     elif page == "safety":
         tips = "".join(f"<li>{esc(tip)}</li>" for tip in S["tips"])
         body = (
-            f'<p>{cta_start}</p>'
+            f'<p>{cta_start} <a class="cta-check alt" href="{up}{lang}/check/">{esc(X["check"][0])} &rarr;</a></p>'
             f'<section class="safe" id="safe"><h2>{esc(S["safety_title"])}</h2><ul>{tips}</ul></section>'
             f'<section><h2>{esc(G_title)}</h2>{guide_list(SECTION_GUIDES["safety"], lang, up)}</section>'
         )
+    elif page == "check":
+        C = CHECK_UI[lang]
+        how = "".join(f"<li>{esc(x)}</li>" for x in C["how"])
+        body = (
+            f'<form id="ck-form" class="ck-form" novalidate>'
+            f'<label for="ck-net">{esc(C["label_net"])}</label><select id="ck-net"></select>'
+            f'<label for="ck-addr">{esc(C["label_addr"])}</label>'
+            f'<input id="ck-addr" type="text" inputmode="text" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="{esc(C["ph_addr"])}">'
+            f'<button id="ck-btn" class="btn" type="submit">{esc(C["btn"])}</button></form>'
+            f'<p class="ck-note">{esc(C["scope"])}</p><p class="ck-note">{esc(C["privacy"])}</p>'
+            f'<p id="ck-err" class="ck-err" role="status" aria-live="polite" hidden></p>'
+            f'<div id="ck-out" aria-live="polite" hidden></div>'
+            f'<section class="safe"><h2>{esc(C["how_title"])}</h2><ul>{how}</ul></section>'
+            f'<p><a class="cta-check" href="{checklist_href}">{esc(C["full_cta"])} &rarr;</a></p>'
+        )
+        scripts = "<script>" + CHECK_JS.replace("__T__", json.dumps(C, ensure_ascii=False).replace("</", "<\\/")) + "</script>"
     elif page == "tools":
         groups = [(c, [x for x in tools if x["category"] == c]) for c in ORDER]
         groups = [(c, items) for c, items in groups if items]
@@ -785,7 +855,7 @@ def render_page(lang: str, tools: list[dict], cfg: dict, year: int, page: str = 
 
     coins = COINS if page == "home" else ""
     return f"""<!doctype html>
-<html lang="{lang}">
+<html lang="{HTML_LANG.get(lang, lang)}">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -865,7 +935,7 @@ def render_guide(lang: str, slug: str, by_id: dict, cfg: dict) -> str:
     url = f"{base}/{lang}/guides/{slug}/"
 
     alternates = "".join(
-        f'<link rel="alternate" hreflang="{code}" href="{base}/{code}/guides/{slug}/">' for code in LANGS
+        f'<link rel="alternate" hreflang="{code}" href="{base}/{code}/guides/{slug}/">' for code in HREFLANG_LANGS
     ) + f'<link rel="alternate" hreflang="x-default" href="{base}/en/guides/{slug}/">'
 
     ld = json_ld(
@@ -882,7 +952,7 @@ def render_guide(lang: str, slug: str, by_id: dict, cfg: dict) -> str:
     )
 
     langs_nav = "".join(
-        f'<a href="../../../{code}/guides/{slug}/" lang="{code}" hreflang="{code}"'
+        f'<a href="../../../{code}/guides/{slug}/" {lang_attrs(code)}'
         + (' aria-current="page"' if code == lang else "")
         + f">{esc(label)}</a>"
         for code, label in LANGS.items()
@@ -897,7 +967,7 @@ def render_guide(lang: str, slug: str, by_id: dict, cfg: dict) -> str:
     )
 
     return f"""<!doctype html>
-<html lang="{lang}">
+<html lang="{HTML_LANG.get(lang, lang)}">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -966,7 +1036,7 @@ def render_prelanding(lang: str, cfg: dict) -> str:
     if cfg.get("bot_username"):
         ctas += f'<a class="btn alt" href="https://t.me/{esc(cfg["bot_username"])}" target="_blank" rel="noopener">{esc(P["cta_bot"])}</a>'
     return f"""<!doctype html>
-<html lang="{lang}">
+<html lang="{HTML_LANG.get(lang, lang)}">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -985,6 +1055,7 @@ def render_prelanding(lang: str, cfg: dict) -> str:
 <h1>{esc(P["h1"])}</h1>
 <div class="prose pre-text">{paras}</div>
 <div class="prose pre-text"><h2>{esc(P["soon_title"])}</h2><p>{esc(P["soon"])}</p></div>
+<div class="prose pre-text"><h2>{esc(P["mission_title"])}</h2><p>{esc(P["mission"])}</p></div>
 <div class="cta-row">{ctas}</div>
 <section class="safe" aria-labelledby="h-honest"><h2 id="h-honest">{esc(P["honest_title"])}</h2><p>{esc(P["honest"])}</p></section>
 <section aria-labelledby="h-cards"><h2 id="h-cards">{esc(P["cards_title"])}</h2><ul class="panel">{cards}</ul></section>
@@ -1000,7 +1071,7 @@ def render_prelanding(lang: str, cfg: dict) -> str:
 
 def render_prelanding_root(cfg: dict) -> str:
     links = "".join(
-        f'<li><a class="ask" href="../{code}/start/" lang="{code}">{esc(label)}</a></li>' for code, label in LANGS.items()
+        f'<li><a class="ask" href="../{code}/start/"{lang_attrs(code)}>{esc(label)}</a></li>' for code, label in LANGS.items()
     )
     return f"""<!doctype html>
 <html lang="en">
@@ -1027,10 +1098,10 @@ for(var i=0;i<l.length;i++){{var c=String(l[i]).slice(0,2).toLowerCase();if(map[
 def render_root(cfg: dict) -> str:
     name, base = cfg["site_name"], cfg["base_url"]
     alternates = "".join(
-        f'<link rel="alternate" hreflang="{code}" href="{base}/{code}/">' for code in LANGS
+        f'<link rel="alternate" hreflang="{code}" href="{base}/{code}/">' for code in HREFLANG_LANGS
     ) + f'<link rel="alternate" hreflang="x-default" href="{base}/">'
     links = "".join(
-        f'<li><a class="ask" href="{code}/" lang="{code}" hreflang="{code}">{esc(label)}</a></li>'
+        f'<li><a class="ask" href="{code}/"{lang_attrs(code)}>{esc(label)}</a></li>'
         for code, label in LANGS.items()
     )
     return f"""<!doctype html>
@@ -1061,10 +1132,10 @@ def render_root(cfg: dict) -> str:
 
 def render_404(cfg: dict) -> str:
     links = "".join(
-        f'<li><a class="ask" href="/{code}/" lang="{code}">{esc(label)}</a></li>' for code, label in LANGS.items()
+        f'<li><a class="ask" href="/{code}/"{lang_attrs(code)}>{esc(label)}</a></li>' for code, label in LANGS.items()
     )
     blocks = "".join(
-        f'<p lang="{code}"><strong>{esc(SITE[code]["not_found"])}</strong><br>{esc(SITE[code]["not_found_text"])}</p>'
+        f'<p lang="{HTML_LANG.get(code, code)}"><strong>{esc(SITE[code]["not_found"])}</strong><br>{esc(SITE[code]["not_found_text"])}</p>'
         for code in LANGS
     )
     return f"""<!doctype html>
@@ -1093,18 +1164,18 @@ def render_sitemap(cfg: dict, today: str) -> str:
     entries = [f"<url><loc>{base}/</loc><lastmod>{today}</lastmod></url>"]
     for lang in LANGS:
         alts = "".join(
-            f'<xhtml:link rel="alternate" hreflang="{c}" href="{base}/{c}/"/>' for c in LANGS
+            f'<xhtml:link rel="alternate" hreflang="{c}" href="{base}/{c}/"/>' for c in HREFLANG_LANGS
         ) + f'<xhtml:link rel="alternate" hreflang="x-default" href="{base}/"/>'
         entries.append(f"<url><loc>{base}/{lang}/</loc><lastmod>{today}</lastmod>{alts}</url>")
     for key in SECTIONS:
         alts = "".join(
-            f'<xhtml:link rel="alternate" hreflang="{c}" href="{base}/{c}/{key}/"/>' for c in LANGS
+            f'<xhtml:link rel="alternate" hreflang="{c}" href="{base}/{c}/{key}/"/>' for c in HREFLANG_LANGS
         ) + f'<xhtml:link rel="alternate" hreflang="x-default" href="{base}/en/{key}/"/>'
         for lang in LANGS:
             entries.append(f"<url><loc>{base}/{lang}/{key}/</loc><lastmod>{today}</lastmod>{alts}</url>")
     for slug in GUIDES:
         alts = "".join(
-            f'<xhtml:link rel="alternate" hreflang="{c}" href="{base}/{c}/guides/{slug}/"/>' for c in LANGS
+            f'<xhtml:link rel="alternate" hreflang="{c}" href="{base}/{c}/guides/{slug}/"/>' for c in HREFLANG_LANGS
         ) + f'<xhtml:link rel="alternate" hreflang="x-default" href="{base}/en/guides/{slug}/"/>'
         for lang in LANGS:
             entries.append(

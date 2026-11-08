@@ -1,0 +1,191 @@
+"""Simple English для 5 гидов раздела «Заработок и DeFi». Структура блоков такая же, как в английской версии."""
+
+SIMPLE_EARN = {
+    "airdrops-retrodrops-explained": {
+        "short": "🎁 Airdrops & retrodrops",
+        "lang": {
+            "title": "Airdrops and retrodrops: what they are and what to expect",
+            "description": "How projects give tokens to wallets, how retrodrops pay for things you did before, and an honest look at costs, risks and how big the rewards are.",
+            "intro": "An airdrop is when a crypto project gives tokens to some wallets. A retrodrop is a reward for things you already did, for example using a product early. Free does not mean safe. The amounts are often small.",
+            "blocks": [
+                ("h", "How it works"),
+                ("ul", [
+                    "**Airdrop.** The project sends tokens to wallets that follow its rules. Often it wants more users and more owners.",
+                    "**Retrodrop.** A reward for what you did in the past. For example you used an app, traded, voted or built something. The rules are often published after the activity.",
+                    "**Points programs.** Some projects give points first. Later they decide if the points become tokens, and how.",
+                ]),
+                ("h", "What to expect, honestly"),
+                ("ul", [
+                    "Many projects never give anything. The ones that do often give small amounts.",
+                    "\"No money needed\" is not fully true. You pay network fees. You spend time. Sometimes you lock money in an app.",
+                    "The price of the token can fall soon after the launch. The value on paper is not the money you can get when you sell.",
+                    "Rules can change. Some wallets are left out, for example accounts that used many fake wallets.",
+                    "You may need to pay tax in your country when you get or sell the tokens.",
+                ]),
+                ("h", "Where the real risk is"),
+                ("ul", [
+                    "Fake airdrops ask you to connect your wallet and sign something. This can empty your wallet.",
+                    "You may spend more on fees and deposits than you ever get back.",
+                    "You may run after every new project and skip safety checks because you are in a hurry.",
+                ]),
+                ("h", "A simple way to do it"),
+                ("ol", [
+                    "Use a separate wallet for this. Keep only a small amount in it.",
+                    "Pick a few projects that you understand and would use anyway.",
+                    "Use them in a normal way. Write down what you did and when.",
+                    "Never pay to \"claim\" a drop. A real drop does not ask you for money.",
+                    "Treat every token you receive as not checked. Check it with the token checklist first.",
+                ]),
+            ],
+        },
+    },
+    "join-airdrops-safely": {
+        "short": "🛡️ Join airdrops safely",
+        "lang": {
+            "title": "How to join airdrops safely: protect your wallet first",
+            "description": "Rules for a separate wallet, safe signatures and permissions, how to spot a fake airdrop, and a short routine before you claim.",
+            "intro": "Most losses around airdrops come from fake claims and dangerous signatures. They do not come from the project itself. These rules protect your wallet.",
+            "blocks": [
+                ("h", "Rules for your wallet"),
+                ("ul", [
+                    "**Use a separate wallet.** Keep a wallet with a small balance for airdrops. Your savings stay in another wallet that never touches these apps.",
+                    "**Never share your seed phrase.** A real airdrop does not need it.",
+                    "**Read what you sign.** A \"claim\" that asks for permission to spend your tokens, or to move all your assets, is a trap.",
+                    "**Give small permissions.** Approve only the amount you need. From time to time, review old permissions with a tool you trust.",
+                ]),
+                ("h", "How to spot a fake"),
+                ("ul", [
+                    "A message says you were \"selected\" or that you must claim \"before it ends\".",
+                    "Links from chats, comments or ads. Use only the official website that you found yourself on the project's verified page.",
+                    "Tokens that appear in your wallet when you did not ask for them. Do not try to sell or swap them. They can be traps.",
+                    "Anyone who asks you to pay a fee, to send crypto first, or to install a program.",
+                ]),
+                ("h", "Before you claim"),
+                ("ol", [
+                    "Find the official news on the project's verified website and social accounts.",
+                    "Take the claim address from the official website. Do not take it from a message.",
+                    "Check the token with GoPlus. Compare it on CoinGecko.",
+                    "Claim only with your separate wallet.",
+                    "After you claim, review the permissions your wallet has given.",
+                ]),
+            ],
+        },
+    },
+    "token-sales-launchpads": {
+        "short": "🚀 Token sales & launchpads",
+        "lang": {
+            "title": "Token sales and launchpads: how they work and where they go wrong",
+            "description": "The main kinds of token sales, the usual risks, what to read in the tokenomics, and a checklist before you take part.",
+            "intro": "A token sale is when a project sells new tokens before or at its launch. It can happen on a launch platform, on an exchange or on the project's own website. Prices can fall as fast as they rise. Many sales are scams.",
+            "blocks": [
+                ("h", "Common kinds"),
+                ("ul", [
+                    "**Public sales (ICO, IDO, IEO).** Anyone who follows the rules can buy. It happens on a platform or an exchange.",
+                    "**Launchpool and earn programs.** You lock a coin that you already own. You get new tokens as a reward. You need money for this, and the locked coin has its own risk.",
+                    "**Private and presale rounds.** Often for insiders. The price is lower, the rules are strict and the lock time is long.",
+                ]),
+                ("h", "What can go wrong"),
+                ("ul", [
+                    "A rug pull: the creators take the money and disappear.",
+                    "Early buyers and the team sell as soon as the tokens unlock. Then the price falls.",
+                    "Low liquidity: you can buy, but you cannot sell at a fair price.",
+                    "Fake sale websites that copy a real platform.",
+                    "Offers that are not allowed in your country. You may have no legal protection.",
+                ]),
+                ("h", "What to read in the tokenomics"),
+                ("ul", [
+                    "How many tokens exist, and how many are for sale.",
+                    "How much belongs to the team and to investors, and when it unlocks.",
+                    "What the project will do with the money it collects.",
+                    "If the liquidity is locked.",
+                ]),
+                ("h", "Before you take part"),
+                ("check", [
+                    "The sale is on the official website of the project or platform. I opened that website myself.",
+                    "The platform is well known and the sale is allowed in my country.",
+                    "I read the tokenomics and the unlock schedule.",
+                    "The team is public. The project explains in simple words what it does.",
+                    "I checked the token with the token checklist and the security scan.",
+                    "I will put in only money that I can lose completely. I know the tax rules.",
+                ]),
+            ],
+        },
+    },
+    "liquidity-pools-defi": {
+        "short": "🌊 Liquidity pools (DeFi)",
+        "lang": {
+            "title": "Liquidity pools in DeFi: how people earn fees, and what they risk",
+            "description": "How a liquidity pool works, where the income comes from, the main risks including impermanent loss, and how to learn with a small amount.",
+            "intro": "A liquidity pool is a pot with two or more tokens. Traders swap tokens with this pot. People who add tokens to the pot are called liquidity providers. They get a share of the trading fees. It can pay, but it is not free money, and you can lose.",
+            "blocks": [
+                ("h", "How it works"),
+                ("ul", [
+                    "A pool holds a pair of tokens. For example a coin and a stablecoin.",
+                    "You put in both with the same value. You get a receipt that shows your share.",
+                    "Each swap pays a small fee. The providers share it.",
+                    "You can take out your share later. But its value can be different from what you put in.",
+                ]),
+                ("h", "Where the income comes from"),
+                ("p", "Mostly from trading fees. Sometimes also from extra reward tokens. A site may show a high yield number (APY). This is only an estimate and it can change in a few hours. A very high number is often a warning sign. It is not a bargain."),
+                ("h", "The main risks"),
+                ("ul", [
+                    "**Impermanent loss.** If the prices of the two tokens move far apart, you can end up with less value than if you had just kept them.",
+                    "**Smart contract risk.** A bug or a hack can empty the pool.",
+                    "**Rug pull.** In pools for new tokens, the creators can take out the valuable side. You are left with a token that is worth nothing.",
+                    "**Reward token risk.** The reward may be paid in a token that quickly loses value.",
+                    "**Stablecoin pools.** The price moves less, but the contract risk is still there. A stablecoin can also lose its peg.",
+                ]),
+                ("h", "A simple example"),
+                ("p", "You add the same value of Token A and a stablecoin. If Token A goes up a lot, the pool sells some of your Token A on the way up. At the end you hold less of it than you started with. When you take your money out, the fees you earned may not cover the difference with just keeping Token A."),
+                ("h", "If you want to learn"),
+                ("ol", [
+                    "Start with an amount you can lose completely. It must be small enough that fees do not eat it.",
+                    "Prefer big protocols that have run for a long time. Look them up on DefiLlama: how much money is locked, how old they are, and if they had an audit.",
+                    "Choose pairs you understand. Check the token with the token checklist.",
+                    "Practise taking money out before you add more.",
+                    "Compare your result after fees with just keeping the tokens. Keep records for taxes.",
+                ]),
+            ],
+        },
+    },
+    "before-you-join-checklist": {
+        "short": "✅ Before you join: checklist",
+        "lang": {
+            "title": "Before you join an airdrop, token sale or liquidity pool: a checklist",
+            "description": "A step-by-step checklist for any airdrop, token sale or liquidity pool: is it real, is your wallet safe, do you understand the risks, and what about money and rules.",
+            "intro": "Go through the steps in order. If you cannot tick an item, stop. Find out first, then go on. A clean list is not a promise. It only means you did not find the usual red flags.",
+            "blocks": [
+                ("h", "Step 1. Is the chance real?"),
+                ("check", [
+                    "I found the official website of the project myself, from a source I trust. It was not from a message or an ad.",
+                    "The same news is on the verified website and the verified social accounts of the project.",
+                    "The token passed the token check checklist and the GoPlus scan.",
+                    "Nobody asks me to pay to claim, to send crypto first, or to hurry. **STOP** if they do.",
+                ]),
+                ("h", "Step 2. Is my wallet safe?"),
+                ("check", [
+                    "I use a separate wallet with only a small amount in it.",
+                    "Nothing asks for my seed phrase or my password. **STOP** if it does.",
+                    "I read what I am going to sign. It does not give permission to spend without a limit.",
+                    "I know how to review and cancel the permissions that my wallet has given.",
+                ]),
+                ("h", "Step 3. Do I understand the risks?"),
+                ("check", [
+                    "I can say in one sentence how this chance pays and where the money comes from.",
+                    "I know the risks: fake claims, smart contract bugs, rug pulls, impermanent loss, and a price that falls after the launch.",
+                    "The yield or reward is not so high that it sounds too good to be true.",
+                    "I checked the project on DefiLlama or a similar tool: its age, its size and its audits.",
+                ]),
+                ("h", "Step 4. Money, rules and records"),
+                ("check", [
+                    "I will use only money that I can lose completely, including network fees.",
+                    "This is allowed in my country and I know the tax rules.",
+                    "I will keep a record of dates, amounts and transactions.",
+                    "I wrote down when I will review my decision and what would make me leave.",
+                ]),
+                ("h", "How to read the result"),
+                ("p", "If you reach a STOP item, walk away. If many items are not ticked, wait and learn more. If all items are ticked, the risk is still real. Keep the amount small."),
+            ],
+        },
+    },
+}

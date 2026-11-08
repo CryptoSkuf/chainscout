@@ -44,13 +44,20 @@ GUIDE_UI = {
         "disclaimer": "Mwongozo huu ni taarifa za jumla, si ushauri wa kisheria.",
         "full_guide": "Mwongozo kamili:",
     },
+    "simple": {
+        "guides_title": "Guides",
+        "back": "Back to the list",
+        "tools_title": "Tools named in this guide",
+        "disclaimer": "This guide gives general information. It is not legal advice.",
+        "full_guide": "Full guide:",
+    },
 }
 
 GUIDES = {
     # ====================================================================== 1. Проверка на скам
     "check-token-scams": {
         "tools": ["goplus", "coingecko"],
-        "short": {"en": "🛡 Check a token for scams", "fr": "🛡 Vérifier un token (arnaques)", "id": "🛡 Cek token dari penipuan", "vi": "🛡 Kiểm tra token lừa đảo", "sw": "🛡 Kagua tokeni dhidi ya ulaghai"},
+        "short": {"en": "🛡 Check a token for scams", "fr": "🛡 Vérifier un token (arnaques)", "id": "🛡 Cek token dari penipuan", "vi": "🛡 Kiểm tra token lừa đảo", "sw": "🛡 Kagua tokeni dhidi ya ulaghai", "simple": "🛡 Check if a token is a scam"},
         "lang": {
             "en": {
                 "title": "How to check a token or link for scams before you touch it",
@@ -222,12 +229,46 @@ GUIDES = {
                     ]),
                 ],
             },
+            "simple": {
+                "title": "How to check a token or link for scams before you use it",
+                "description": "Five checks against crypto scams: warning signs, the official site, a contract scan, wallet approvals, and what to do if you were already tricked.",
+                "intro": "Most crypto losses come from a few tricks that scammers repeat. They do not come from clever hacking. A few minutes of checking before you click, connect or buy can stop many of them.",
+                "blocks": [
+                    ("h", "Red flags: stop if you see them"),
+                    ("ul", [
+                        "Someone promises sure profit or very high returns. Or they say “risk free”.",
+                        "A stranger, a “support agent” or an “admin” writes to you first. This often happens on Telegram, WhatsApp or X.",
+                        "They tell you to hurry. For example: “last chance”, “only today”, “almost no spots left”.",
+                        "Someone asks for your seed phrase, your private key or a screenshot of your wallet. Real services never ask for these.",
+                        "A token you never bought shows up in your wallet. A site tells you to “claim” it or sell it.",
+                        "The link came from a chat message, a pop-up or an ad. It did not come from the project's official website.",
+                    ]),
+                    ("h", "Five checks, in order"),
+                    ("ol", [
+                        "**Find the official address yourself.** Get the project's website from CoinGecko or from its verified social account. Then type the address in your browser. Fake sites catch people who copy a link from a chat.",
+                        "**Read the link letter by letter.** Fake sites use almost the same spelling, extra words or a different ending. For example, .xyz instead of .com.",
+                        "**Scan the token contract.** Paste the contract address into a scanner such as GoPlus. Warning signs include a honeypot (you can buy but you cannot sell). Other signs are very high buy or sell taxes. Also watch for an owner who can make new tokens or change the rules.",
+                        "**Look at who holds the token.** Open the holders list on a block explorer. A few wallets may hold most of the supply. Then they can sell and crash the price.",
+                        "**Check what you approve.** Connecting a wallet is not the same as signing. Read every approval. Avoid “unlimited” approvals. Revoke old approvals that you no longer use.",
+                    ]),
+                    ("h", "What a clean scan does not tell you"),
+                    ("p", "A scanner finds patterns that people already know. It cannot see a team that plans to disappear. New scams are made to pass scans. Treat a clean result as one piece of information. It is not permission. Nothing on this page predicts if a token will go up or down."),
+                    ("h", "If you already clicked or signed something"),
+                    ("ul", [
+                        "Stop using the site. Do not type your seed phrase anywhere to “fix” the problem.",
+                        "Did you enter your seed phrase or private key anywhere? Then treat that wallet as unsafe. Create a new wallet on a clean device. Move the money that is left.",
+                        "Revoke the token approvals for the old wallet.",
+                        "Report the scam to the exchange or platform involved. Also tell your local police or cybercrime unit. Keep screenshots and transaction IDs.",
+                        "Be careful with anyone who offers to “recover” your money for a fee. This is a very common second scam.",
+                    ]),
+                ],
+            },
         },
     },
     # ====================================================================== 2. On-chain основы
     "on-chain-data-basics": {
         "tools": ["defillama", "arkham", "dune", "nansen"],
-        "short": {"en": "⛓ On-chain data basics", "fr": "⛓ Bases des données on-chain", "id": "⛓ Dasar data on-chain", "vi": "⛓ Cơ bản về dữ liệu on-chain", "sw": "⛓ Misingi ya data za on-chain"},
+        "short": {"en": "⛓ On-chain data basics", "fr": "⛓ Bases des données on-chain", "id": "⛓ Dasar data on-chain", "vi": "⛓ Cơ bản về dữ liệu on-chain", "sw": "⛓ Misingi ya data za on-chain", "simple": "⛓ On-chain data: the basics"},
         "lang": {
             "en": {
                 "title": "On-chain data for beginners: what you can see and what you cannot",
@@ -404,12 +445,47 @@ GUIDES = {
                     ]),
                 ],
             },
+            "simple": {
+                "title": "On-chain data for beginners: what you can and cannot see",
+                "description": "Learn what on-chain data is, what it can check, where it can mislead you, and which tools to try first. They go from block explorers to wallet trackers with labels.",
+                "intro": "A blockchain is a public record. Anyone can look up transfers, balances and smart-contract activity. You do not need to ask for permission. This makes on-chain data one of the few ways to check a claim yourself.",
+                "blocks": [
+                    ("h", "What you can see"),
+                    ("ul", [
+                        "Every transfer: the sending wallet, the receiving wallet, the amount and the time.",
+                        "How many wallets hold a token. And how much the biggest ones hold.",
+                        "How much money is locked in a DeFi protocol. This is often shown as TVL (total value locked).",
+                        "What a smart contract allows. And what it has done so far.",
+                    ]),
+                    ("h", "What you cannot see"),
+                    ("ul", [
+                        "Who owns a wallet. An address does not show a real name. Labels such as “whale” or “fund” are guesses made by analytics companies.",
+                        "What a trader plans to do next. Or why they moved funds.",
+                        "Trades inside an exchange. An exchange wallet holds the money of many customers. So its balance does not show one person's position.",
+                    ]),
+                    ("h", "Three questions it answers well"),
+                    ("ul", [
+                        "**Do a few wallets hold most of the supply?** Open the holders list. If they do, that is a risk.",
+                        "**Did they really do what they said?** Teams announce burns, locks and payments. The transactions show if it happened.",
+                        "**Is anyone really using it?** Active wallets and money locked in a protocol are harder to fake than social media followers. But it is not impossible.",
+                    ]),
+                    ("h", "Where it can mislead you"),
+                    ("p", "A big wallet that moves coins does not mean a price move is coming. It may just move funds between its own addresses. Wallet labels can be wrong. Numbers differ between tools. Each tool has its own idea of an “active user”. Use on-chain data to check facts. Do not use it to predict prices."),
+                    ("h", "An easy way to start"),
+                    ("ol", [
+                        "**Use a block explorer.** Open the explorer for the chain, such as Etherscan for Ethereum. Look up a wallet or a token.",
+                        "**Compare protocols on DefiLlama.** See which ones hold the most locked value, and on which chains.",
+                        "**Follow labeled wallets on Arkham.** Its visual maps show how funds move between wallets and exchanges.",
+                        "**Go deeper when you are ready.** Dune has community dashboards. You can also edit them with SQL. Nansen has labeled wallet analytics. Free and paid features differ, so check each official site.",
+                    ]),
+                ],
+            },
         },
     },
     # ====================================================================== 3. ИИ-инструменты
     "ai-tools-crypto-research": {
         "tools": ["tokenmetrics", "kaito", "messari", "santiment"],
-        "short": {"en": "🧠 Using AI tools safely", "fr": "🧠 Utiliser l'IA sans se tromper", "id": "🧠 Memakai alat AI dengan aman", "vi": "🧠 Dùng công cụ AI an toàn", "sw": "🧠 Kutumia zana za AI kwa usalama"},
+        "short": {"en": "🧠 Using AI tools safely", "fr": "🧠 Utiliser l'IA sans se tromper", "id": "🧠 Memakai alat AI dengan aman", "vi": "🧠 Dùng công cụ AI an toàn", "sw": "🧠 Kutumia zana za AI kwa usalama", "simple": "🧠 Use AI tools safely"},
         "lang": {
             "en": {
                 "title": "How to use AI tools for crypto research without being misled",
@@ -566,6 +642,37 @@ GUIDES = {
                     ("p", "Anza na zana inayolingana na swali lako: msaidizi wa utafiti kwa maelezo ya mradi, zana ya hisia za soko kwa kinachojadiliwa na watu, zana ya on-chain kwa kilichofanywa na pochi. Jaribu mipango ya bure kwanza, na angalia kila tovuti rasmi kwa bei za sasa."),
                 ],
             },
+            "simple": {
+                "title": "How to use AI tools for crypto research and not be misled",
+                "description": "AI tools can sum up news and reports fast, but they can be wrong or old. Learn what they do well, where they fail and how to check their answers.",
+                "intro": "AI tools can read far more news, posts and reports than you can. They also make mistakes. They can sound sure when they are wrong. Use them to save reading time. Do not let them decide for you.",
+                "blocks": [
+                    ("h", "What AI tools do well"),
+                    ("ul", [
+                        "Sum up long reports, announcements and discussions.",
+                        "Show which topics get attention in news and social posts.",
+                        "Explain words you do not know. Compare how projects describe themselves.",
+                        "Collect sources that you can then open and read.",
+                    ]),
+                    ("h", "Where they go wrong"),
+                    ("ul", [
+                        "**Old answers.** Crypto changes every day. The data behind an answer may be hours or weeks old.",
+                        "**Made-up details.** Names, numbers, partnerships or links that do not exist.",
+                        "**Hype in, hype out.** Sentiment tools copy what people post. This includes paid promotion and bots.",
+                        "**Scores that look exact.** A rating can come from a method you cannot check.",
+                    ]),
+                    ("h", "Habits that keep you safe"),
+                    ("ol", [
+                        "**Ask for sources, then open them.** Cannot find the claim in the source? Then do not rely on it.",
+                        "**Check key numbers twice.** Compare price, supply and locked value on a second tool such as CoinGecko or DefiLlama.",
+                        "**Ask for the opposite case.** For example: “What are the strongest reasons this could be a bad idea?”",
+                        "**Keep secrets out.** Never paste your seed phrase, private keys or exchange passwords into any AI tool or chat.",
+                        "**Do not trust promises.** Be careful with any tool or channel that sells signals or sure profit. No tool can promise that.",
+                    ]),
+                    ("h", "Choosing a tool"),
+                    ("p", "Start with the tool that fits your question. Use a research assistant for background on a project. Use a sentiment tool to see what people discuss. Use an on-chain tool to see what wallets did. Try free plans first. Check each official site for current prices."),
+                ],
+            },
         },
     },
 }
@@ -595,17 +702,28 @@ from guides_more_h import GUIDES_H  # noqa: E402
 GUIDES.update(GUIDES_F)
 GUIDES.update(GUIDES_G)
 GUIDES.update(GUIDES_H)
+from guides_more_i import GUIDES_I  # noqa: E402
+
+GUIDES.update(GUIDES_I)
 
 # Темы разделов сайта: какой гид к какому разделу относится (используют сайт и бот).
 SECTION_GUIDES = {
     "safety": [
         "token-check-checklist", "check-token-scams", "fake-support-account-takeover", "long-con-investment-scams",
         "wallets-and-seed-phrase", "wrong-network-transfers", "fake-airdrops-trap-tokens", "stablecoins-depeg-risk",
+        "why-aml-check",
     ],
-    "tools": ["ai-tools-crypto-research", "on-chain-data-basics"],
+    "tools": ["start-here", "ai-tools-crypto-research", "on-chain-data-basics"],
     "money": ["buy-crypto-safely", "send-money-home-stablecoins"],
     "earn": [
         "airdrops-retrodrops-explained", "join-airdrops-safely", "token-sales-launchpads",
         "liquidity-pools-defi", "before-you-join-checklist",
     ],
 }
+
+# Simple English для гидов раздела «Заработок и DeFi».
+from guides_simple_earn import SIMPLE_EARN  # noqa: E402
+
+for _slug, _d in SIMPLE_EARN.items():
+    GUIDES[_slug]["lang"]["simple"] = _d["lang"]
+    GUIDES[_slug]["short"]["simple"] = _d["short"]

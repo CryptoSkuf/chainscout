@@ -34,9 +34,13 @@ from telegram.ext import (
     Application,
     CallbackQueryHandler,
     CommandHandler,
+    MessageHandler,
+    filters,
     ContextTypes,
 )
 
+import coin
+import redflag
 from guides import GUIDE_UI, GUIDES, SECTION_GUIDES
 from sections import SEC
 from howto import HOWTO, HOWTO_UI
@@ -159,10 +163,12 @@ def kb_langs() -> InlineKeyboardMarkup:
 def kb_menu(lang: str, subscribed: bool) -> InlineKeyboardMarkup:
     return InlineKeyboardMarkup(
         [
+            [btn(GUIDES["start-here"]["short"][lang], "gd:start-here:0")],
             [btn(t(lang, "btn_find"), "cats")],
             [btn(t(lang, "btn_all"), "all")],
             [btn(t(lang, "btn_guides"), "guides")],
             [btn("🌊 " + SEC[lang]["earn"][0], "earn")],
+            [btn(coin.COIN_UI[lang]["btn"], "coin"), btn(redflag.UI[lang]["btn"], "rf")],
             [btn(t(lang, "btn_unsub" if subscribed else "btn_sub"), "sub:0" if subscribed else "sub:1")],
             [btn(t(lang, "btn_about"), "about"), btn(t(lang, "btn_lang"), "chlang")],
         ]
@@ -335,6 +341,33 @@ async def render(update: Update, text: str, markup: InlineKeyboardMarkup) -> Non
             raise
 
 
+def coin_markup(lang: str, rows: list) -> InlineKeyboardMarkup:
+    """Кнопки из описания coin.py (cb/url) плюс «другая монета» и «назад»."""
+    out = []
+    for row in rows:
+        out.append([btn(text, data) if kind == "cb" else InlineKeyboardButton(text, url=data) for kind, text, data in row])
+    out.append([btn(coin.COIN_UI[lang]["another"], "coin"), btn(t(lang, "btn_back"), "menu")])
+    return InlineKeyboardMarkup(out)
+
+
+async def show_coin(update: Update, lang: str, spec: tuple[str, list]) -> None:
+    text, rows = spec
+    await render(update, text, coin_markup(lang, rows))
+
+
+def rf_markup(lang: str, rows: list) -> InlineKeyboardMarkup:
+    out = []
+    for row in rows:
+        out.append([btn(text, data) if kind == "cb" else InlineKeyboardButton(text, url=data) for kind, text, data in row])
+    out.append([btn(redflag.UI[lang]["another"], "rf"), btn(t(lang, "btn_back"), "menu")])
+    return InlineKeyboardMarkup(out)
+
+
+async def show_rf(update: Update, lang: str, spec: tuple) -> None:
+    text, rows = spec
+    await render(update, text, rf_markup(lang, rows))
+
+
 # ------------------------------------------------------------- user handlers
 async def cmd_start(update: Update, ctx: ContextTypes.DEFAULT_TYPE) -> None:
     log.info("/start от пользователя %s", update.effective_user.id)
@@ -361,6 +394,43 @@ async def cmd_guides(update: Update, ctx: ContextTypes.DEFAULT_TYPE) -> None:
         await render(update, t(user["lang"], "pick_guide"), kb_guides(user["lang"]))
 
 
+async def cmd_coin(update: Update, ctx: ContextTypes.DEFAULT_TYPE) -> None:
+    user = get_user(update.effective_user.id)
+    if user is None:
+        await render(update, LANG_PROMPT, kb_langs())
+        return
+    if isinstance(getattr(ctx, "user_data", None), dict):
+        ctx.user_data["mode"] = None
+    query = " ".join(getattr(ctx, "args", None) or [])
+    if not query:
+        await show_coin(update, user["lang"], coin.prompt_screen(user["lang"]))
+        return
+    await show_coin(update, user["lang"], await coin.lookup(query, user["lang"], update.effective_user.id))
+
+
+async def cmd_scam(update: Update, ctx: ContextTypes.DEFAULT_TYPE) -> None:
+    user = get_user(update.effective_user.id)
+    if user is None:
+        await render(update, LANG_PROMPT, kb_langs())
+        return
+    if isinstance(getattr(ctx, "user_data", None), dict):
+        ctx.user_data["mode"] = "rf"
+    await show_rf(update, user["lang"], redflag.prompt_screen(user["lang"]))
+
+
+async def on_text(update: Update, ctx: ContextTypes.DEFAULT_TYPE) -> None:
+    """Обычный текст: в режиме «красные флаги» проверяем его на признаки обмана, иначе ищем монету."""
+    user = get_user(update.effective_user.id)
+    if user is None:
+        await render(update, LANG_PROMPT, kb_langs())
+        return
+    text = (update.effective_message.text or "") if update.effective_message else ""
+    if (getattr(ctx, "user_data", None) or {}).get("mode") == "rf":
+        await show_rf(update, user["lang"], redflag.analyze(text, user["lang"], coin.SITE_URL))
+        return
+    await show_coin(update, user["lang"], await coin.lookup(text, user["lang"], update.effective_user.id))
+
+
 async def cmd_stop(update: Update, ctx: ContextTypes.DEFAULT_TYPE) -> None:
     user = get_user(update.effective_user.id)
     if user is None:
@@ -375,6 +445,8 @@ async def on_button(update: Update, ctx: ContextTypes.DEFAULT_TYPE) -> None:
     await query.answer()
     uid = query.from_user.id
     kind, _, rest = query.data.partition(":")
+    if kind != "rf" and isinstance(getattr(ctx, "user_data", None), dict):
+        ctx.user_data["mode"] = None  # любая другая кнопка выводит из режима проверки текста
 
     if kind == "noop":  # счётчик страниц «1/2»
         return
@@ -435,6 +507,14 @@ async def on_button(update: Update, ctx: ContextTypes.DEFAULT_TYPE) -> None:
         await render(update, howto_text(tool, lang), markup)
     elif kind == "guides":
         await render(update, t(lang, "pick_guide"), kb_guides(lang))
+    elif kind == "rf":
+        if isinstance(getattr(ctx, "user_data", None), dict):
+            ctx.user_data["mode"] = "rf"
+        await show_rf(update, lang, redflag.prompt_screen(lang))
+    elif kind == "coin":
+        await show_coin(update, lang, coin.prompt_screen(lang))
+    elif kind == "cn":
+        await show_coin(update, lang, await coin.report(rest, lang, uid))
     elif kind == "earn":
         X = SEC[lang]
         await render(update, f"<b>{html.escape(X['earn'][0])}</b>\n\n{html.escape(X['earn'][1])}\n\n{html.escape(X['earn_warn'])}", kb_guides(lang, "earn"))
@@ -643,6 +723,8 @@ def main() -> None:
     app.add_handler(CommandHandler("start", cmd_start))
     app.add_handler(CommandHandler("menu", cmd_menu))
     app.add_handler(CommandHandler("guides", cmd_guides))
+    app.add_handler(CommandHandler("coin", cmd_coin))
+    app.add_handler(CommandHandler("scam", cmd_scam))
     app.add_handler(CommandHandler("stop", cmd_stop))
     app.add_handler(CommandHandler("stats", cmd_stats))
     app.add_handler(CommandHandler("check", cmd_check))
@@ -650,6 +732,7 @@ def main() -> None:
     app.add_handler(CommandHandler("approve_sponsor", cmd_approve_sponsor))
     app.add_handler(CommandHandler("revoke_sponsor", cmd_revoke_sponsor))
     app.add_handler(CallbackQueryHandler(on_button))
+    app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, on_text))  # после команд
 
     hour, minute = (int(x) for x in ROUTINE_TIME.split(":"))
     app.job_queue.run_daily(daily_routine, time=dt.time(hour, minute, tzinfo=UTC), name="daily_routine")

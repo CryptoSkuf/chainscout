@@ -9,6 +9,7 @@ GUIDES_E = {
             "id": "✅ Checklist cek token",
             "vi": "✅ Checklist kiểm tra token",
             "sw": "✅ Orodha ya kukagua tokeni",
+            "simple": "✅ Token check checklist",
         },
         "lang": {
             "en": {
@@ -229,6 +230,50 @@ GUIDES_E = {
                     ]),
                     ("h", "Jinsi ya kusoma matokeo"),
                     ("p", "Ukikutana na kipengele cha SIMAMA, achana na tokeni hiyo. Vipengele kadhaa visipotiwa alama, vichukulie kama onyo na subiri. Kila kitu kikitiwa alama, hatari bado ni kubwa, kwa hiyo weka kiasi kidogo."),
+                ],
+            },
+            "simple": {
+                "title": "Token check checklist: go through it in this order",
+                "description": "A step-by-step checklist to use before you buy a token: the real contract, a security scan, market data, the project and your own limits.",
+                "intro": "Go through the steps in order. Do not skip any. A STOP item means: do not buy, do not approve anything, and do not go to the next step. A clean list is not a guarantee. It only means you did not find the usual red flags.",
+                "blocks": [
+                    ("h", "Step 1. Is it the real token?"),
+                    ("check", [
+                        "I found the project's official website from a source I trust. It was not from a chat message or an ad.",
+                        "I copied the contract address from that official website.",
+                        "On CoinGecko the name, symbol and contract address match the official ones. **STOP** if they are different. Also **STOP** if there are several look-alike tokens and I cannot tell which one is real.",
+                        "The network of the token is the network I plan to use.",
+                    ]),
+                    ("h", "Step 2. Security scan"),
+                    ("check", [
+                        "I ran the contract address through GoPlus on the right network.",
+                        "It is not a honeypot, so I can sell it. **STOP** if the scan says you cannot sell.",
+                        "Buy and sell taxes are low and normal. A very high tax is a red flag.",
+                        "The owner cannot mint unlimited new tokens or change the rules. There are no hidden owners.",
+                        "Liquidity is locked or burned. If the creators can take it out, they can empty the pool.",
+                    ]),
+                    ("h", "Step 3. Market data"),
+                    ("check", [
+                        "The 24-hour trading volume is reasonable for the market cap. Very small volume means one trade can move the price.",
+                        "The token trades in more than one market. It is best if at least one is a well-known exchange.",
+                        "The price history is not one sharp spike in the last few days. A very new token has a higher risk.",
+                    ]),
+                    ("h", "Step 4. The project and the people"),
+                    ("check", [
+                        "The website says in plain words what the project does and who is behind it.",
+                        "A few wallets do not hold most of the supply. I checked the largest holders, for example with Arkham.",
+                        "I know if big token unlocks are planned soon. New supply can push the price down.",
+                        "Nobody promises a guaranteed profit or tells me to hurry. **STOP** if someone does.",
+                    ]),
+                    ("h", "Step 5. Before you spend"),
+                    ("check", [
+                        "I decided the most money I can afford to lose completely. I will not go above it.",
+                        "I will send a small test amount first. I will check the network and the address.",
+                        "I do not connect my wallet to links from chats. I do not give unlimited spending approval.",
+                        "I wrote down why I am buying. I also wrote down when I will look at the decision again.",
+                    ]),
+                    ("h", "How to read the result"),
+                    ("p", "If you hit a STOP item, drop the token. If several items are not checked, take that as a warning and wait. If everything is checked, the risk is still high. Keep the amount small."),
                 ],
             },
         },

@@ -57,7 +57,16 @@ def install_if_needed() -> bool:
     error.TelegramError, error.BadRequest, error.Forbidden = TelegramError, BadRequest, Forbidden
 
     ext = types.ModuleType("telegram.ext")
-    ext.Application = ext.CallbackQueryHandler = ext.CommandHandler = Dummy
+    ext.Application = ext.CallbackQueryHandler = ext.CommandHandler = ext.MessageHandler = Dummy
+
+    class _Filter:
+        def __and__(self, other):
+            return self
+
+        def __invert__(self):
+            return self
+
+    ext.filters = types.SimpleNamespace(TEXT=_Filter(), COMMAND=_Filter())
     ext.ContextTypes = types.SimpleNamespace(DEFAULT_TYPE=object)
 
     httpx = types.ModuleType("httpx")

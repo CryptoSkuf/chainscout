@@ -10,6 +10,7 @@ GUIDES_D = {
             "id": "💵 Stablecoin & risiko depeg",
             "vi": "💵 Stablecoin & rủi ro mất neo",
             "sw": "💵 Stablecoin na hatari ya depeg",
+            "simple": "💵 Stablecoins & depeg risk",
         },
         "lang": {
             "en": {
@@ -167,6 +168,37 @@ GUIDES_D = {
                     ("p", "Amana za benki mara nyingi zina bima na kanuni wazi. Stablecoin nyingi hazina. Chukulia stablecoin kama zana ya kuhamisha na kushikilia thamani kwa muda mfupi, na usidhani kuna atakayelipa hasara yako ikishindwa. Hakuna kilicho hapa ni ushauri wa kifedha."),
                 ],
             },
+            "simple": {
+                "title": "Stablecoins: what keeps them stable, and what happens when they are not",
+                "description": "How stablecoins try to keep their price, the main types, what a depeg is, and a short checklist to use before you keep savings in one.",
+                "intro": "A stablecoin tries to stay worth one unit of a currency, usually one US dollar. Many people use them to avoid big price changes. But stable does not mean no risk.",
+                "blocks": [
+                    ("h", "Three common types"),
+                    ("ul", [
+                        "**Backed by reserves.** The issuer says it holds cash or similar assets for each coin. You trust the issuer and its reports.",
+                        "**Backed by crypto.** Other crypto is locked as security. Usually there is more of it than the coins issued. It depends on the code and on prices.",
+                        "**Algorithmic.** Code and trust from the market hold the price. There is little or no real backing. This is the riskiest type. Several have collapsed.",
+                    ]),
+                    ("h", "What can go wrong"),
+                    ("ul", [
+                        "**Depeg.** The price falls below the target, for example to 0.90 dollars. It may not come back.",
+                        "**Issuer problems.** The issuer may not have the reserves it says it has. It may also freeze some addresses.",
+                        "**Platform or bridge failure.** The place that holds your coins can fail, even if the coin is fine.",
+                        "**Fake coins.** A token can copy the name and logo of a real stablecoin.",
+                        "**Wrong network.** If you send to a network the receiver does not support, you can lose the funds.",
+                    ]),
+                    ("h", "A short checklist"),
+                    ("ol", [
+                        "**Find the coin on CoinGecko.** Compare its contract address with the one on the issuer's official website.",
+                        "**Look at the price history** for the past year. Many dips below the target are a warning.",
+                        "**Read how the backing is described.** Is the explanation clear? Do outside parties publish regular reports?",
+                        "**Do not keep all your savings in one coin or one place.** Spread the risk.",
+                        "**Check that you can really sell it** for local money in your country. Also check what it costs.",
+                    ]),
+                    ("h", "A stablecoin is not a bank account"),
+                    ("p", "Bank deposits often have insurance and clear rules. Most stablecoins do not. Use a stablecoin as a tool to move and hold value for a short time. Do not assume that someone will pay for your loss if it fails. Nothing here is financial advice."),
+                ],
+            },
         },
     },
 
@@ -179,6 +211,7 @@ GUIDES_D = {
             "id": "🏠 Kirim uang pulang dengan stablecoin",
             "vi": "🏠 Gửi tiền về quê bằng stablecoin",
             "sw": "🏠 Tuma pesa nyumbani kwa stablecoin",
+            "simple": "🏠 Send money home with stablecoins",
         },
         "lang": {
             "en": {
@@ -379,6 +412,46 @@ GUIDES_D = {
                     ]),
                     ("h", "Je, inakufaa?"),
                     ("p", "Kwa kiasi kidogo cha mara kwa mara inaweza kuwa nafuu, lakini tu kama kanuni za nchi zote mbili zinaruhusu na watu wote wawili wanazoea pochi. Kama kuna kitu kisicho wazi, huduma ya kutuma pesa yenye leseni inaweza kuwa salama zaidi. Mwongozo huu ni taarifa za jumla, si ushauri wa kisheria wala wa kifedha."),
+                ],
+            },
+            "simple": {
+                "title": "Sending money home with stablecoins: how it works, costs and risks",
+                "description": "A step-by-step look at sending money to family with stablecoins, which costs to compare, safe habits, and the main risks, from wrong networks to P2P scams.",
+                "intro": "Some people send money to family abroad with stablecoins. They do not use a transfer service. This can be faster or cheaper in some cases. But it adds new risks, so check with care before you try.",
+                "blocks": [
+                    ("h", "How it works"),
+                    ("ol", [
+                        "**The sender buys a stablecoin** on a platform that is allowed in the sender's country.",
+                        "**The sender sends it** to the receiver's wallet or account. Both sides must agree on the network.",
+                        "**The receiver changes it to local money.** For example, they can use a local platform or a P2P market.",
+                        "**The receiver cashes out.** Often the money goes to a bank account or mobile money.",
+                    ]),
+                    ("h", "Costs to compare"),
+                    ("ul", [
+                        "The fee or spread when you buy the stablecoin.",
+                        "The network fee for the transfer. It depends on the network you choose.",
+                        "The exchange rate when you change to local money. P2P offers can be very different from each other.",
+                        "The fee for cashing out to a bank or mobile money.",
+                        "Compare the total cost, not only one step. Compare it with what a normal transfer service charges.",
+                    ]),
+                    ("h", "Safe habits"),
+                    ("ol", [
+                        "**Agree the network and address by voice or video** with someone you know. Do not use only text.",
+                        "**Send a small test amount first.** Wait until it arrives.",
+                        "**Check the address.** Compare the first and last characters. Copy it instead of typing it.",
+                        "**Use only platforms that are legal and available** in both countries.",
+                        "**Keep records**: screenshots, transaction IDs and dates. They help with disputes and with tax rules.",
+                    ]),
+                    ("h", "What can go wrong"),
+                    ("ul", [
+                        "**Wrong network.** If the network does not match, the money can be lost.",
+                        "**P2P scams.** One example is fake proof of payment. Another is a buyer who reverses a bank payment after you release the coins.",
+                        "**Rules and limits.** Many countries have limits, reporting rules or bans on crypto. The rules can be different for the sender and the receiver.",
+                        "**Price moves.** Even a stablecoin can move away from its price. See the stablecoin guide.",
+                        "**Frozen accounts.** A platform or bank may freeze an account that it thinks is suspicious.",
+                    ]),
+                    ("h", "Is it right for you?"),
+                    ("p", "For small, regular amounts it may cost less. But the rules in both countries must allow it. Both people must also be comfortable with wallets. If anything is not clear, a licensed transfer service may be safer. This guide is general information, not legal or financial advice."),
                 ],
             },
         },

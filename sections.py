@@ -4,7 +4,7 @@ SECTIONS: порядок разделов на главной и в меню. А
 Какой гид к какому разделу относится, задано в guides.py (SECTION_GUIDES).
 """
 
-SECTIONS = ("safety", "tools", "exchanges", "earn", "guides")
+SECTIONS = ("safety", "check", "tools", "exchanges", "earn", "guides")
 
 SEC = {
     "en": {
@@ -112,4 +112,33 @@ SEC = {
         "earn_warn": "Airdrop bandia na pool bandia ni miongoni mwa njia za kawaida watu wanazopoteza pesa. Soma orodha ya kukagua kabla ya kujiunga na chochote.",
         "earn_cta": "Kabla ya kujiunga: orodha ya kukagua",
     },
+    "simple": {
+        "explore": "Explore ChainScout",
+        "start_cta": "Start here: token check list",
+        "open": "Open",
+        "n_guides": "{n} guides",
+        "n_tools": "{n} tools",
+        "nav_home": "Home",
+        "safety": ["Safety", "Spot scams, keep your wallet safe, and check a token step by step.", "Stay safe first", "Scams cost more than bad prices. Start with the checklist. Then read the guides."],
+        "tools": ["Tools", "AI and data tools for research, with short how-to steps.", "Tools for research", "Pick a question. See the tools that answer it."],
+        "exchanges": ["Exchanges & money", "Popular exchanges by region. Buy and send money safely.", "Exchanges and moving money", "Check the licences and rules in your country. Nothing here is a recommendation."],
+        "earn": ["Earn & DeFi", "Airdrops, token sales and pools: how they work and what risks they have.", "Earn & DeFi: how it works", "Ways to start with a small budget or none, and what can go wrong. This is not a promise of income."],
+        "guides": ["All guides", "All our short guides, in five languages and in Simple English.", "All guides", "Short guides in plain words."],
+        "earn_not_title": "What this section is not",
+        "earn_not": [
+            "Not free money. You pay network fees and spend time. Pools need money that you can lose.",
+            "Not a promise of income. Many projects give nothing. Rewards can be small or lose value.",
+            "Not advice to join any project. We explain how things work. We do not recommend any airdrop, sale or pool.",
+        ],
+        "earn_warn": "Fake airdrops and fake pools are a common way people lose money. Read the checklist before you join anything.",
+        "earn_cta": "Before you join: checklist",
+    },
 }
+
+
+# Раздел «Проверка токена»: тексты лежат в checker.py рядом со скриптом страницы.
+from checker import CHECK_SEC  # noqa: E402
+
+for _lang, (_sec, _count) in CHECK_SEC.items():
+    SEC[_lang]["check"] = _sec
+    SEC[_lang]["check_count"] = _count

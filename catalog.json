@@ -13,7 +13,8 @@
       "fr": "Notations de tokens et rapports d'analyse de marché pilotés par l'IA.",
       "id": "Peringkat token dan laporan riset pasar berbasis AI.",
       "vi": "Xếp hạng token và báo cáo nghiên cứu thị trường dựa trên AI.",
-      "sw": "Viwango vya tokeni na ripoti za utafiti wa soko kwa msaada wa AI."
+      "sw": "Viwango vya tokeni na ripoti za utafiti wa soko kwa msaada wa AI.",
+      "simple": "AI token ratings and market research reports."
     }
   },
   {
@@ -30,7 +31,8 @@
       "fr": "Recherche par IA dans l'actualité, les réseaux sociaux et les études crypto pour suivre les tendances.",
       "id": "Pencarian AI di berita, media sosial, dan riset kripto untuk melacak narasi.",
       "vi": "Tìm kiếm bằng AI trong tin tức, mạng xã hội và nghiên cứu crypto để theo dõi xu hướng.",
-      "sw": "Utafutaji wa AI kwenye habari, mitandao ya kijamii na tafiti za crypto kufuatilia mitindo."
+      "sw": "Utafutaji wa AI kwenye habari, mitandao ya kijamii na tafiti za crypto kufuatilia mitindo.",
+      "simple": "AI search of crypto news, social posts and research. It helps you follow the main stories."
     }
   },
   {
@@ -47,7 +49,8 @@
       "fr": "Rapports de recherche, données de protocoles et assistant IA pour analyser les projets.",
       "id": "Laporan riset, data protokol, dan asisten AI untuk menelusuri proyek.",
       "vi": "Báo cáo nghiên cứu, dữ liệu giao thức và trợ lý AI để tìm hiểu dự án.",
-      "sw": "Ripoti za utafiti, data za itifaki na msaidizi wa AI wa kuchunguza miradi."
+      "sw": "Ripoti za utafiti, data za itifaki na msaidizi wa AI wa kuchunguza miradi.",
+      "simple": "Research reports, protocol data and an AI helper to learn about projects."
     }
   },
   {
@@ -64,7 +67,8 @@
       "fr": "Sentiment social et métriques on-chain pour voir de quoi parle la communauté.",
       "id": "Sentimen sosial dan metrik on-chain untuk melihat apa yang dibicarakan komunitas.",
       "vi": "Cảm xúc mạng xã hội và chỉ số on-chain để xem cộng đồng đang bàn gì.",
-      "sw": "Hisia za mitandao ya kijamii na vipimo vya on-chain kuona jamii inazungumza nini."
+      "sw": "Hisia za mitandao ya kijamii na vipimo vya on-chain kuona jamii inazungumza nini.",
+      "simple": "Social mood and on-chain data to see what the crowd talks about."
     }
   },
   {
@@ -81,7 +85,8 @@
       "fr": "Analyses on-chain avec portefeuilles étiquetés pour suivre les gros acteurs.",
       "id": "Analitik on-chain dengan dompet berlabel untuk mengikuti pemain besar.",
       "vi": "Phân tích on-chain với ví được gắn nhãn để theo dõi các cá mập.",
-      "sw": "Uchambuzi wa on-chain wenye pochi zilizotambuliwa kufuatilia wachezaji wakubwa."
+      "sw": "Uchambuzi wa on-chain wenye pochi zilizotambuliwa kufuatilia wachezaji wakubwa.",
+      "simple": "On-chain data with labelled wallets. It shows what large players do."
     }
   },
   {
@@ -98,7 +103,8 @@
       "fr": "Suivi de portefeuilles et d'entités sur plusieurs blockchains avec explorateurs visuels.",
       "id": "Pelacakan dompet dan entitas lintas blockchain dengan penjelajah visual.",
       "vi": "Theo dõi ví và thực thể trên nhiều blockchain bằng công cụ trực quan.",
-      "sw": "Kufuatilia pochi na vyombo kwenye blockchain mbalimbali kwa zana za kuona."
+      "sw": "Kufuatilia pochi na vyombo kwenye blockchain mbalimbali kwa zana za kuona.",
+      "simple": "Tracks wallets and groups across blockchains. It has visual explorers."
     }
   },
   {
@@ -115,7 +121,8 @@
       "fr": "Métriques on-chain détaillées et indicateurs de cycle de marché, surtout Bitcoin et Ethereum.",
       "id": "Metrik on-chain mendalam dan indikator siklus pasar, terutama Bitcoin dan Ethereum.",
       "vi": "Chỉ số on-chain chuyên sâu và chỉ báo chu kỳ thị trường, chủ yếu Bitcoin và Ethereum.",
-      "sw": "Vipimo vya kina vya on-chain na viashiria vya mzunguko wa soko, hasa Bitcoin na Ethereum."
+      "sw": "Vipimo vya kina vya on-chain na viashiria vya mzunguko wa soko, hasa Bitcoin na Ethereum.",
+      "simple": "Deep on-chain data and market-cycle signs, mainly for Bitcoin and Ethereum."
     }
   },
   {
@@ -132,7 +139,8 @@
       "fr": "Tableaux de bord communautaires et requêtes SQL sur les données publiques des blockchains.",
       "id": "Dasbor komunitas dan kueri SQL pada data blockchain publik.",
       "vi": "Bảng điều khiển cộng đồng và truy vấn SQL trên dữ liệu blockchain công khai.",
-      "sw": "Dashibodi za jamii na maswali ya SQL kwenye data ya umma ya blockchain."
+      "sw": "Dashibodi za jamii na maswali ya SQL kwenye data ya umma ya blockchain.",
+      "simple": "Community dashboards and SQL queries on public blockchain data."
     }
   },
   {
@@ -149,7 +157,8 @@
       "fr": "Classements de protocoles DeFi, TVL et données par blockchain au même endroit.",
       "id": "Peringkat protokol DeFi, TVL, dan data rantai dalam satu tempat.",
       "vi": "Xếp hạng giao thức DeFi, TVL và dữ liệu chuỗi ở một nơi.",
-      "sw": "Orodha ya itifaki za DeFi, TVL na data za minyororo mahali pamoja."
+      "sw": "Orodha ya itifaki za DeFi, TVL na data za minyororo mahali pamoja.",
+      "simple": "DeFi protocol rankings, TVL and chain data in one place."
     }
   },
   {
@@ -166,7 +175,8 @@
       "fr": "Prix, capitalisations et données de base pour des milliers de cryptos.",
       "id": "Harga, kapitalisasi pasar, dan data dasar ribuan koin.",
       "vi": "Giá, vốn hóa và dữ liệu cơ bản của hàng nghìn đồng coin.",
-      "sw": "Bei, thamani ya soko na data za msingi za maelfu ya sarafu."
+      "sw": "Bei, thamani ya soko na data za msingi za maelfu ya sarafu.",
+      "simple": "Prices, market caps and basic data for thousands of coins."
     }
   },
   {
@@ -183,7 +193,8 @@
       "fr": "Graphiques de prix interactifs, indicateurs et idées de la communauté.",
       "id": "Grafik harga interaktif, indikator, dan ide dari komunitas.",
       "vi": "Biểu đồ giá tương tác, chỉ báo và ý tưởng từ cộng đồng.",
-      "sw": "Chati shirikishi za bei, viashiria na mawazo ya jamii."
+      "sw": "Chati shirikishi za bei, viashiria na mawazo ya jamii.",
+      "simple": "Price charts you can change, indicators and ideas from the community."
     }
   },
   {
@@ -200,7 +211,98 @@
       "fr": "Vérifie tokens, contrats et liens pour les risques d'arnaque et de honeypot.",
       "id": "Memeriksa token, kontrak, dan tautan untuk risiko penipuan dan honeypot.",
       "vi": "Kiểm tra token, hợp đồng và liên kết để phát hiện rủi ro lừa đảo, honeypot.",
-      "sw": "Hukagua tokeni, mikataba na viungo kwa hatari za ulaghai na honeypot."
+      "sw": "Hukagua tokeni, mikataba na viungo kwa hatari za ulaghai na honeypot.",
+      "simple": "Checks tokens, contracts and links for common scam and honeypot risks."
+    }
+  },
+  {
+    "id": "publicaml",
+    "name": "PublicAML",
+    "category": "safety",
+    "level": "beginner",
+    "url": "https://publicaml.org",
+    "affiliate_url": "",
+    "sponsor": false,
+    "checked": null,
+    "desc": {
+      "en": "Free AML screening of wallet addresses: sanctions lists, scam and hack labels, USDT and USDC freezes.",
+      "fr": "Contrôle AML gratuit des adresses : listes de sanctions, étiquettes d'arnaque et de piratage, gels d'USDT et d'USDC.",
+      "id": "Pemeriksaan AML gratis untuk alamat dompet: daftar sanksi, label penipuan dan peretasan, pembekuan USDT dan USDC.",
+      "vi": "Kiểm tra AML miễn phí cho địa chỉ ví: danh sách trừng phạt, nhãn lừa đảo và hack, đóng băng USDT và USDC.",
+      "sw": "Ukaguzi wa bure wa AML kwa anwani za pochi: orodha za vikwazo, lebo za utapeli na udukuzi, kugandishwa kwa USDT na USDC.",
+      "simple": "Free AML check for wallet addresses: sanctions lists, scam and hack labels, USDT and USDC freezes."
+    }
+  },
+  {
+    "id": "chainabuse",
+    "name": "Chainabuse",
+    "category": "safety",
+    "level": "beginner",
+    "url": "https://www.chainabuse.com",
+    "affiliate_url": "",
+    "sponsor": false,
+    "checked": null,
+    "desc": {
+      "en": "Free database of scam reports from users: search an address, a website or a name. Reports are not verified.",
+      "fr": "Base gratuite de signalements d'arnaques par des utilisateurs : cherchez une adresse, un site ou un nom. Les signalements ne sont pas vérifiés.",
+      "id": "Basis data gratis laporan penipuan dari pengguna: cari alamat, situs, atau nama. Laporan tidak diverifikasi.",
+      "vi": "Cơ sở dữ liệu miễn phí về báo cáo lừa đảo từ người dùng: tìm địa chỉ, trang web hoặc tên. Báo cáo chưa được xác minh.",
+      "sw": "Hifadhidata ya bure ya ripoti za utapeli kutoka kwa watumiaji: tafuta anwani, tovuti au jina. Ripoti hazijathibitishwa.",
+      "simple": "Free database of scam reports from users. Search an address, a website or a name. Reports are not checked."
+    }
+  },
+  {
+    "id": "ofacsearch",
+    "name": "OFAC Sanctions List Search",
+    "category": "safety",
+    "level": "intermediate",
+    "url": "https://sanctionssearch.ofac.treas.gov",
+    "affiliate_url": "",
+    "sponsor": false,
+    "checked": null,
+    "desc": {
+      "en": "The official US Treasury sanctions search. Some listed entries include crypto addresses. Free, but exact matching only.",
+      "fr": "La recherche officielle du Trésor américain sur les sanctions. Certaines entrées contiennent des adresses crypto. Gratuit, mais correspondance exacte seulement.",
+      "id": "Pencarian sanksi resmi Departemen Keuangan AS. Sebagian entri memuat alamat kripto. Gratis, tetapi hanya cocok persis.",
+      "vi": "Công cụ tra cứu trừng phạt chính thức của Bộ Tài chính Mỹ. Một số mục có địa chỉ crypto. Miễn phí, nhưng chỉ khớp chính xác.",
+      "sw": "Utafutaji rasmi wa vikwazo wa Hazina ya Marekani. Baadhi ya rekodi zina anwani za crypto. Bure, lakini inalingana kikamilifu tu.",
+      "simple": "The official US Treasury sanctions search. Some entries list crypto addresses. Free, but it only finds exact matches."
+    }
+  },
+  {
+    "id": "misttrack",
+    "name": "MistTrack (SlowMist)",
+    "category": "safety",
+    "level": "intermediate",
+    "url": "https://misttrack.io",
+    "affiliate_url": "",
+    "sponsor": false,
+    "checked": null,
+    "desc": {
+      "en": "Address risk and fund tracing by the security firm SlowMist. A simple free check, fuller reports in a trial or paid plan.",
+      "fr": "Risque d'adresse et traçage des fonds par la société de sécurité SlowMist. Un contrôle simple gratuit, des rapports plus complets en essai ou en offre payante.",
+      "id": "Risiko alamat dan pelacakan dana oleh firma keamanan SlowMist. Pemeriksaan sederhana gratis, laporan lebih lengkap lewat uji coba atau paket berbayar.",
+      "vi": "Rủi ro địa chỉ và truy vết dòng tiền của công ty bảo mật SlowMist. Kiểm tra đơn giản miễn phí, báo cáo đầy đủ hơn qua bản dùng thử hoặc gói trả phí.",
+      "sw": "Hatari ya anwani na ufuatiliaji wa fedha na kampuni ya usalama SlowMist. Ukaguzi rahisi wa bure, ripoti kamili zaidi kwa majaribio au mpango wa kulipia.",
+      "simple": "Address risk and money tracing by the security company SlowMist. A simple check is free. Fuller reports need a trial or a paid plan."
+    }
+  },
+  {
+    "id": "scorechain",
+    "name": "Scorechain AML Bot",
+    "category": "safety",
+    "level": "beginner",
+    "url": "https://www.scorechain.com",
+    "affiliate_url": "",
+    "sponsor": false,
+    "checked": null,
+    "desc": {
+      "en": "A free Telegram bot from the compliance company Scorechain that gives a sanctions risk score for a wallet address.",
+      "fr": "Un bot Telegram gratuit de la société de conformité Scorechain qui donne un score de risque de sanctions pour une adresse.",
+      "id": "Bot Telegram gratis dari perusahaan kepatuhan Scorechain yang memberi skor risiko sanksi untuk alamat dompet.",
+      "vi": "Bot Telegram miễn phí của công ty tuân thủ Scorechain, cho điểm rủi ro trừng phạt của một địa chỉ ví.",
+      "sw": "Bot ya Telegram ya bure kutoka kampuni ya uzingatiaji Scorechain inayotoa alama ya hatari ya vikwazo kwa anwani ya pochi.",
+      "simple": "A free Telegram bot from the compliance company Scorechain. It gives a sanctions risk score for a wallet address."
     }
   }
 ]

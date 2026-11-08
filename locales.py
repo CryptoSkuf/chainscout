@@ -10,7 +10,21 @@ LANGS = {
     "id": "Bahasa Indonesia",
     "vi": "Tiếng Việt",
     "sw": "Kiswahili",
+    "simple": "Simple English",
 }
+
+# Simple English: язык-вариант английского. Для поисковиков hreflang не ставим (нет такого кода),
+# а в атрибуте lang страница помечается как обычный английский.
+HREFLANG_LANGS = [c for c in LANGS if c != "simple"]
+HTML_LANG = {"simple": "en"}
+
+
+def lang_attrs(code: str) -> str:
+    """Атрибуты ссылки на версию страницы: lang и (если есть) hreflang."""
+    attrs = f' lang="{HTML_LANG.get(code, code)}"'
+    if code in HREFLANG_LANGS:
+        attrs += f' hreflang="{code}"'
+    return attrs
 
 STRINGS = {
     # ------------------------------------------------------------------ English
@@ -267,5 +281,56 @@ STRINGS = {
         "cat_sentiment": "📰 Habari na hisia za soko",
         "cat_research": "🧠 Utafiti kwa AI",
         "cat_safety": "🛡 Ukaguzi wa ulaghai na usalama",
+    },
+    # ------------------------------------------------------------------ Simple English
+    "simple": {
+        "welcome": (
+            "Hi! I'm <b>{name}</b> 👋\n"
+            "I help you find AI tools for crypto research. "
+            "Some tools are easy for beginners. Some are for experts.\n\n"
+            "⚠️ I only share facts about tools. This is not financial advice. "
+            "Crypto is very risky. Nobody can promise you a profit. "
+            "Never share your seed phrase or private keys with anyone."
+        ),
+        "menu_title": "What do you want to do?",
+        "btn_find": "🔎 Find a tool by goal",
+        "btn_all": "🧰 All tools",
+        "btn_sub": "🔔 Get weekly tips",
+        "btn_unsub": "🔕 Stop weekly tips",
+        "btn_about": "ℹ️ About",
+        "btn_lang": "🌐 Language",
+        "btn_back": "⬅️ Back",
+        "btn_guides": "📚 Guides",
+        "pick_guide": "Which guide do you want to read?",
+        "btn_prev": "◀️ Previous",
+        "btn_next": "Next ▶️",
+        "btn_open": "🔗 Open website",
+        "pick_cat": "What do you want to do?",
+        "pick_tool": "Choose a tool:",
+        "all_title": "All tools:",
+        "category": "Category",
+        "level": "Level",
+        "lvl_beginner": "Beginner",
+        "lvl_intermediate": "Middle",
+        "lvl_advanced": "Advanced",
+        "pricing_note": "Prices and free plans change. Check the official site.",
+        "disclaimer": "Facts only. This is not financial advice.",
+        "affiliate_note": "Note: we may get a small payment if you use this link. You pay nothing extra.",
+        "sponsored_tag": "Ad",
+        "sponsored_note": "This listing is paid for by the tool owner.",
+        "subscribed": "✅ Done! You will get tips about new tools from time to time. Send /stop to stop them.",
+        "unsubscribed": "🔕 You will not get tips now.",
+        "about": (
+            "<b>{name}</b> is an independent list of AI and data tools for crypto research.\n\n"
+            "• Facts only. This is not financial advice. We never give buy or sell signals.\n"
+            "• Some links are affiliate links. We mark them.\n"
+            "• We keep only your Telegram ID, your language and your tips choice. The bot needs them to work."
+        ),
+        "nl_footer": "This is not financial advice. Send /stop to stop tips.",
+        "cat_market": "📈 Prices & charts",
+        "cat_onchain": "⛓ On-chain analytics",
+        "cat_sentiment": "📰 News & sentiment",
+        "cat_research": "🧠 AI research",
+        "cat_safety": "🛡 Scam & safety checks",
     },
 }

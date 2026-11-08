@@ -56,7 +56,7 @@ def press(uid, data, sink):
     return SimpleNamespace(callback_query=query, effective_user=query.from_user, effective_message=None)
 
 
-TAGS = re.compile(r"</?(b|i)>")
+TAGS = re.compile(r"</?(b|i|code)>")
 
 
 def check_screen(where, screen):

@@ -12,6 +12,7 @@ GUIDES_A = {
             "id": "📵 Dukungan palsu & akun diretas",
             "vi": "📵 Hỗ trợ giả & tài khoản bị chiếm",
             "sw": "📵 Msaada bandia na akaunti kuvamiwa",
+            "simple": "📵 Fake support, hacked accounts",
         },
         "lang": {
             "en": {
@@ -209,6 +210,45 @@ GUIDES_A = {
                     ]),
                 ],
             },
+            "simple": {
+                "title": "Fake support and stolen accounts on Telegram and WhatsApp",
+                "description": "How fake support agents and hacked chats steal crypto and accounts. Learn how to spot them, protect Telegram and WhatsApp, and what to do if you were hit.",
+                "intro": "Many thefts start with a private message that looks like official help. A few habits can stop most of these tricks.",
+                "blocks": [
+                    ("h", "How the trick works"),
+                    ("ul", [
+                        "You ask a question in a public group or on X. Within minutes, a “support agent” writes to you in private. Real support almost never starts a chat with you.",
+                        "The agent sends a link to “verify your wallet”, “sync it” or “fix an error”. The page asks for your seed phrase. Or it tricks you into signing a harmful approval.",
+                        "Another version: a friend's account has been hijacked. It asks you for a quick loan or asks you to “vote” through a link.",
+                        "Another version: you get a login code that you did not ask for. A stranger asks you to read it out “by mistake”. With that code, they can enter your account.",
+                        "Admins or moderators with the same name and photo as the real ones are copies. Always check the exact username.",
+                    ]),
+                    ("h", "Protect your accounts"),
+                    ("ol", [
+                        "**Turn on two-step verification in Telegram.** Go to Settings, Privacy and Security, Two-Step Verification. Set a password that only you know.",
+                        "**Do the same in WhatsApp.** Go to Settings, Account, Two-step verification. Add a recovery email.",
+                        "**Never share a login code.** Not with support, not with a friend, not with anyone. A code goes only into the app you are logging in to.",
+                        "**Check your active sessions.** In Telegram, open Settings, Devices. In WhatsApp, open Linked devices. Remove any you do not know.",
+                        "**Limit who can add you to groups** in the privacy settings. Then strangers cannot pull you into scam chats.",
+                    ]),
+                    ("h", "Rules for talking to “support”"),
+                    ("ul", [
+                        "Contact support only through the official website or the help section inside the app. Type the address yourself.",
+                        "Ignore private messages that offer help. Block and report them.",
+                        "Never give a seed phrase, private key, password or login code. No real company needs them.",
+                        "A friend asks for money by message? Call them first. Or ask a question only they can answer. Do this before you send anything.",
+                        "Do not install apps or screen-sharing tools because a stranger asks you to.",
+                    ]),
+                    ("h", "If your account or wallet was hit"),
+                    ("ul", [
+                        "Log out all other sessions and change your passwords. In Telegram: Settings, Devices, Terminate all other sessions.",
+                        "Tell your contacts and groups at once. Then they will ignore messages sent from your account.",
+                        "Did you share a seed phrase or key? Create a new wallet on a clean device and move what is left. Revoke old approvals.",
+                        "Report it to the platform and to your local police or cybercrime unit. Keep screenshots, usernames and transaction IDs.",
+                        "Be careful with “recovery services” that ask for a fee. This is a very common second scam.",
+                    ]),
+                ],
+            },
         },
     },
     # ====================================================================== 5. Долгие мошенничества
@@ -220,6 +260,7 @@ GUIDES_A = {
             "id": "🎣 Penipuan investasi jangka panjang",
             "vi": "🎣 Lừa đảo đầu tư dài hạn",
             "sw": "🎣 Ulaghai wa uwekezaji wa polepole",
+            "simple": "🎣 Slow investment scams",
         },
         "lang": {
             "en": {
@@ -414,6 +455,45 @@ GUIDES_A = {
                         "Ripoti kwa polisi au kitengo cha uhalifu wa mtandaoni cha eneo lako na kwa mdhibiti wa fedha. Pia mwambie soko ulilotumia, kwa kuwa linaweza kuweka alama kwenye anwani iliyopokea.",
                         "Kuwa mwangalifu na “huduma za kurejesha”. Nyingi ni ulaghai wa pili unaowalenga waathirika walewale.",
                         "Zungumza na mtu unayemwamini. Waathirika wengi huona aibu. Hili ni la kawaida, na si kosa lako.",
+                    ]),
+                ],
+            },
+            "simple": {
+                "title": "Slow scams: fake investment sites, “mentors” and romance",
+                "description": "How slow scams build trust for weeks before they ask for money. Learn the usual steps, the red flags, checks before you send money, and what to do if you lost money.",
+                "intro": "Not every scam is fast. Some scammers spend weeks being friendly and patient. Then they move you to a fake platform. Knowing the pattern is the best defence.",
+                "blocks": [
+                    ("h", "How it usually goes"),
+                    ("ol", [
+                        "**First contact.** A “wrong number” text. Or a friendly stranger on a dating app or social media. Or a “mentor” who offers to teach you. They are warm and not in a hurry.",
+                        "**Move to a private chat.** The talk moves to WhatsApp or Telegram. They share photos of a comfortable life. They talk about their success in investing. But they do not ask for money yet.",
+                        "**The “platform”.** They suggest a website or app that they “use”. You make a small deposit. The dashboard shows nice profits. A small withdrawal works. This builds trust.",
+                        "**Bigger deposits.** They push you to add more money. They may tell you to take a loan or borrow from family. They say a “special opportunity” is closing.",
+                        "**The trap closes.** You try to withdraw. They ask for “taxes”, “fees” or a “verification deposit”. You pay, and there is always another fee. Then they go silent.",
+                    ]),
+                    ("h", "Red flags"),
+                    ("ul", [
+                        "Someone you have never met in person guides your investing. This is common after a romantic or very friendly start.",
+                        "The platform is a website or an app that you installed from a link. It is not a well-known exchange that you can check.",
+                        "Profits are steady and high. Or you hear about “inside information” or an “AI trading bot” that cannot lose.",
+                        "You must pay a fee, tax or deposit before you can withdraw your own money.",
+                        "The person always has an excuse to avoid a live video call. They also ask you to keep the investment secret.",
+                    ]),
+                    ("h", "Check before you send anything"),
+                    ("ul", [
+                        "Search the platform's name with the words “scam” and “review”. Check the regulator's list in your country to see if it has a licence.",
+                        "A small successful withdrawal proves nothing. Scams allow it on purpose.",
+                        "Use only well-known exchanges. Never send crypto to an address that another person gave you.",
+                        "Ask for a live video call. If they refuse again and again, stop.",
+                        "Talk to a family member or a trusted friend before any large transfer. Scammers tell you to keep it secret because secrecy protects them.",
+                    ]),
+                    ("h", "If you already lost money"),
+                    ("ul", [
+                        "Stop sending money. This includes “fees” to get your money back.",
+                        "Save chats, wallet addresses, transaction IDs and screenshots of the platform.",
+                        "Report it to your local police or cybercrime unit and to the financial regulator. Also tell the exchange you used. It may flag the receiving address.",
+                        "Be careful with “recovery services”. Many are a second scam aimed at the same victims.",
+                        "Talk to someone you trust. Many victims feel ashamed. This is common, and it is not your fault.",
                     ]),
                 ],
             },

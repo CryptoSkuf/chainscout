@@ -104,7 +104,18 @@ TAGS = {
         "no_afr": "Haina leseni Afrika (hakiki za 2026)",
         "ng_ended": "Huduma za naira zilisitishwa 2024",
         "check_reg": "Angalia usajili wa ndani",
+    },    "simple": {
+        "p2p": "P2P market",
+        "mobile": "Mobile money",
+        "local": "Local platform",
+        "many_africa": "20+ African countries",
+        "lic_za": "South Africa: licensed (FSCA)",
+        "prov_ng": "Nigeria: temporary SEC approval",
+        "no_afr": "No African licence (2026 reviews)",
+        "ng_ended": "Naira services stopped in 2024",
+        "check_reg": "Check local registration",
     },
+
 }
 
 UI = {
@@ -137,5 +148,11 @@ UI = {
         "intro": "Orodha ya kuanzia, si pendekezo. Upatikanaji, leseni na sheria za ndani hubadilika mara kwa mara na hutofautiana kati ya nchi. Hakikisha jukwaa linaruhusiwa unapoishi kabla ya kujisajili. Usitume pesa kwa mtu aliyekuwasiliana nawe kwanza.",
         "all": "Yote", "africa": "Afrika", "sea": "Asia ya Kusini-Mashariki",
         "open": "Fungua {name}", "partner": "Kiungo cha mshirika", "countries": "Nchi",
+    },    "simple": {
+        "title": "Exchanges people use in Africa and Southeast Asia",
+        "intro": "This is a first list. It is not advice to use any of them. Availability, licences and local rules change often. They are different in each country. Check that a platform is allowed where you live before you sign up. Never send money to someone who contacted you first.",
+        "all": "All", "africa": "Africa", "sea": "Southeast Asia",
+        "open": "Open {name}", "partner": "Partner link", "countries": "Countries",
     },
+
 }

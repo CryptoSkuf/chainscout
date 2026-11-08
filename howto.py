@@ -132,3 +132,16 @@ from howto_more_b import HOWTO_B  # noqa: E402
 
 HOWTO.update(HOWTO_A)
 HOWTO.update(HOWTO_B)
+from howto_more_c import HOWTO_C  # noqa: E402
+
+HOWTO.update(HOWTO_C)
+from howto_more_d import HOWTO_D  # noqa: E402
+
+HOWTO.update(HOWTO_D)
+
+# Simple English: отдельный файл, подмешиваем в общие словари.
+from howto_simple import HOWTO_SIMPLE, HOWTO_UI_SIMPLE  # noqa: E402
+
+HOWTO_UI["simple"] = HOWTO_UI_SIMPLE
+for _tool, _text in HOWTO_SIMPLE.items():
+    HOWTO[_tool]["lang"]["simple"] = _text

@@ -14,7 +14,7 @@ HERE = Path(__file__).resolve().parent
 DIST = Path(sys.argv[1]) if len(sys.argv) > 1 else HERE / "dist"
 sys.path[:0] = [str(HERE), str(HERE.parent)]
 from guides import GUIDE_UI, GUIDES  # noqa: E402
-from locales import LANGS  # noqa: E402
+from locales import HREFLANG_LANGS, LANGS  # noqa: E402
 from sections import SECTIONS  # noqa: E402
 
 VOID = {"meta", "link", "input", "br", "hr", "img", "circle", "path", "rect"}
@@ -164,7 +164,7 @@ def main() -> None:
             except Exception as exc:  # noqa: BLE001
                 fail(f"{rel}: JSON-LD не читается ({exc})")
             text = (DIST / rel).read_text("utf-8")
-            for code in LANGS:
+            for code in HREFLANG_LANGS:
                 if f'hreflang="{code}"' not in text:
                     fail(f"{rel}: нет hreflang={code}")
             if 'hreflang="x-default"' not in text:
@@ -208,7 +208,7 @@ def main() -> None:
                 fail(f"{rel}: длина description {len(desc)}")
             if not page.meta.get("canonical", "").endswith(f"/{lang}/guides/{slug}/"):
                 fail(f"{rel}: canonical {page.meta.get('canonical')}")
-            for code in LANGS:
+            for code in HREFLANG_LANGS:
                 if f'hreflang="{code}" href="' not in text:
                     fail(f"{rel}: нет hreflang={code}")
             if 'hreflang="x-default"' not in text:

@@ -116,6 +116,28 @@ PRE = {
         "cta_bot": "Fungua bot",
         "disclaimer": "Taarifa tu, si ushauri wa kifedha. Mali za crypto zina hatari kubwa na unaweza kupoteza kila ulichoweka. Angalia kanuni za nchi yako kabla ya kuchukua hatua.",
     },
+    "simple": {
+        "title": "ChainScout: learn how digital assets work, safely",
+        "description": "Free guides in 5 languages, a tool catalog and a Telegram bot. Learn about digital assets, scams and risks. We sell nothing.",
+        "h1": "Dreams need resources. Knowledge helps you find your way.",
+        "paras": [
+            "It is hard to follow your dreams without money. Often we do not know where to start. The world keeps moving. Every day new ways appear to make life better.",
+            "Everyone has heard the word “bitcoin”. For many people it still sounds unclear and far away. Yet millions have learned how digital money assets work. Many use this knowledge to plan better, join the modern economy and help others.",
+            "Digital assets are also risky. Prices can fall as fast as they rise. Scammers target new people every day. Good knowledge, care with risk and the right tools matter more than luck.",
+        ],
+        "honest_title": "What we are, honestly",
+        "honest": "ChainScout is an education and community project. We do not sell you anything. We do not give trading signals. We do not promise income. Some links on our site may be partner links. We always mark them.",
+        "cards_title": "What you get, free",
+        "cards": [
+            ["Guides", "How to spot scams, keep a wallet safe and avoid costly mistakes, in 5 languages."],
+            ["Tool catalog", "AI and data tools for research, with short step-by-step help."],
+            ["Telegram bot", "The guides and tools on your phone, in your language."],
+        ],
+        "cta_site": "Open the guides",
+        "cta_tg": "Join our Telegram channel",
+        "cta_bot": "Open the bot",
+        "disclaimer": "Facts only. This is not financial advice. Crypto assets are very risky. You can lose everything you put in. Check the rules in your country before you act.",
+    },
 }
 
 
@@ -141,6 +163,41 @@ SOON = {
         "soon_title": "Kwa nini ujiandae sasa",
         "soon": "Zimebaki takriban bitcoin elfu 900 tu za kuchimbwa. Pamoja na uwezekano wa Fed kulegeza msimamo wake mkali, hili linaweza kulipa soko msukumo mkubwa, ingawa hakuna anayeweza kujua kwa uhakika. Tufikie kipindi hicho tukiwa tumejiandaa, tukiwa na zana kamili tunazojua kuzitumia ipasavyo na uzoefu halisi wa mabadilishano, pochi na pool. Tunaweza kuwa wataalamu stadi katika sekta hii yenye matumaini na ya kisasa, na kujua zaidi kuliko watu wengi wanaotuzunguka.",
     },
+    "simple": {
+        "soon_title": "Why get ready now",
+        "soon": "Only about 900 thousand bitcoins are left to be mined. The Fed may also relax its tough stance. Together, this may give the market a strong push. But nobody can know for sure. Let us reach that time ready. We want a full set of tools that we know how to use well. We want real experience with exchanges, wallets and pools. We can become skilled in this new and promising field. We can know more than most people around us.",
+    },
 }
 for _k, _v in SOON.items():
+    PRE[_k].update(_v)
+
+
+# Миссия проекта: свобода как результат собственных усилий. Без обещаний результата.
+MISSION = {
+    "en": {
+        "mission_title": "Our mission",
+        "mission": "We see our mission in giving people a chance to gain freedom, if they are ready to put in the effort themselves. We cannot do the work for you and we promise no result. What we can do is give you honest knowledge, safe habits and good tools. The effort is yours.",
+    },
+    "fr": {
+        "mission_title": "Notre mission",
+        "mission": "Nous voyons notre mission dans le fait de donner aux gens une chance de gagner en liberté, s'ils sont prêts à faire eux-mêmes les efforts nécessaires. Nous ne pouvons pas faire le travail à votre place et nous ne promettons aucun résultat. Ce que nous pouvons faire, c'est vous offrir des connaissances honnêtes, de bonnes habitudes de sécurité et de bons outils. L'effort vous appartient.",
+    },
+    "id": {
+        "mission_title": "Misi kami",
+        "mission": "Kami melihat misi kami sebagai memberi orang kesempatan untuk meraih kebebasan, jika mereka sendiri siap berusaha. Kami tidak bisa mengerjakannya untuk Anda dan kami tidak menjanjikan hasil. Yang bisa kami lakukan adalah memberi pengetahuan yang jujur, kebiasaan aman, dan alat yang baik. Usahanya ada di tangan Anda.",
+    },
+    "vi": {
+        "mission_title": "Sứ mệnh của chúng tôi",
+        "mission": "Chúng tôi xem sứ mệnh của mình là trao cho mọi người cơ hội đạt được tự do, nếu chính họ sẵn sàng nỗ lực. Chúng tôi không thể làm thay bạn và không hứa hẹn kết quả. Điều chúng tôi có thể làm là mang đến kiến thức trung thực, thói quen an toàn và công cụ tốt. Nỗ lực là của bạn.",
+    },
+    "sw": {
+        "mission_title": "Dhamira yetu",
+        "mission": "Tunaona dhamira yetu ni kuwapa watu nafasi ya kupata uhuru, ikiwa wao wenyewe wako tayari kujitahidi. Hatuwezi kukufanyia kazi hiyo na hatuahidi matokeo. Tunachoweza kufanya ni kukupa maarifa ya kweli, tabia salama na zana nzuri. Juhudi ni zako.",
+    },
+    "simple": {
+        "mission_title": "Our mission",
+        "mission": "Our mission is to give people a chance to become free. This works only if they are ready to put in the effort themselves. We cannot do the work for you. We promise no result. We can give you honest knowledge, safe habits and good tools. The effort is yours.",
+    },
+}
+for _k, _v in MISSION.items():
     PRE[_k].update(_v)
