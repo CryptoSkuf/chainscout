@@ -141,31 +141,31 @@ PRE = {
 }
 
 
-# Блок «почему готовиться сейчас». Без обещаний роста: только «может» и «никто не знает».
+# Блок «почему готовиться сейчас». Без обещаний роста и без привязки к решениям ФРС (обновлено 21.11.2026: рынок под давлением).
 SOON = {
     "en": {
         "soon_title": "Why get ready now",
-        "soon": "Only about 900 thousand bitcoins are left to be mined. Together with a possible easing of the Fed's tough stance, this may give the market a strong push, although nobody can know for sure. Let us come to that period prepared, with a full set of tools we know how to use properly and with real experience of exchanges, wallets and pools. We can become skilled specialists in this promising, cutting-edge field and know more than most of the people around us.",
+        "soon": "Only about 900 thousand bitcoins are left to be mined. Nobody can say when the market will turn, and right now it is under pressure. That is exactly why preparation matters: fear and falling prices are when beginners make costly mistakes and when scammers work hardest. Let us use this time to come ready, with tools we know how to use properly, real experience of exchanges, wallets and pools, and the habit of checking before we act. We can become skilled people in this cutting-edge field and know more than most of the people around us. We promise no price moves, only knowledge.",
     },
     "fr": {
         "soon_title": "Pourquoi se préparer dès maintenant",
-        "soon": "Il reste à peine 900 000 bitcoins environ à miner. Associé à un possible assouplissement de la ligne dure de la Fed, cela peut donner un fort élan au marché, même si personne ne peut le savoir avec certitude. Abordons cette période préparés, avec un jeu complet d'outils que nous savons bien utiliser et une vraie expérience des plateformes d'échange, des portefeuilles et des pools. Nous pouvons devenir des spécialistes compétents de ce domaine prometteur et de pointe, et en savoir plus que la plupart des gens autour de nous.",
+        "soon": "Il reste à peine 900 000 bitcoins environ à miner. Personne ne peut dire quand le marché se retournera, et il est actuellement sous pression. C'est précisément pour cela que la préparation compte : la peur et la baisse des prix sont le moment où les débutants font des erreurs coûteuses et où les escrocs travaillent le plus. Profitons de ce temps pour être prêts, avec des outils que nous savons bien utiliser, une vraie expérience des plateformes d'échange, des portefeuilles et des pools, et l'habitude de vérifier avant d'agir. Nous pouvons devenir compétents dans ce domaine de pointe et en savoir plus que la plupart des gens autour de nous. Nous ne promettons aucune évolution des prix, seulement du savoir.",
     },
     "id": {
         "soon_title": "Mengapa bersiap sekarang",
-        "soon": "Tinggal sekitar 900 ribu bitcoin lagi yang belum ditambang. Bersama kemungkinan melonggarnya sikap keras The Fed, hal ini bisa memberi dorongan kuat bagi pasar, meski tidak ada yang bisa memastikannya. Mari kita menyambut periode itu dengan siap, dengan perangkat alat lengkap yang kita tahu cara memakainya dengan benar, dan dengan pengalaman nyata soal bursa, dompet, dan pool. Kita bisa menjadi spesialis yang terampil di bidang yang menjanjikan dan mutakhir ini, serta tahu lebih banyak daripada kebanyakan orang di sekitar kita.",
+        "soon": "Tinggal sekitar 900 ribu bitcoin lagi yang belum ditambang. Tidak ada yang bisa memastikan kapan pasar berbalik, dan saat ini pasar sedang tertekan. Justru karena itu persiapan penting: saat takut dan harga turun, pemula sering membuat kesalahan mahal dan penipu bekerja paling giat. Mari gunakan waktu ini untuk bersiap, dengan alat yang kita tahu cara memakainya dengan benar, pengalaman nyata soal bursa, dompet, dan pool, serta kebiasaan memeriksa sebelum bertindak. Kita bisa menjadi orang yang terampil di bidang mutakhir ini dan tahu lebih banyak daripada kebanyakan orang di sekitar kita. Kami tidak menjanjikan pergerakan harga, hanya pengetahuan.",
     },
     "vi": {
         "soon_title": "Vì sao nên chuẩn bị ngay từ bây giờ",
-        "soon": "Chỉ còn khoảng 900 nghìn bitcoin chưa được khai thác. Cùng với khả năng Fed nới lỏng lập trường cứng rắn, điều này có thể tạo cú hích mạnh cho thị trường, dù không ai có thể biết chắc. Hãy bước vào giai đoạn đó với sự chuẩn bị, với đầy đủ công cụ mà chúng ta biết dùng đúng cách và với kinh nghiệm thực tế về sàn giao dịch, ví và pool. Chúng ta có thể trở thành những chuyên gia giỏi trong lĩnh vực đầy triển vọng và tiên tiến này, và hiểu biết nhiều hơn phần lớn những người xung quanh.",
+        "soon": "Chỉ còn khoảng 900 nghìn bitcoin chưa được khai thác. Không ai có thể nói khi nào thị trường đảo chiều, và hiện tại thị trường đang chịu áp lực. Chính vì vậy việc chuẩn bị rất quan trọng: lúc sợ hãi và giá giảm là lúc người mới mắc sai lầm tốn kém và kẻ lừa đảo hoạt động mạnh nhất. Hãy dùng thời gian này để chuẩn bị, với những công cụ mà chúng ta biết dùng đúng cách, kinh nghiệm thực tế về sàn giao dịch, ví và pool, và thói quen kiểm tra trước khi hành động. Chúng ta có thể trở thành những người giỏi trong lĩnh vực tiên tiến này và hiểu biết nhiều hơn phần lớn những người xung quanh. Chúng tôi không hứa hẹn biến động giá, chỉ có kiến thức.",
     },
     "sw": {
         "soon_title": "Kwa nini ujiandae sasa",
-        "soon": "Zimebaki takriban bitcoin elfu 900 tu za kuchimbwa. Pamoja na uwezekano wa Fed kulegeza msimamo wake mkali, hili linaweza kulipa soko msukumo mkubwa, ingawa hakuna anayeweza kujua kwa uhakika. Tufikie kipindi hicho tukiwa tumejiandaa, tukiwa na zana kamili tunazojua kuzitumia ipasavyo na uzoefu halisi wa mabadilishano, pochi na pool. Tunaweza kuwa wataalamu stadi katika sekta hii yenye matumaini na ya kisasa, na kujua zaidi kuliko watu wengi wanaotuzunguka.",
+        "soon": "Zimebaki takriban bitcoin elfu 900 tu za kuchimbwa. Hakuna anayeweza kusema soko litageuka lini, na kwa sasa liko chini ya shinikizo. Ndiyo maana maandalizi ni muhimu: hofu na bei zinaposhuka ndipo wanaoanza hufanya makosa ya gharama na matapeli hufanya kazi kwa bidii zaidi. Tutumie wakati huu kujiandaa, tukiwa na zana tunazojua kuzitumia ipasavyo, uzoefu halisi wa mabadilishano, pochi na pool, na tabia ya kukagua kabla ya kutenda. Tunaweza kuwa watu stadi katika sekta hii ya kisasa na kujua zaidi kuliko watu wengi wanaotuzunguka. Hatuahidi mwenendo wa bei, maarifa tu.",
     },
     "simple": {
         "soon_title": "Why get ready now",
-        "soon": "Only about 900 thousand bitcoins are left to be mined. The Fed may also relax its tough stance. Together, this may give the market a strong push. But nobody can know for sure. Let us reach that time ready. We want a full set of tools that we know how to use well. We want real experience with exchanges, wallets and pools. We can become skilled in this new and promising field. We can know more than most people around us.",
+        "soon": "Only about 900 thousand bitcoins are left to be mined. Nobody can say when the market will turn. Right now it is under pressure. This is why getting ready matters. When people are afraid and prices fall, beginners make costly mistakes. Scammers also work harder then. Let us use this time to get ready. We want tools that we know how to use well. We want real experience with exchanges, wallets and pools. We want the habit of checking before we act. We can become skilled in this new field. We can know more than most people around us. We promise no price moves. We give only knowledge.",
     },
 }
 for _k, _v in SOON.items():
