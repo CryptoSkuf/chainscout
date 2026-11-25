@@ -304,5 +304,59 @@
       "sw": "Bot ya Telegram ya bure kutoka kampuni ya uzingatiaji Scorechain inayotoa alama ya hatari ya vikwazo kwa anwani ya pochi.",
       "simple": "A free Telegram bot from the compliance company Scorechain. It gives a sanctions risk score for a wallet address."
     }
+  },
+  {
+    "id": "whalealert",
+    "name": "Whale Alert",
+    "category": "onchain",
+    "level": "beginner",
+    "url": "https://whale-alert.io",
+    "affiliate_url": "",
+    "sponsor": false,
+    "checked": null,
+    "desc": {
+      "en": "Tracks very large crypto transfers across blockchains and labels exchanges and unknown wallets.",
+      "fr": "Suit les très gros transferts crypto sur plusieurs blockchains et étiquette plateformes et portefeuilles inconnus.",
+      "id": "Melacak transfer kripto sangat besar di banyak blockchain dan melabeli bursa serta dompet tak dikenal.",
+      "vi": "Theo dõi các giao dịch crypto rất lớn trên nhiều blockchain và gắn nhãn sàn và ví không rõ.",
+      "sw": "Hufuatilia uhamisho mkubwa sana wa kripto kwenye blockchain nyingi na kuweka lebo kwa masoko na pochi zisizojulikana.",
+      "simple": "Tracks very big crypto transfers on many blockchains. Labels exchanges and unknown wallets."
+    }
+  },
+  {
+    "id": "debank",
+    "name": "DeBank",
+    "category": "onchain",
+    "level": "beginner",
+    "url": "https://debank.com",
+    "affiliate_url": "",
+    "sponsor": false,
+    "checked": null,
+    "desc": {
+      "en": "Look up any public wallet address: tokens, DeFi positions and history on EVM networks.",
+      "fr": "Consultez n'importe quelle adresse publique : tokens, positions DeFi et historique sur les réseaux EVM.",
+      "id": "Lihat alamat dompet publik mana pun: token, posisi DeFi, dan riwayat di jaringan EVM.",
+      "vi": "Tra cứu bất kỳ địa chỉ ví công khai nào: token, vị thế DeFi và lịch sử trên mạng EVM.",
+      "sw": "Angalia anwani yoyote ya umma ya pochi: tokeni, nafasi za DeFi na historia kwenye mitandao ya EVM.",
+      "simple": "Look up any public wallet address: tokens, DeFi positions and history on EVM networks."
+    }
+  },
+  {
+    "id": "etherscan",
+    "name": "Etherscan",
+    "category": "onchain",
+    "level": "beginner",
+    "url": "https://etherscan.io",
+    "affiliate_url": "",
+    "sponsor": false,
+    "checked": null,
+    "desc": {
+      "en": "The Ethereum block explorer: transactions, address labels and the list of top holders of a token.",
+      "fr": "L'explorateur de blocs d'Ethereum : transactions, étiquettes d'adresses et liste des plus gros détenteurs d'un token.",
+      "id": "Block explorer Ethereum: transaksi, label alamat, dan daftar pemegang terbesar suatu token.",
+      "vi": "Trình khám phá khối của Ethereum: giao dịch, nhãn địa chỉ và danh sách người giữ token lớn nhất.",
+      "sw": "Block explorer ya Ethereum: miamala, lebo za anwani na orodha ya washikiliaji wakubwa wa tokeni.",
+      "simple": "The Ethereum block explorer: transactions, address labels and the list of the biggest holders of a token."
+    }
   }
 ]

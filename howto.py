@@ -138,6 +138,9 @@ HOWTO.update(HOWTO_C)
 from howto_more_d import HOWTO_D  # noqa: E402
 
 HOWTO.update(HOWTO_D)
+from howto_more_e import HOWTO_E  # noqa: E402
+
+HOWTO.update(HOWTO_E)
 
 # Simple English: отдельный файл, подмешиваем в общие словари.
 from howto_simple import HOWTO_SIMPLE, HOWTO_UI_SIMPLE  # noqa: E402

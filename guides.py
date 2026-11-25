@@ -705,6 +705,9 @@ GUIDES.update(GUIDES_H)
 from guides_more_i import GUIDES_I  # noqa: E402
 
 GUIDES.update(GUIDES_I)
+from guides_more_j import GUIDES_J  # noqa: E402
+
+GUIDES.update(GUIDES_J)
 
 # Темы разделов сайта: какой гид к какому разделу относится (используют сайт и бот).
 SECTION_GUIDES = {
@@ -713,7 +716,7 @@ SECTION_GUIDES = {
         "wallets-and-seed-phrase", "wrong-network-transfers", "fake-airdrops-trap-tokens", "stablecoins-depeg-risk",
         "why-aml-check",
     ],
-    "tools": ["start-here", "ai-tools-crypto-research", "on-chain-data-basics"],
+    "tools": ["start-here", "ai-tools-crypto-research", "on-chain-data-basics", "track-whale-wallets"],
     "money": ["buy-crypto-safely", "send-money-home-stablecoins"],
     "earn": [
         "airdrops-retrodrops-explained", "join-airdrops-safely", "token-sales-launchpads",
